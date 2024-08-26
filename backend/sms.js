@@ -589,3 +589,27 @@ class hoichoi{
 }
 
 
+class jiocinema{
+    constructor(number,ws){
+        fetch("https://auth-jiocinema.voot.com/userservice/apis/v4/loginotp/send",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "accesstoken":"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjBiNmExMjM3LWE0YzUtNDk3Ny1hY2U4LWJjNjU4ZjFmNmM1ZiIsInVzZXJUeXBlIjoiR1VFU1QiLCJhcHBOYW1lIjoiUkpJTF9KaW9DaW5lbWEiLCJkZXZpY2VJZCI6IjA4ZjYzZWE0LWZlYmMtNGI0Mi04YWRlLTA4OWI3NmFjN2ExZSIsImRldmljZVR5cGUiOiJwYyIsIm9zIjoid2ViIiwicHJvZmlsZUlkIjoiM2E5NzdkNzUtZjk0OS00NzQwLThhOTMtMGI5NGZkZTUyYjdiIiwiYWRJZCI6IjA4ZjYzZWE0LWZlYmMtNGI0Mi04YWRlLTA4OWI3NmFjN2ExZSIsImV4cGVyaW1lbnRLZXkiOnsiY29uZmlnS2V5IjoiM2E5NzdkNzUtZjk0OS00NzQwLThhOTMtMGI5NGZkZTUyYjdiIiwiZ3JvdXBJZCI6NTM1OX0sInByb2ZpbGVEZXRhaWxzIjp7InByb2ZpbGVUeXBlIjoiYWR1bHQiLCJjb250ZW50QWdlUmF0aW5nIjoiQSJ9LCJ2ZXJzaW9uIjoyMDI0MDMwNDB9LCJleHAiOjE3MjcyNzQ3NTAsImlhdCI6MTcyNDY4Mjc1MH0.CVWts8Wrwf4rg4PyHYVUCC_h1xkZXT-MN-SwNWaAnyTZezttWbNVhKSUsQ9zy89O79_8DmIiVSyXEyl6ULa_HQ",
+                "appname":"RJIL_JioCinema",
+                "os":"web",
+                "devicetype":"pc"
+            },
+            body:JSON.stringify({
+                "number": btoa("+91"+number),
+                "appVersion": "24.08.12.5-472b0237",
+                "retry_count": 0
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.OTPInfo)
+                ws.send("+1")
+        })
+    }
+}
+
+new jiocinema("7207232672",ws)
