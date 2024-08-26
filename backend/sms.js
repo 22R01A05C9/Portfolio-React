@@ -185,3 +185,26 @@ class unacademy{
         })
     }
 }
+
+class medibuddy{
+    constructor(number,ws){
+        fetch("https://loginprod.medibuddy.in/unified-login/user/register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "source": "medibuddyInWeb",
+                "platform": "medibuddy",
+                "phonenumber": number,
+                "flow": "Retail-Login-Home-Flow",
+                "idealLoginFlow": "false",
+                "advertiserId": "22003edf-0bc8-L8d1-9012-28760f6f6e44",
+                "mbUserId": "null"
+                })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.data.OtpStatus === "Sent")
+                ws.send("+1")
+        })
+    }
+}
