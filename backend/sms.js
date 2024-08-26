@@ -106,3 +106,22 @@ class housing{
 }
 
 
+class zomato{
+    constructor(number,ws){
+        let data = new FormData();
+        data.append("country_id", "1");
+        data.append("number",number);
+        data.append("type","initiate");
+        data.append("csrf_token","1a20ab53810a26f6e668ba114ac310aa");
+        data.append("lc","321f785dacc842fd84097ddee7616ac3");
+        data.append("verification_type","sms")
+        fetch("https://accounts.zomato.com/login/phone",{
+            method:"POST",
+            body:data
+        }).then(res=>res.json()).then((data)=>{
+            if(data.status === true && data.message === "Check text messages for your OTP")
+                ws.send("+1")
+        })
+    }
+}
+
