@@ -144,3 +144,21 @@ class fantv{
     }
 }
 
+class byjus{
+    constructor(number,ws){
+        fetch("https://identity.tllms.com/api/request_otp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "phone": "+91-"+number,
+                "app_client_id": "90391da1-ee49-4378-bd12-1924134e906e"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.phone === "+91-"+number)
+                ws.send("+1")
+        })
+    }
+}
+
