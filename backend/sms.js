@@ -268,3 +268,56 @@ class ajio{
         })
     }
 }
+
+
+class bookmyshow{
+    constructor(number, ws){
+        fetch("https://in.bookmyshow.com/api/members/otp/send",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "channel": "phone",
+                "subChannel": "sms",
+                "details": {
+                    "phone": number,
+                    "origin": "https://in.bookmyshow.com"
+                }
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.statusCode === 200)
+                ws.send("+1")
+        })
+    }
+}
+
+class nxtwave{
+    constructor(number,ws){
+        fetch("https://ib-user-accounts-backend-prod-apis.ccbp.in/api/ib_user_accounts/user/login/phone_number/v1/",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "data": "\"{\\\"phone_number\\\":\\\""+number+"\\\",\\\"country_code\\\":\\\"+91\\\"}\"",
+                "clientKeyDetailsId": 1
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.user_id){
+                ws.send("+1")
+            }else{
+                fetch("https://ib-user-accounts-backend-prod-apis.ccbp.in/api/ib_user_accounts/send_otp_to_user_with_phone_number/v1/",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({"data":"\"{\\\"phone_number\\\":\\\""+number+"\\\",\\\"country_code\\\":\\\"+91\\\"}\"","clientKeyDetailsId":1})
+                }).then(()=>{
+                    ws.send("+1")
+                })
+            }
+        })
+    }
+}
+
