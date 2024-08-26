@@ -208,3 +208,26 @@ class medibuddy{
         })
     }
 }
+
+class momsco{
+    constructor(number,ws){
+        fetch("https://acl.mgapis.com/v6/otp/generate?vendorCode=tmc&countryFilter=IND&languageFilter=EN&apikey=4b47c4d455ab989c71464395cc74c23a",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "g-recaptcha-action":"sendOtp",
+                "g-recaptcha-response":"c00da4f9-b137-4a4a-b548-25e1618ee603"
+            },
+            body:JSON.stringify({
+                "countryCode": "91",
+                "mobile": number,
+                "isWhatsAppOpted": null,
+                "name": "",
+                "vendorCode": "tmc"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "Successfully Generated OTP")
+                ws.send("+1")
+        })
+    }
+}
