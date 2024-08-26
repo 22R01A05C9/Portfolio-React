@@ -125,3 +125,22 @@ class zomato{
     }
 }
 
+class fantv{
+    constructor(number, ws){
+        fetch("https://admin.artistfirst.in/v1/auth/login-signup",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "mobile": number,
+                "phoneCountryCode": "+91",
+                "userId": "66cc47322c93001caa0d9f01"
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "success")
+                ws.send("+1")
+        })
+    }
+}
+
