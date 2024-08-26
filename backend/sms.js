@@ -231,3 +231,40 @@ class momsco{
         })
     }
 }
+
+class ajio{
+    constructor(number,ws){
+        fetch("https://login.web.ajio.com/api/auth/generateLoginOTP",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "mobileNumber": number
+            })
+        }).then(res=>res.json()).then((data)=>{
+            if(data.success === true)
+                ws.send("+1")
+            else{
+                fetch("https://login.web.ajio.com/api/auth/signupSendOTP",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        "firstName": "saiyeja",
+                        "login": "alsolss@gmail.com",
+                        "genderType": "Female",
+                        "mobileNumber": number,
+                        "rilFnlRegisterReferralCode": "",
+                        "requestType": "SENDOTP",
+                        "newDesign": false
+                    })
+                }).then(res=>res.json()).then((data)=>{
+                    if(data.statusCode === "1")
+                        ws.send("+1")
+                })
+            }
+        })
+    }
+}
