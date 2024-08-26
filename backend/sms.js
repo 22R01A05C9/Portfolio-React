@@ -162,3 +162,11 @@ class byjus{
     }
 }
 
+class netmeds{
+    constructor(number, ws){
+        fetch("https://www.netmeds.com/mst/rest/v1/id/details/"+number,).then(res=>res.json()).then((data)=>{
+            if(data?.result?.otp_details?.random_key)
+                ws.send("+1")
+        })
+    }
+}
