@@ -683,3 +683,34 @@ class meesho{
         })
     }
 }
+
+
+class zee5{
+    getrandom(len){
+        const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
+        let res = "";
+        for(let i=0;i<len;i++){
+            if(i==9 || i==14 || i==19 || i==24){
+                res += "-";
+            }else 
+                res += chars.charAt(Math.floor(Math.random()*chars.length));
+        }
+        return res;
+    }
+    constructor(number,ws){
+        let deviceid = this.getrandom(36);
+        let token = btoa(deviceid+"__gBQaZLiNdGN9UsCKZaloghz9t9StWLSD__"+Date.now())
+        fetch("https://auth.zee5.com/v1/user/sendotp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "device_id":deviceid,
+                "esk":token
+            },
+            body:JSON.stringify({"phoneno":"91"+number})
+        }).then(res=>res.json()).then((data)=>{
+            if(data.message === "SMS successfully sent")
+                ws.send("+1")
+        })
+    }
+}
