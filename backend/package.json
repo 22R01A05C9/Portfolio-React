@@ -8,5 +8,8 @@
     "sms": "nodemon sms"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^25.0.0"
+  }
 }
