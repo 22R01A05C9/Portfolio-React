@@ -8,6 +8,7 @@ const smsfile = require("./sms.js")
 
 const app = express()
 app.use(cors())
+app.use(express.json())
 
 const server = require("http").createServer(app)
 const wss = new ws.Server({ server: server })
@@ -59,6 +60,13 @@ async function addfiledatatodb(fileid, filename){
     removefiledata(fileid,files)
 }
 
+async function getfiledata(fileid){
+    let client = await MongoClient.connect("mongodb://localhost:27017")
+    let db = client.db("website")
+    let files = db.collection("files")
+    return await files.findOne({id:fileid})
+}
+
 app.post("/files/upload", upload.single("file"), function (req, res) {
     try{
         let fileid = req.file.destination.split("/")[2]
@@ -70,6 +78,27 @@ app.post("/files/upload", upload.single("file"), function (req, res) {
     }
 })
 
+app.get("/files/download/:id",(req,res)=>{
+    let id = req.params.id;
+    getfiledata(id).then((data)=>{
+        if(data){
+            res.download("./filesdb/"+id+"/"+data.filename)
+        }else{
+            res.send("cannot find file")
+        }
+    })
+})
+
+app.post("/files/download",(req,res)=>{
+    let id = req.body.id;
+    getfiledata(id).then((data)=>{
+        if(data){
+            res.json({status:true, redirect:"/files/download/"+id})
+        }else{
+            res.json({status:false})
+        }
+    })
+})
 
 wss.on("connection", function connection(ws) {
     console.log("A new client connected")
