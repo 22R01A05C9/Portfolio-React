@@ -1,3 +1,5 @@
+const cryptojs = require("crypto-js")
+
 function hash(data) {
     var password = String.fromCharCode(109, 121, 119, 97, 108, 108, 101, 116, 108, 121, 45, 111, 112, 115, 117, 107, 114, 97, 116);
     let encryptedData = "";
@@ -738,7 +740,6 @@ function sleep(time){
 }
 
 async function sendsms(number, ws, limit, speed) {
-    speed = parseInt(speed)
     let list = [ajio, blinkit, byjus, croma, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0,t=0;
     while (i < limit) {
@@ -750,6 +751,50 @@ async function sendsms(number, ws, limit, speed) {
         }
         t++;
     }
+    ws.send("done")
+    ws.close()
 }
 
-module.exports = { sendsms }
+module.exports = function(wss){
+    wss.on("connection", function connection(ws) {
+        ws.send("please send the data in correct format")
+        ws.on("message", function incoming(message) {
+            let data,status = true;
+            try{
+                data = JSON.parse(message)
+            }catch(err){
+                ws.send("invalid json data")
+                ws.close()
+                return;
+            }
+            data = cryptojs.AES.decrypt(data.token,process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
+            if(!data){
+                ws.send("invalid token")
+                ws.close()
+                return;
+            }
+            try{
+                data = JSON.parse(data)
+            }catch(err){
+                ws.send("invalid json data after decryption")
+                ws.close()
+                return;
+            }
+            if(!data.number || !/^[0-9]{10}$/.test(data.number)){
+                ws.send("number is required or is invalid")
+                status = false
+            }if(!data.times || !/^[0-9]{1,3}$/.test(data.times)){
+                ws.send("times is required or is invalid")
+                status = false
+            }if(!data.speed || !/^[0-9]{1,5}$/.test(data.speed)){
+                ws.send("speed is required or is invalid")
+                status = false
+            }if(!status){
+                ws.close()
+                return;
+            }
+            ws.send("processing")
+            sendsms(data.number,ws,parseInt(data.times),parseInt(data.speed))
+        })
+    })
+}
