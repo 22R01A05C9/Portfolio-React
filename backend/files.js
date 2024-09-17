@@ -72,12 +72,46 @@ module.exports = async function (app){
                 fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
                 return;
             }
-            let filename = req.file.originalname
-            addfiledatatodb(fileid, filename, req.body.deleteondownload, filestr)
-            res.json({status:true,id:fileid,str:filestr})
+            let customstatus = req.body.customstatus;
+            if(!customstatus){
+                res.json({status:false,message:"No Custom Id Data"})
+                fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
+                return;
+            }
+            if(customstatus === "true"){
+                let customid = req.body.customid;
+                if(!customid){
+                    res.json({status:false,message:"No Custom Id Provided"})
+                    fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
+                    return;
+                }
+                let regexp = /^[0-9]{4}$/
+                if(!regexp.test(customid)){
+                    res.json({status:false,message:"Invalid Custom Id"})
+                    fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
+                    return;
+                }
+                getfiledata(parseInt(customid)).then((data)=>{
+                    if(data){
+                        res.json({status:false,message:"Custom Id Already Used"})
+                        fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
+                        return;
+                    }else{
+                        fileid = parseInt(customid)
+                        let filename = req.file.originalname
+                        addfiledatatodb(fileid, filename, req.body.deleteondownload, filestr)
+                        res.json({status:true,id:fileid,str:filestr})
+                    }
+                })
+            }else{
+                let filename = req.file.originalname
+                addfiledatatodb(fileid, filename, req.body.deleteondownload, filestr)
+                res.json({status:true,id:fileid,str:filestr})
+            }
+            
         }catch(err){
             fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
-            res.json({status:false})
+            res.json({status:false,message:"Some Error Occuerd"})
         }
     })
     
@@ -94,7 +128,8 @@ module.exports = async function (app){
                     }
                 })
             }else{
-                res.send("cannot find file")
+                //add the link after creating frontend
+                res.redirect("https://saiteja.fun")
             }
         })
     })
