@@ -6,32 +6,29 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 module.exports = async function (app){
-    let connect = await MongoClient.connect("mongodb://localhost:27017")
-    async function getfilesrandomid(){
-        return new Promise(async (resolve)=>{
-            let files = db.collection("files")
-            let temp = await files.find().toArray()
-            let ids = []
-            temp.forEach((file)=>{
-                ids.push(parseInt(file.id))
-            })
-            let rand=1234
-            while(ids.includes(rand)){
-                rand = Math.floor(Math.random()*10000)
-                if(rand<1000)   rand+=1000;
-            }
-            resolve(rand)
-        })
-        
+    function randomstring(len){
+        let chars = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+        let res = ""
+        for(let i=0;i<len;i++){
+            res+=chars.charAt(Math.floor(Math.random()*(chars.length)))
+        }
+        return res
     }
 
+    function getfilesrandomid(){
+        rand = Math.floor(Math.random()*10000)
+        if(rand<1000)   rand+=1000;
+        return rand;
+    }
+
+    let connect = await MongoClient.connect("mongodb://localhost:27017")
     let db = connect.db("website")
+
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            getfilesrandomid().then((filerand)=>{
-                fs.mkdir("./filesdb/"+filerand,()=>{})
-                cb(null, './filesdb/'+filerand)
-            })
+            let randstr = randomstring(15)
+            fs.mkdir("./filesdb/"+randstr,()=>{})
+            cb(null, './filesdb/'+randstr)
         },
         filename: function (req, file, cb) {
             cb(null, file.originalname)
@@ -40,33 +37,46 @@ module.exports = async function (app){
     
     const upload = multer({ storage: storage })
 
-    function removefiledata(fileid, filesdb){
+    function removefiledata(filestr, filesdb){
         setTimeout(()=>{
-            fs.rm("./filesdb/"+fileid, {recursive:true,force:true},()=>{})
-            filesdb.deleteOne({id:fileid})
+            fs.rm("./filesdb/"+filestr, {recursive:true,force:true},()=>{})
+            filesdb.deleteOne({filestr:filestr})
         }, 1000*60*120)
     }
     
-    async function addfiledatatodb(fileid, filename){
-        let db = connect.db("website")
+    async function addfiledatatodb(fileid, filename, deleteondownload, filestr){
         let files = db.collection("files")
-        files.insertOne({id:fileid, filename:filename})
-        removefiledata(fileid,files)
+        files.insertOne({id:fileid, filename:filename, deleteondownload:deleteondownload,filestr:filestr})
+        removefiledata(filestr,files)
     }
     
-    async function getfiledata(fileid){
+    async function getfiledata(filestr){
         let files = db.collection("files")
-        return await files.findOne({id:fileid})
+        let res1 = await files.findOne({filestr:filestr})
+        let res2 = await files.findOne({id:filestr})
+        return res1||res2
     }
     
     
     app.post("/files/upload", upload.single("file"), function (req, res) {
         try{
-            let fileid = req.file.destination.split("/")[2]
+            let filestr = req.file?.destination.split("/")[2]
+            let fileid = getfilesrandomid();
+            if(!filestr){
+                res.json({status:false,message:"No File Found"})
+                return;
+            }
+            let deleteondownload=req.body.deleteondownload;
+            if(!deleteondownload){
+                res.json({status:false,message:"No Deleteondownload Data"})
+                fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
+                return;
+            }
             let filename = req.file.originalname
-            addfiledatatodb(fileid, filename)
-            res.json({status:true,id:fileid})
+            addfiledatatodb(fileid, filename, req.body.deleteondownload, filestr)
+            res.json({status:true,id:fileid,str:filestr})
         }catch(err){
+            fs.rm("./filesdb/"+filestr,{recursive:true,force:true},()=>{})
             res.json({status:false})
         }
     })
@@ -75,7 +85,14 @@ module.exports = async function (app){
         let id = req.params.id;
         getfiledata(id).then((data)=>{
             if(data){
-                res.download("./filesdb/"+id+"/"+data.filename)
+                res.download("./filesdb/"+id+"/"+data.filename,(err)=>{
+                    if(err){
+                        res.send({err:err,msg:"Error Occured"})
+                        return 
+                    }else if(data.deleteondownload === "true"){
+                        fs.rm("./filesdb/"+id,{recursive:true,force:true},()=>{})
+                    }
+                })
             }else{
                 res.send("cannot find file")
             }
@@ -99,9 +116,9 @@ module.exports = async function (app){
             res.json({status:false, message:"Invalid File Id"})
             return
         }
-        getfiledata(data.id).then((data)=>{
+        getfiledata(parseInt(data.id)).then((data)=>{
             if(data){
-                res.json({status:true, redirect:"/files/download/"+id})
+                res.json({status:true, redirect:"/files/download/"+data.filestr})
             }else{
                 res.json({status:false,message:"No File Found"})
             }
