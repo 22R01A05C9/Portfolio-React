@@ -1,6 +1,10 @@
 const multer = require("multer")
 const fs = require("fs")
 const {MongoClient} = require("mongodb")
+const cryptojs = require("crypto-js")
+const dotenv = require("dotenv")
+dotenv.config()
+
 module.exports = async function (app){
     let connect = await MongoClient.connect("mongodb://localhost:27017")
     async function getfilesrandomid(){
@@ -79,12 +83,27 @@ module.exports = async function (app){
     })
     
     app.post("/files/download",(req,res)=>{
-        let id = req.body.id;
-        getfiledata(id).then((data)=>{
+        let token = req.body.token;
+        if(!token){
+            res.json({status:false,message:"Invalid Token"})
+            return;
+        }
+        let data = cryptojs.AES.decrypt(token, process.env.FILES_API_KEY).toString(cryptojs.enc.Utf8);
+        if(!data){
+            res.json({status:false,messgae:"Invalid Authentication"})
+            return
+        }
+        data = JSON.parse(data)
+        let regexp = /^[0-9]{4}$/
+        if(!regexp.test(data.id)){
+            res.json({status:false, message:"Invalid File Id"})
+            return
+        }
+        getfiledata(data.id).then((data)=>{
             if(data){
                 res.json({status:true, redirect:"/files/download/"+id})
             }else{
-                res.json({status:false})
+                res.json({status:false,message:"No File Found"})
             }
         })
     })
