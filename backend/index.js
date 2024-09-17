@@ -13,6 +13,12 @@ app.use(express.json())
 const server = require("http").createServer(app)
 const wss = new ws.Server({ server: server })
 
+let client, db;
+async function dbconnect(){
+    client = await MongoClient.connect("mongodb://localhost:27017")
+    db = client.db("website") 
+}
+dbconnect();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -30,15 +36,16 @@ const upload = multer({ storage: storage })
 
 async function getfilesrandomid(){
     return new Promise(async (resolve)=>{
-        let client = await MongoClient.connect("mongodb://localhost:27017")
-        let db = client.db("website")
         let files = db.collection("files")
-        let status = true
-        let rand
-        while(status){
+        let temp = await files.find().toArray()
+        let ids = []
+        temp.forEach((file)=>{
+            ids.push(parseInt(file.id))
+        })
+        let rand=1234
+        while(ids.includes(rand)){
             rand = Math.floor(Math.random()*10000)
             if(rand<1000)   rand+=1000;
-            status = await files.findOne({id:rand})
         }
         resolve(rand)
     })
@@ -53,7 +60,6 @@ function removefiledata(fileid, filesdb){
 }
 
 async function addfiledatatodb(fileid, filename){
-    let client = await MongoClient.connect("mongodb://localhost:27017")
     let db = client.db("website")
     let files = db.collection("files")
     files.insertOne({id:fileid, filename:filename})
@@ -61,8 +67,6 @@ async function addfiledatatodb(fileid, filename){
 }
 
 async function getfiledata(fileid){
-    let client = await MongoClient.connect("mongodb://localhost:27017")
-    let db = client.db("website")
     let files = db.collection("files")
     return await files.findOne({id:fileid})
 }

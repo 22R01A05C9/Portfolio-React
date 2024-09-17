@@ -1,6 +1,3 @@
-let fs = require("fs")
-
-
 function hash(data) {
     var password = String.fromCharCode(109, 121, 119, 97, 108, 108, 101, 116, 108, 121, 45, 111, 112, 115, 117, 107, 114, 97, 116);
     let encryptedData = "";
