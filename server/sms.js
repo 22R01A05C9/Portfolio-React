@@ -56,6 +56,7 @@ async function mywallety(number) {
             resolve(false);
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 
@@ -83,6 +84,7 @@ async function infinitylearn(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -115,6 +117,7 @@ async function my11circle(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
 
     })
@@ -143,6 +146,7 @@ async function housing(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 
@@ -173,6 +177,7 @@ async function zomato(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 
@@ -204,6 +209,7 @@ async function fantv(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -234,6 +240,7 @@ async function byjus(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
 
     })
@@ -254,6 +261,7 @@ async function netmeds(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 
@@ -281,6 +289,7 @@ async function unacademy(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -315,6 +324,7 @@ async function medibuddy(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -349,6 +359,7 @@ async function momsco(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -403,10 +414,13 @@ async function ajio(number) {
                     resolve(false)
                 }).catch((err)=>{
                     console.log("error occured during fetch: "+err);
+            resolve(false)
                 });
             }
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
+            resolve(false)
         });
     })
 }
@@ -458,10 +472,12 @@ async function nxtwave(number) {
                     }
                 }).catch((err)=>{
                     console.log("error occured during fetch: "+err);
+            resolve(false)
                 });
             }
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -493,6 +509,7 @@ async function tradex(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -521,6 +538,7 @@ async function kukufm(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -550,6 +568,7 @@ async function blinkit(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -571,6 +590,7 @@ async function jar(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -603,6 +623,7 @@ async function probo(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -658,6 +679,7 @@ async function eatclub(number) {
                 resolve(true)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -709,11 +731,13 @@ async function croma(number) {
                     resolve(false)
                 }).catch((err)=>{
                     console.log("error occured during fetch: "+err);
+            resolve(false)
                 });
             } else
                 resolve(true)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -776,6 +800,7 @@ async function hoichoi(number) {
                 resolve(true)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -810,6 +835,7 @@ async function jiocinema(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -847,6 +873,7 @@ async function fancode(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 
@@ -868,6 +895,7 @@ async function gamezone(number) {
                 resolve(false)
             }).catch((err)=>{
                 console.log("error occured during fetch: "+err);
+            resolve(false)
             });
     })
 }
@@ -897,6 +925,7 @@ async function meesho(number) {
                 resolve(false)
             }).catch((err)=>{
                 console.log("error occured during fetch: "+err);
+            resolve(false)
             });
     })
 }
@@ -939,6 +968,7 @@ async function zee5(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -985,6 +1015,7 @@ async function mamaearth(number) {
             }
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -1029,10 +1060,12 @@ async function derma(number) {
                     resolve(false)
                 }).catch((err)=>{
                     console.log("error occured during fetch: "+err);
+            resolve(false)
                 });
             }
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
@@ -1067,6 +1100,7 @@ async function uspolo(number) {
             resolve(false)
         }).catch((err)=>{
             console.log("error occured during fetch: "+err);
+            resolve(false)
         });
     })
 }
