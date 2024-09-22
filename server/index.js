@@ -1,7 +1,8 @@
 const express = require("express")
 const ws = require("ws")
 const cors = require("cors")
-
+const dotenv = require("dotenv")
+dotenv.config()
 const app = express()
 app.use(function(req,res,next){
     try{

