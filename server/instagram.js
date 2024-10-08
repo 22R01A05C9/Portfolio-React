@@ -44,7 +44,7 @@ function getdata(url){
     })
 }
 
-module.exports = {function(app){
+module.exports = function(app){
     app.post("/instagram",(req,res)=>{
         let encdata = req.body.data
         if(!encdata){
@@ -57,7 +57,8 @@ module.exports = {function(app){
             return
         }
         let url = JSON.parse(decdata).url
-        if(!url || !url.startsWith("https://instagram.com/")){
+        if(!url || (!url.startsWith("https://www.instagram.com/") && !url.startsWith("https://instagram.com/"))){
+            console.log(url);
             res.json({status:false, message:"invalid url"})
             return
         }
@@ -65,4 +66,4 @@ module.exports = {function(app){
             res.json(data)
         })
     })
-}}
+}
