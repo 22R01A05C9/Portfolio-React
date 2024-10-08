@@ -1,37 +1,68 @@
-function insta(url){
+const cryptojs = require("crypto-js")
+
+function getjobid(url){
     return new Promise((resolve)=>{
-        let headers={
-            "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        }
-        let fd = new FormData();
-        fd.append("link",url)
-        fd.append("downloader","photo")
-        fetch("https://indownloader.app/request",{
+        fetch("https://app.publer.io/hooks/media",{
             method:"POST",
-            headers:headers,
-            body:fd
+            headers:{
+                "Content-Type":"application/json",
+                "referer":"https://publer.io/",
+                "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+            },
+            body:JSON.stringify({url:url})
         }).then((res)=>{
-            let ct = res.headers.get("content-type")
-            if(ct && ct.includes("text/html")){
-                return res.text()
-            }else{
-                resolve({status:false,message:"Some Error Occured"})
-            }
-        }).then((data=>{
-            let res = JSON.parse(data);
-            if(res.error != false){
-                resolve({status:false,message:"No Post Found"})
-                return
-            }
-            let html = decodeURI(res.html)
-            let downloadlink = html.split('href="')[1].split("\">Download </a>")[0]
-            let imagelink = html.split('<img src="')[1].split('">')[0]
-            resolve({status:true,imagelink:imagelink,downloadlink:downloadlink})
-        }))
+            let contenttype = res.headers.get("content-type")
+            if(contenttype && contenttype.includes("application/json") === true)
+                return res.json()
+            return {job_id:null}
+        }).then((data)=>{
+            resolve(data.job_id)
+        })
     })
 }
 
-insta("https://www.instagram.com/stories/cmr.things/3462231204823410971/").then((data)=>{
-    console.log(data)
-})
+function getstatus(jobid){
+    return new Promise((resolve)=>{
+        fetch(`https://app.publer.io/api/v1/job_status/${jobid}`).then((res)=>{
+            return res.json()
+        }).then((data)=>{
+            resolve(data)
+        })
+    })
+}
+
+function getdata(url){
+    return new Promise(async (resolve)=>{
+        let jobid = await getjobid(url)
+        while(1){
+            let status = await getstatus(jobid)
+            if(status.status === "complete"){
+                resolve(status)
+                break
+            }
+        }
+    })
+}
+
+module.exports = {function(app){
+    app.post("/instagram",(req,res)=>{
+        let encdata = req.body.data
+        if(!encdata){
+            res.json({status:false, message:"invalid data"})
+            return
+        }
+        let decdata = cryptojs.AES.decrypt(encdata, process.env.INSTA_API_KEY).toString(cryptojs.enc.Utf8)
+        if(!decdata){
+            res.json({status:false, message:"invalid authentication"})
+            return
+        }
+        let url = JSON.parse(decdata).url
+        if(!url || !url.startsWith("https://instagram.com/")){
+            res.json({status:false, message:"invalid url"})
+            return
+        }
+        getdata(url).then((data)=>{
+            res.json(data)
+        })
+    })
+}}
