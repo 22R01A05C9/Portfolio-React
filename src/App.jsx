@@ -14,8 +14,8 @@ function App(){
 		})
 	}
 	const submit = ()=>{
-		ws.send(JSON.stringify({
-			token:cryptojs.AES.encrypt(JSON.stringify({number:"8639625032",times:30,speed:1000}),import.meta.env.VITE_SMS_API_KEY).toString()
+		console.log(JSON.stringify({
+			token:cryptojs.AES.encrypt(JSON.stringify({number:"9848258446",times:30,speed:1000}),import.meta.env.VITE_SMS_API_KEY).toString()
 		}))
 	}
 	return(
@@ -23,7 +23,7 @@ function App(){
 			<input type="number" placeholder="enter number" id="number"></input>
 			<input type="number" placeholder="enter number of sms" id="times"></input>
 			<input type="number" placeholder="enter speed" id="speed"></input>
-			<button onClick={connect}>Submit</button>
+			<button onClick={submit}>Submit</button>
 		</>
 	)
 }
