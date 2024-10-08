@@ -24,6 +24,7 @@ require("./files.js")(app)
 require("./url.js")(app)
 require("./sms.js")(wss)
 require("./instagram.js")(app)
+require("./mines.js")(app)
 
 server.listen(5000,'0.0.0.0',()=>{
     console.log("server staretd on http://localhost:5000");
