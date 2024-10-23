@@ -56,7 +56,13 @@ module.exports = function(app){
             res.json({status:false, message:"invalid authentication"})
             return
         }
-        let url = JSON.parse(decdata).url
+        let url=null;
+        try{
+            url = JSON.parse(decdata).url
+        }catch(e){
+            res.json({status:false, message:"invalid json data", error:e})
+            return
+        }
         if(!url || (!url.startsWith("https://www.instagram.com/") && !url.startsWith("https://instagram.com/"))){
             console.log(url);
             res.json({status:false, message:"invalid url"})
