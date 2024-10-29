@@ -2,7 +2,7 @@ const {MongoClient} = require("mongodb")
 const cryptojs = require("crypto-js")
 async function connectdb(db,collection){
     try{
-        let client = new MongoClient("mongodb://localhost:27017")
+        let client = new MongoClient(process.env.MONGO_URL)
         const conn = await client.connect()
         return conn.db(db).collection(collection)
     }catch(err){
@@ -46,7 +46,7 @@ async function regular(body){
 
 async function getdata(req,res){
     if(!req.body.token){
-        res.json({error:"Invalid Request No Token Founs"})
+        res.json({error:"Invalid Request No Token Found"})
         return
     }
     let temp = cryptojs.AES.decrypt(req.body.token, process.env.CMR_API_KEY).toString(cryptojs.enc.Utf8)

@@ -21,7 +21,7 @@ module.exports = async function (app){
         return rand;
     }
 
-    let connect = await MongoClient.connect("mongodb://localhost:27017")
+    let connect = await MongoClient.connect(process.env.MONGO_URL)
     let db = connect.db("website")
 
     const storage = multer.diskStorage({
