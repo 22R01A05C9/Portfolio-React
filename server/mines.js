@@ -128,7 +128,7 @@ module.exports = function (app) {
         let conn = await client.connect();
         let mines = conn.db("mines");
         let feedbacks = mines.collection("feedbacks");
-        let res = await feedbacks.find({},{"projection":{_id:0}}).toArray();
+        let res = await feedbacks.find({}, { "projection": { _id: 0 } }).toArray();
         return res
     }
 

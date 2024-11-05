@@ -4,11 +4,11 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 dotenv.config()
 const app = express()
-app.use(function(req,res,next){
-    try{
+app.use(function (req, res, next) {
+    try {
         decodeURIComponent(req.path)
         next()
-    }catch(err){
+    } catch (err) {
         //change after backend
         res.redirect("https://saiteja.fun")
     }
@@ -29,6 +29,6 @@ require("./cmr.js")(app)
 require("./clipboard.js")(app)
 require("./yt.js")(app)
 
-server.listen(process.env.PORT,()=>{
-    console.log("server staretd on http://localhost:"+process.env.PORT);
+server.listen(process.env.PORT, () => {
+    console.log("server staretd on http://localhost:" + process.env.PORT);
 })
