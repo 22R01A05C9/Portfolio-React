@@ -27,7 +27,8 @@ require("./instagram.js")(app)
 require("./mines.js")(app)
 require("./cmr.js")(app)
 require("./clipboard.js")(app)
+require("./yt.js")(app)
 
-server.listen(5000,'0.0.0.0',()=>{
-    console.log("server staretd on http://localhost:5000");
+server.listen(process.env.PORT,()=>{
+    console.log("server staretd on http://localhost:"+process.env.PORT);
 })
