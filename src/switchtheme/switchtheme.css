@@ -1,6 +1,9 @@
 .switchthemeback{
-    display: block;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    height:     90%;
     width: 60px;
     background-color: var(--switch-back);
     border-radius: 20px;
@@ -9,13 +12,13 @@
 .switchthemeback::after{
     content: "";
     animation: moveleft 0.2s linear;
-    /* animation: attr(data-animate); */
     display: block;
     position: absolute;
-    left: 1px;
-    top: 1px;
-    height: 28px;
-    width: 30px;
+    top: 45%;
+    left:2px;
+    transform: translateY(-50%);
+    height: 75%;
+    width: 50%;
     border-radius: 20px;
     background-color: var(--switch-ball);
     overflow: hidden;
@@ -30,15 +33,44 @@
 }
 
 .dark .lighticon{
-    display: none;
+    visibility: hidden;
+}
+
+.switchtheme{
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+}
+
+.lighticon{
+    height: 60%;
+    z-index: 1;
+    margin-left: 2px;
+}
+
+.darkicon{
+    height: 60%;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.dark .darkicon{
+    visibility: visible;
+    animation: fadein 0.2s linear;
+}
+
+@keyframes fadein {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 @keyframes moveleft {
     0%{
         left: 29px;
-    }
-    50%{
-        left:15px;
     }
     100%{
         left:1px;
@@ -49,35 +81,7 @@
     0%{
         left:1px;
     }
-    50%{
-        left:15px;
-    }
     100%{
         left:29px;
     }
-}
-
-.switchtheme{
-    cursor: pointer;
-    position: relative;
-    margin-right: 10px;
-}
-
-.lighticon{
-    position: absolute;
-    top:50%;
-    left: 6px;
-    transform: translateY(-50%);
-}
-
-.darkicon{
-    position: absolute;
-    top:50%;
-    right:6px;
-    transform: translateY(-50%);
-    display: none;
-}
-
-.dark .darkicon{
-    display: block;
 }

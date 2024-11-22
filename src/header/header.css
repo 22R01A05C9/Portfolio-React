@@ -1,11 +1,40 @@
 header{
-    height: auto;
+    height: 8vh;
     width: 100%;
     background-color: var(--header-back);
-    border-radius: 10px;
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
+}
+
+.mainnav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:5vw;
+}
+
+.mainlogo a{
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.25rem;
+    margin-left: 10px;
+}
+
+.mainnav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap:30px;
+}
+
+.mainnav ul li{
+
+}
+
+.mainnav ul li a{
+    text-decoration: none;
+    color: var(--text);
 }
