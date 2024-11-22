@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -10,11 +10,11 @@
 	-webkit-tap-highlight-color: transparent;
 }
 
-:root{
+:root {
 	color-scheme: light;
-	--back:light-dark(#292929,#f0f0f0);
-	--header-back:light-dark(#f0f0f0,#292929);
-	--switch-back:light-dark(#c5c5c5,#5b5b5b);
-	--switch-ball:light-dark(#f0f0f0,#272525);
-	--text:ligh-dark(#ffffff,#000000);
+	--back: light-dark(#292929, #f0f0f0);
+	--header-back: light-dark(#f0f0f0, #292929);
+	--switch-back: light-dark(#c5c5c5, #5b5b5b);
+	--switch-ball: light-dark(#f0f0f0, #272525);
+	--text: ligh-dark(#ffffff, #000000);
 }

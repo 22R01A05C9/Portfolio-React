@@ -1,21 +1,21 @@
-.switchthemeback{
+.switchthemeback {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-    height:     90%;
+    height: 90%;
     width: 60px;
     background-color: var(--switch-back);
     border-radius: 20px;
 }
 
-.switchthemeback::after{
+.switchthemeback::after {
     content: "";
     animation: moveleft 0.2s linear;
     display: block;
     position: absolute;
     top: 45%;
-    left:2px;
+    left: 2px;
     transform: translateY(-50%);
     height: 75%;
     width: 50%;
@@ -25,63 +25,66 @@
     cursor: pointer;
 }
 
-.dark .switchthemeback::after{
+.dark .switchthemeback::after {
     right: 1px;
     left: auto;
     animation: moveright 0.2s linear;
 
 }
 
-.dark .lighticon{
+.dark .lighticon {
     visibility: hidden;
 }
 
-.switchtheme{
+.switchtheme {
     cursor: pointer;
     position: relative;
     margin-right: 10px;
 }
 
-.lighticon{
+.lighticon {
     height: 60%;
     z-index: 1;
     margin-left: 2px;
 }
 
-.darkicon{
+.darkicon {
     height: 60%;
     visibility: hidden;
     z-index: 1;
 }
 
-.dark .darkicon{
+.dark .darkicon {
     visibility: visible;
     animation: fadein 0.2s linear;
 }
 
 @keyframes fadein {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
     }
 }
 
 @keyframes moveleft {
-    0%{
+    0% {
         left: 29px;
     }
-    100%{
-        left:1px;
+
+    100% {
+        left: 1px;
     }
 }
 
 @keyframes moveright {
-    0%{
-        left:1px;
+    0% {
+        left: 1px;
     }
-    100%{
-        left:29px;
+
+    100% {
+        left: 29px;
     }
 }

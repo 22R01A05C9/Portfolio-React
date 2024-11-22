@@ -5,9 +5,9 @@ function SwitchTheme() {
         let root = document.querySelector(":root");
         let obj = document.querySelector(".switchtheme");
         let style = root.style.colorScheme;
-        if(theme==="dark"){
+        if (theme === "dark") {
             obj.classList.add("dark");
-            root.style.colorScheme="dark"
+            root.style.colorScheme = "dark"
             return;
         }
         if (style === "dark") {

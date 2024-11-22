@@ -1,4 +1,4 @@
-header{
+header {
     height: 8vh;
     width: 100%;
     background-color: var(--header-back);
@@ -9,32 +9,28 @@ header{
     padding: 10px;
 }
 
-.mainnav{
+.mainnav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap:5vw;
+    gap: 5vw;
 }
 
-.mainlogo a{
+.mainlogo a {
     text-decoration: none;
     color: var(--text);
     font-size: 1.25rem;
     margin-left: 10px;
 }
 
-.mainnav ul{
+.mainnav ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    gap:30px;
+    gap: 30px;
 }
 
-.mainnav ul li{
-
-}
-
-.mainnav ul li a{
+.mainnav ul li a {
     text-decoration: none;
     color: var(--text);
 }
