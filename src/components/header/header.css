@@ -1,5 +1,5 @@
 header {
-    height: 8vh;
+    height: 9vh;
     width: 100%;
     background-color: var(--header-back);
     margin: auto;
@@ -7,6 +7,7 @@ header {
     flex-direction: row;
     justify-content: space-around;
     padding: 10px;
+    border-bottom: 1px solid var(--switch-back);
 }
 
 .mainnav {
@@ -20,6 +21,11 @@ header {
     text-decoration: none;
     color: var(--text);
     font-size: 1.25rem;
+}
+
+.mainlogo, .mainnav, .switchtheme{
+    display: flex;
+    align-items: center;
 }
 
 .mainnav ul {

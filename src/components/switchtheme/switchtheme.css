@@ -14,7 +14,7 @@
     animation: moveleft 0.2s linear;
     display: block;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 2px;
     transform: translateY(-50%);
     height: 75%;

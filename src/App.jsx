@@ -1,4 +1,4 @@
-import Mainpage from "./mainpage/mainpage";
+import Mainpage from "./pages/mainpage/mainpage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
