@@ -20,7 +20,6 @@ header {
     text-decoration: none;
     color: var(--text);
     font-size: 1.25rem;
-    margin-left: 10px;
 }
 
 .mainnav ul {
@@ -33,4 +32,9 @@ header {
 .mainnav ul li a {
     text-decoration: none;
     color: var(--text);
+}
+
+.mainnav ul li a.activea, .mainnav ul li a:hover, .mainnav ul li a:hover .mainnav ul li a{
+    border-bottom: 2px solid var(--text-dim);
+    color:var(--text-dim)
 }

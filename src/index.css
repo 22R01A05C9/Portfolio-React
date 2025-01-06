@@ -16,5 +16,6 @@
 	--header-back: light-dark(#f0f0f0, #292929);
 	--switch-back: light-dark(#c5c5c5, #5b5b5b);
 	--switch-ball: light-dark(#f0f0f0, #272525);
-	--text: ligh-dark(#ffffff, #000000);
+	--text: light-dark(#000000, #ffffff);
+	--text-dim: light-dark(#595959,#a5a5a5)
 }
