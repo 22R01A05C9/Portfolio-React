@@ -19,3 +19,7 @@
 	--text: light-dark(#000000, #ffffff);
 	--text-dim: light-dark(#595959,#a5a5a5)
 }
+
+html{
+	scroll-behavior: smooth;
+}

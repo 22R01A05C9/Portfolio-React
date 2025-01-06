@@ -1,23 +1,15 @@
-import Header from "./header/header";
-import { useEffect } from "react";
+import Mainpage from "./mainpage/mainpage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-	useEffect(()=>{
-		let observer = new IntersectionObserver((entries)=>{
-			entries.forEach((entry)=>{
-				if(entry.isIntersecting){
-					document.querySelectorAll(".mainnav ul li a").forEach((element)=>{
-						element.classList.remove("activea")
-					})
-					document.querySelector('a[href="#'+entry.target.id+']"').classList.add("activea")
-				}
-			})
-		},{threshold:0.65})
-	},[])
+
 	return (
-		<>
-			<Header />
-		</>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Mainpage />} />
+			</Routes>
+		</BrowserRouter>
+		
 	);
 }
 
