@@ -1,6 +1,6 @@
 import Header from "../../components/header/header"
 import { useEffect } from "react"
-
+import Home from "../homepage/homepage"
 
 function Mainpage(){
     useEffect(()=>{
@@ -21,6 +21,7 @@ function Mainpage(){
     return(
         <>
             <Header ext="#" />
+			<Home />
         </>
     )
 }

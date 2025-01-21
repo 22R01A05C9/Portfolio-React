@@ -1,14 +1,21 @@
 import Mainpage from "./pages/mainpage/mainpage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Loading from "./pages/loadingpage/loading";
+import { lazy, Suspense } from "react";
+
+const Sms = lazy(()=>import("./pages/sms/sms"))
 
 function App() {
 
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Mainpage />} />
-			</Routes>
-		</BrowserRouter>
+		<Suspense fallback={<Loading/>}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Mainpage />} />
+					<Route path="/sms" element={<Sms />} />
+				</Routes>
+			</BrowserRouter>
+		</Suspense>
 		
 	);
 }

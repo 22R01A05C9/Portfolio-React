@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-    height: 90%;
+    height: 30px;
     width: 60px;
     background-color: var(--switch-back);
     border-radius: 20px;
@@ -17,8 +17,8 @@
     top: 50%;
     left: 2px;
     transform: translateY(-50%);
-    height: 75%;
-    width: 50%;
+    height: 26px;
+    width: 30px;
     border-radius: 20px;
     background-color: var(--switch-ball);
     overflow: hidden;
@@ -42,13 +42,13 @@
 }
 
 .lighticon {
-    height: 60%;
+    height: 20px;
     z-index: 1;
     margin-left: 2px;
 }
 
 .darkicon {
-    height: 60%;
+    height: 20px;
     visibility: hidden;
     z-index: 1;
 }

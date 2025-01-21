@@ -1,0 +1,19 @@
+.home img{
+    height: 365px;
+    width: 340px;
+    border-radius: 25px;
+    padding: 20px;
+    aspect-ratio: 16/9;
+}
+
+.home{
+    padding: 20px 40px;
+}
+
+
+.homecontent{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}

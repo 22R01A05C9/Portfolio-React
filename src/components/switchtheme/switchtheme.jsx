@@ -21,10 +21,7 @@ function SwitchTheme() {
     };
     useEffect(() => {
         let theme = localStorage.getItem("theme");
-        if(theme === null){
-            localStorage.setItem("theme","dark");
-            theme = "dark";
-        }
+        
         if (theme === "dark") {
             switchtheme("dark");
         }
