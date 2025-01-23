@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loading from "./pages/loadingpage/loading";
 import { lazy, Suspense } from "react";
 
-const Sms = lazy(()=>import("./pages/sms/sms"))
+const Sms = lazy(()=>import("./pages/smspage/sms"))
 
 function App() {
 

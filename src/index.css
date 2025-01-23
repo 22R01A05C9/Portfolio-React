@@ -8,6 +8,12 @@
 	-webkit-tap-highlight-color: transparent;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 :root {
 	color-scheme: light;
 	--back: light-dark(#292929, #f0f0f0);
@@ -15,7 +21,8 @@
 	--switch-back: light-dark(#c5c5c5, #5b5b5b);
 	--switch-ball: light-dark(#f0f0f0, #272525);
 	--text: light-dark(#000000, #ffffff);
-	--text-dim: light-dark(#595959,#a5a5a5)
+	--text-dim: light-dark(#595959,#a5a5a5);
+	--option-back: light-dark(#868686,#dcdcdc)
 }
 
 html{

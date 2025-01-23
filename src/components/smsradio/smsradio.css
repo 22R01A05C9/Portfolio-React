@@ -1,0 +1,27 @@
+.radio{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.circle{
+    display: inline-block;
+    margin-right: 6px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--option-back);
+}
+
+.option{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    padding: 0 8px;
+}
+
+.active .circle{
+    background-color: #0ea5e9;
+    border: 2px solid var(--option-back);
+}

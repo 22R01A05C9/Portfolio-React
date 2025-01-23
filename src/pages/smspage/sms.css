@@ -1,0 +1,17 @@
+.smsbody{
+    margin-top: 20px;
+}
+
+.smsbody h2,.smsbody p{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.smsbody p{
+    margin-top: 30px;
+}
+
+.userinputs{
+    display: flex;
+    flex-direction: column;
+}
