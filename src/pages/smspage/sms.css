@@ -14,4 +14,33 @@
 .userinputs{
     display: flex;
     flex-direction: column;
+    gap:20px;
+}
+
+.userinputs label{
+    position: absolute;
+    left: 6px;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: text;
+}
+
+.number, .times{
+    position: relative;
+}
+
+.userinputs input{
+    height: 30px;
+    width: 225px;
+    background-color: var(--back);
+    border: 1px solid var(--option-back);
+    border-radius: 4px;
+}
+
+.userinputs input:focus + label{
+    font-size: 0.84rem;
+    top:-23%;
+    transform: translateY(-10%);
+    background-color: var(--back);
+    color: #0ea5e9;
 }

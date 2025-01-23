@@ -10,12 +10,12 @@ function Sms(){
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
                 <div className="userinputs">
                     <div className="number">
-                        <label htmlFor="number">Number</label>
                         <input type="number" id="number" max={"10"}/>
+                        <label htmlFor="number">Number</label>
                     </div>
                     <div className="times">
-                        <label htmlFor="times">SMS</label>
                         <input type="number" id="times"/>
+                        <label htmlFor="times">SMS</label>
                     </div>
                     <div className="speed">
                         <Smsradio options={['Slow','Medium','Fast']} />

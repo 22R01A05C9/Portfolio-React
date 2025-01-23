@@ -5,9 +5,10 @@ function SwitchTheme() {
         let root = document.querySelector(":root");
         let obj = document.querySelector(".switchtheme");
         let style = root.style.colorScheme;
-        if (theme === "dark") {
-            obj.classList.add("dark");
-            root.style.colorScheme = "dark"
+        console.log(style);
+        if (theme === "light") {
+            obj.classList.remove("dark");
+            root.style.colorScheme = "light"
             return;
         }
         if (style === "dark") {
@@ -22,12 +23,12 @@ function SwitchTheme() {
     useEffect(() => {
         let theme = localStorage.getItem("theme");
         
-        if (theme === "dark") {
-            switchtheme("dark");
+        if (theme === "light") {
+            switchtheme("light");
         }
     }, []);
     return (
-        <div className="switchtheme" onClick={switchtheme}>
+        <div className="switchtheme dark" onClick={switchtheme}>
             <span className="switchthemeback">
                 <svg
                     className="lighticon"

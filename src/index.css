@@ -15,7 +15,7 @@ input::-webkit-inner-spin-button {
 }
 
 :root {
-	color-scheme: light;
+	color-scheme: dark;
 	--back: light-dark(#292929, #f0f0f0);
 	--header-back: light-dark(#f0f0f0, #292929);
 	--switch-back: light-dark(#c5c5c5, #5b5b5b);
