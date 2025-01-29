@@ -22,9 +22,11 @@ input::-webkit-inner-spin-button {
 	--switch-ball: light-dark(#f0f0f0, #272525);
 	--text: light-dark(#000000, #ffffff);
 	--text-dim: light-dark(#595959,#a5a5a5);
-	--option-back: light-dark(#868686,#dcdcdc)
+	--option-back: light-dark(#868686,#dcdcdc);
+	--main-col:light-dark(#ffffff,#000000);
 }
 
 html{
 	scroll-behavior: smooth;
+	background-color: var(--main-col);
 }

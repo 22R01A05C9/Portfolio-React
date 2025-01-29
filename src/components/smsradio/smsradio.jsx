@@ -2,7 +2,6 @@ import "./smsradio.css"
 
 function Smsradio(props){
     function setoption(e){
-        console.log(e.target);
         document.querySelectorAll(".option").forEach((element)=>{
             element.classList.remove("active")
         })

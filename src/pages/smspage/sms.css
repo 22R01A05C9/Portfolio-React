@@ -2,12 +2,21 @@
     margin-top: 20px;
 }
 
-.smsbody h2,.smsbody p{
+.smsbody h2{
     text-align: center;
     padding-top: 20px;
 }
 
 .smsbody p{
+    text-align: center;
+    padding-top: 10px; 
+}
+
+.smsbody h2{
+    color: #0ea5e9;
+}
+
+.sinfo{
     margin-top: 30px;
 }
 
@@ -15,11 +24,13 @@
     display: flex;
     flex-direction: column;
     gap:20px;
+    align-items: center;
+    margin-top: 25px;
 }
 
 .userinputs label{
     position: absolute;
-    left: 6px;
+    left: 10px;
     top:50%;
     transform: translateY(-50%);
     cursor: text;
@@ -30,17 +41,51 @@
 }
 
 .userinputs input{
-    height: 30px;
+    height: 40px;
     width: 225px;
-    background-color: var(--back);
+    background-color: var(--main-col);
     border: 1px solid var(--option-back);
     border-radius: 4px;
+    padding: 10px;
+    font-size: 0.8rem;
+    outline: none;
 }
 
-.userinputs input:focus + label{
+.userinputs input:focus + label, .filled label{
     font-size: 0.84rem;
-    top:-23%;
+    top:-30%;
     transform: translateY(-10%);
-    background-color: var(--back);
+    background-color: var(--main-col);
     color: #0ea5e9;
+    left: 10px;
+    padding: 0 5px;
+}
+
+.speed{
+    width: 225px;
+}
+
+.submit{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.submit button{
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background-color: #0ea5e9;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.submit button:hover{
+    background-color: #0ea5e9e8;
+    scale: 1.02;
+}
+
+.error input{
+    position: relative;
+    border: 2px solid red;
 }
