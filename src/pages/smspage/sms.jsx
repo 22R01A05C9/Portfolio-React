@@ -1,14 +1,19 @@
 import Header from "../../components/header/header"
 import "./sms.css"
 import Smsradio from "../../components/smsradio/smsradio"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import {  toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
-
+import SmsStatus from "../../components/smsstatus/status"
 function Sms(){
+    const [sent,setSent] = useState(0)
+    const [total,setTotal] = useState(0)
     useEffect(()=>{
         document.title = "Sms Bomber"
+        window.addEventListener("beforeunload",()=>{
+            socket.close(1000,"refresh")
+        })
     },[])
     const smsref = useRef()
     const update = (data)=>{
@@ -17,9 +22,15 @@ function Sms(){
             let doc = smsref.current
             doc.querySelector(".number input").disabled = true
             doc.querySelector(".times input").disabled = true
-            doc.querySelector(".submit button").disabled = true
+            doc.querySelector(".submit button").style.display = "none"
             doc.querySelector(".speed").style.display = "none"
+            doc.querySelector(".status").style.display = "block"
+            setTotal(parseInt(doc.querySelector(".times input").value))
 
+        }else if(msg === "1"){
+            setSent(sent => sent+1)
+        }else if(msg === "completed"){
+            // handel complete
         }
     }
 
@@ -60,6 +71,15 @@ function Sms(){
                     let times = document.querySelector(".times")
                     times.classList.add("error")
                     
+                }else{
+                    let number = document.querySelector(".number")
+                    toast.error(res.message,{
+                        theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                        autoClose: 2000,
+                        closeOnClick: true,
+                        draggable: true
+                    })
+                    number.classList.add("error")
                 }
                 socket.close()
                 return ;
@@ -122,13 +142,13 @@ function Sms(){
     }
     return(
         <div className="sms" ref={smsref}>
-            <Header ext="/" />
+            <Header ext="/" active="projects"/>
             <div className="smsbody">
                 <h2>SMS Bomber</h2>
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
                 <div className="userinputs">
                     <div className="number">
-                        <input onInput={inp} type="number" id="number" />
+                        <input onInput={inp} type="number" id="number" value="7207232672"/>
                         <label htmlFor="number">Number</label>
                     </div>
                     <div className="times">
@@ -136,7 +156,7 @@ function Sms(){
                             if(e.key === "Enter"){
                                 verify()
                             }
-                        }}/>
+                        }} value="10"/>
                         <label htmlFor="times">SMS's</label>
                     </div>
                     <div className="speed">
@@ -148,6 +168,10 @@ function Sms(){
                     <button onClick={verify}>Submit</button>
                 </div>
                 <div className="status">
+                    {
+                        sent>0 ? <SmsStatus sent={sent} total={total}/> : <p>Started Sending...</p>
+                    }
+                    
                     
                 </div>
             </div>

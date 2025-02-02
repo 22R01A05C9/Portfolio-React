@@ -1,6 +1,6 @@
 import SwitchTheme from "../switchtheme/switchtheme";
 import "./header.css"
-function Header({ext}) {
+function Header({ext, active}) {
 	return (
 		<header>
 			<div className="mainlogo">
@@ -10,7 +10,7 @@ function Header({ext}) {
 				<ul>
 					{
 						["home","about","projects","socials","contact"].map((link)=>{
-							return <li key={link}><a className={link==="home"?"activea":""}href={ext+link}>{link.charAt(0).toUpperCase()+link.slice(1)}</a></li>
+							return <li key={link}><a className={link===active?"activea":""}href={ext+link}>{link.charAt(0).toUpperCase()+link.slice(1)}</a></li>
 						})
 					}
 				</ul>

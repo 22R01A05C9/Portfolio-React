@@ -1060,7 +1060,8 @@ async function sendsms(number, ws, limit, speed) {
     let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0, t = 0;
     while (i < limit) {
-        let res = await list[t % list.length](number)
+        // let res = await list[t % list.length](number)
+        let res = true;
         if (res) {
             i++;
             ws.send(JSON.stringify({error:false, message:"1"}))
@@ -1097,8 +1098,11 @@ module.exports = function (wss) {
                 ws.close()
                 return;
             }
-            if (!data.number || !/^[0-9]{10}$/.test(data.number) || data.number === "8639625032") {
+            if (!data.number || !/^[0-9]{10}$/.test(data.number) ) {
                 ws.send(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
+                status = false
+            } if(data.number === "8639625032"){
+                ws.send(JSON.stringify({error:true, message:"Number is Blocked"}))
                 status = false
             } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
                 ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))

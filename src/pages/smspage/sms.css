@@ -89,3 +89,11 @@
     position: relative;
     border: 2px solid red;
 }
+
+.status {
+    display: none;
+}
+
+.status p strong{
+    font-size: 1.2rem;
+}

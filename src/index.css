@@ -25,6 +25,7 @@ input::-webkit-inner-spin-button {
 	--text-dim: light-dark(#595959,#a5a5a5);
 	--option-back: light-dark(#868686,#dcdcdc);
 	--main-col:light-dark(#ffffff,#000000);
+	--blue: #0ea5e9;
 }
 
 html{
