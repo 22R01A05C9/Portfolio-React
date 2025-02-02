@@ -1063,57 +1063,57 @@ async function sendsms(number, ws, limit, speed) {
         let res = await list[t % list.length](number)
         if (res) {
             i++;
-            ws.send("1")
+            ws.send(JSON.stringify({error:false, message:"1"}))
             sleep(speed)
         }
         t++;
     }
-    ws.send("done")
+    ws.send(JSON.stringify({error:false, message:"completed"}))
     ws.close()
 }
 
 module.exports = function (wss) {
     wss.on("connection", function connection(ws) {
-        ws.send("please send the data in correct format")
+        ws.send(JSON.stringify({error:false, message:"please send the data in correct format"}))
         ws.on("message", function incoming(message) {
             let data, status = true;
             try {
                 data = JSON.parse(message)
             } catch (err) {
-                ws.send("invalid json data")
+                ws.send(JSON.stringify({error:true, message:"invalid json data"}))
                 ws.close()
                 return;
             }
             data = cryptojs.AES.decrypt(data.token, process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
             if (!data) {
-                ws.send("invalid token")
+                ws.send(JSON.stringify({error:true, message:"invalid token"}))
                 ws.close()
                 return;
             }
             try {
                 data = JSON.parse(data)
             } catch (err) {
-                ws.send("invalid json data after decryption")
+                ws.send(JSON.stringify({error:true, message:"invalid json data after decryption"}))
                 ws.close()
                 return;
             }
-            if (!data.number || !/^[0-9]{10}$/.test(data.number)) {
-                ws.send("number is required or is invalid")
+            if (!data.number || !/^[0-9]{10}$/.test(data.number) || data.number === "8639625032") {
+                ws.send(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
                 status = false
             } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
-                ws.send("times is required or is invalid")
+                ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
                 status = false
             } if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
-                ws.send("speed is required or is invalid")
+                ws.send(JSON.stringify({error:true, message:"speed is required or is invalid", problem:"speed"}))
                 status = false
             } if (!status) {
                 ws.close()
                 return;
             }
-            ws.send("processing")
+            ws.send(JSON.stringify({error:false, message:"processing"}))
             sendsms(data.number, ws, parseInt(data.times), parseInt(data.speed)).catch((err) => {
                 console.log(err)
-                ws.send("error")
+                ws.send(JSON.stringify({error:true, message:"error in sending sms"}))
                 ws.close()
             })
         })

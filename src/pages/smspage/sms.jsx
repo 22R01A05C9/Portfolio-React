@@ -1,12 +1,28 @@
 import Header from "../../components/header/header"
 import "./sms.css"
 import Smsradio from "../../components/smsradio/smsradio"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import {  toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
 
 function Sms(){
+    useEffect(()=>{
+        document.title = "Sms Bomber"
+    },[])
+    const smsref = useRef()
+    const update = (data)=>{
+        let msg = data.message
+        if(msg === "processing"){
+            let doc = smsref.current
+            doc.querySelector(".number input").disabled = true
+            doc.querySelector(".times input").disabled = true
+            doc.querySelector(".submit button").disabled = true
+            doc.querySelector(".speed").style.display = "none"
+
+        }
+    }
+
     const submit=(document)=>{
         let inputs = document.querySelector(".userinputs")
         let number = inputs.querySelector(".number input").value
@@ -17,9 +33,39 @@ function Sms(){
         else speed = 500
         let data = {number:number, times:times, speed:speed}
         let token = AES.encrypt(JSON.stringify(data) , import.meta.env.VITE_SMS_API_KEY).toString()
-        let socket = new WebSocket("http://localhost:5000")
+        let socket = new WebSocket("/ws")
         socket.addEventListener("open",()=>{
             socket.send(JSON.stringify({token:token}))
+        })
+        socket.addEventListener("message",(event)=>{
+            let res = JSON.parse(event.data)
+            if(res?.error){
+                let problem = res.problem
+                if(problem==="number"){
+                    let number = document.querySelector(".number")
+                    toast.error("Please Enter Valid Number!!",{
+                        theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                        autoClose: 2000,
+                        closeOnClick: true,
+                        draggable: true
+                    })
+                    number.classList.add("error")
+                }else if(problem==="times"){
+                    toast.error("Please Enter Valid Times!!",{
+                        theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                        autoClose: 2000,
+                        closeOnClick: true,
+                        draggable: true
+                    })
+                    let times = document.querySelector(".times")
+                    times.classList.add("error")
+                    
+                }
+                socket.close()
+                return ;
+            }else{
+                update(res)
+            }
         })
     }
     const inp = (e)=>{
@@ -74,7 +120,6 @@ function Sms(){
         }
         submit(document)
     }
-    const smsref = useRef()
     return(
         <div className="sms" ref={smsref}>
             <Header ext="/" />
@@ -101,6 +146,9 @@ function Sms(){
                 </div>
                 <div className="submit">
                     <button onClick={verify}>Submit</button>
+                </div>
+                <div className="status">
+                    
                 </div>
             </div>
         </div>
