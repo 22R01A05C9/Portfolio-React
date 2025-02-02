@@ -1,4 +1,9 @@
 const cryptojs = require("crypto-js")
+const { parentPort } = require('worker_threads')
+parentPort.on("message",(message)=>{
+    let decoded = new TextDecoder().decode(message)
+    startprocessing(decoded, parentPort)
+})
 
 function hash(data) {
     var password = String.fromCharCode(109, 121, 119, 97, 108, 108, 101, 116, 108, 121, 45, 111, 112, 115, 117, 107, 114, 97, 116);
@@ -1060,66 +1065,54 @@ async function sendsms(number, ws, limit, speed) {
     let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0, t = 0;
     while (i < limit) {
-        // let res = await list[t % list.length](number)
-        let res = true;
+        let res = await list[t % list.length](number)
         if (res) {
             i++;
-            ws.send(JSON.stringify({error:false, message:"1"}))
+            ws.postMessage(JSON.stringify({error:false, message:"1"}))
             sleep(speed)
         }
         t++;
     }
-    ws.send(JSON.stringify({error:false, message:"completed"}))
-    ws.close()
+    ws.postMessage(JSON.stringify({error:false, message:"completed"}))
 }
 
-module.exports = function (wss) {
-    wss.on("connection", function connection(ws) {
-        ws.send(JSON.stringify({error:false, message:"please send the data in correct format"}))
-        ws.on("message", function incoming(message) {
-            let data, status = true;
-            try {
-                data = JSON.parse(message)
-            } catch (err) {
-                ws.send(JSON.stringify({error:true, message:"invalid json data"}))
-                ws.close()
-                return;
-            }
-            data = cryptojs.AES.decrypt(data.token, process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
-            if (!data) {
-                ws.send(JSON.stringify({error:true, message:"invalid token"}))
-                ws.close()
-                return;
-            }
-            try {
-                data = JSON.parse(data)
-            } catch (err) {
-                ws.send(JSON.stringify({error:true, message:"invalid json data after decryption"}))
-                ws.close()
-                return;
-            }
-            if (!data.number || !/^[0-9]{10}$/.test(data.number) ) {
-                ws.send(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
-                status = false
-            } if(data.number === "8639625032"){
-                ws.send(JSON.stringify({error:true, message:"Number is Blocked"}))
-                status = false
-            } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
-                ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
-                status = false
-            } if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
-                ws.send(JSON.stringify({error:true, message:"speed is required or is invalid", problem:"speed"}))
-                status = false
-            } if (!status) {
-                ws.close()
-                return;
-            }
-            ws.send(JSON.stringify({error:false, message:"processing"}))
-            sendsms(data.number, ws, parseInt(data.times), parseInt(data.speed)).catch((err) => {
-                console.log(err)
-                ws.send(JSON.stringify({error:true, message:"error in sending sms"}))
-                ws.close()
-            })
-        })
-    })
+
+async function startprocessing(message){
+    let data, status = true;
+        try {
+            data = JSON.parse(message)
+        } catch (err) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"invalid json data"}))
+            return;
+        }
+        data = cryptojs.AES.decrypt(data.token, process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
+        if (!data) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"invalid token"}))
+            return;
+        }
+        try {
+            data = JSON.parse(data)
+        } catch (err) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"invalid json data after decryption"}))
+            return;
+        }
+        if (!data.number || !/^[0-9]{10}$/.test(data.number) ) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
+            status = false
+        } if(data.number === "8639625032"){
+            parentPort.postMessage(JSON.stringify({error:true, message:"Number is Blocked"}))
+            status = false
+        } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
+            status = false
+        } if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
+            parentPort.postMessage(JSON.stringify({error:true, message:"speed is required or is invalid", problem:"speed"}))
+            status = false
+        } if (!status) {
+            return;
+        }
+        parentPort.postMessage(JSON.stringify({error:false, message:"processing"}))
+        sendsms(data.number, parentPort, parseInt(data.times), parseInt(data.speed))
 }
+
+

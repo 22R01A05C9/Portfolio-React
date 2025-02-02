@@ -1,5 +1,6 @@
 const express = require("express")
 const ws = require("ws")
+const {Worker} = require('worker_threads')
 const cors = require("cors")
 const dotenv = require("dotenv")
 dotenv.config()
@@ -19,10 +20,23 @@ app.use(express.json())
 const server = require("http").createServer(app)
 const wss = new ws.Server({ server: server })
 
+wss.on("connection", function connection(ws) {
+    ws.send(JSON.stringify({error:false, message:"please send the data in correct format"}))
+    ws.on("message", async function incoming(message) {
+        const worker = new Worker("./sms.js")
+        worker.postMessage(message)  
+        worker.on("message",(message)=>{
+            let data = JSON.parse(message)
+            ws.send(message)
+            if(data.error || data.message==="completed"){
+                ws.close()
+            }
+        })      
+    })
+})
 
 require("./files.js")(app)
 require("./url.js")(app)
-require("./sms.js")(wss)
 require("./instagram.js")(app)
 require("./mines.js")(app)
 require("./cmr.js")(app)

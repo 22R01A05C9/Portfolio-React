@@ -20,11 +20,6 @@ function Sms(){
         let msg = data.message
         if(msg === "processing"){
             let doc = smsref.current
-            doc.querySelector(".number input").disabled = true
-            doc.querySelector(".times input").disabled = true
-            doc.querySelector(".submit button").style.display = "none"
-            doc.querySelector(".speed").style.display = "none"
-            doc.querySelector(".status").style.display = "block"
             setTotal(parseInt(doc.querySelector(".times input").value))
 
         }else if(msg === "1"){
@@ -35,13 +30,18 @@ function Sms(){
     }
 
     const submit=(document)=>{
+        document.querySelector(".status").style.display = "block"
+        document.querySelector(".number input").disabled = true
+        document.querySelector(".times input").disabled = true
+        document.querySelector(".submit button").style.display = "none"
+        document.querySelector(".speed").style.display = "none"
         let inputs = document.querySelector(".userinputs")
         let number = inputs.querySelector(".number input").value
         let times = inputs.querySelector(".times input").value
         let speed = inputs.querySelector(".speed .radio .active .radiobtn").textContent
-        if(speed === "Slow") speed = 1500
-        else if(speed === "Medium") speed = 1000
-        else speed = 500
+        if(speed === "Slow") speed = 700
+        else if(speed === "Medium") speed = 500
+        else speed = 300
         let data = {number:number, times:times, speed:speed}
         let token = AES.encrypt(JSON.stringify(data) , import.meta.env.VITE_SMS_API_KEY).toString()
         let socket = new WebSocket("/ws")
@@ -118,6 +118,14 @@ function Sms(){
             })
             number.classList.add("error")
             return ;
+        }else if(number.querySelector("input").value.trim() === "8639625032"){
+            toast.error("Number Blocked!!",{
+                theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                autoClose: 2000,
+                closeOnClick: true,
+                draggable: true
+            })
+            number.classList.add("error")
         }
         if(times.querySelector("input").value.trim() === ""){
             toast.error("Please Enter TImes!!",{
@@ -148,7 +156,7 @@ function Sms(){
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
                 <div className="userinputs">
                     <div className="number">
-                        <input onInput={inp} type="number" id="number" value="7207232672"/>
+                        <input onInput={inp} type="number" id="number" />
                         <label htmlFor="number">Number</label>
                     </div>
                     <div className="times">
@@ -156,7 +164,7 @@ function Sms(){
                             if(e.key === "Enter"){
                                 verify()
                             }
-                        }} value="10"/>
+                        }}/>
                         <label htmlFor="times">SMS's</label>
                     </div>
                     <div className="speed">
@@ -169,7 +177,7 @@ function Sms(){
                 </div>
                 <div className="status">
                     {
-                        sent>0 ? <SmsStatus sent={sent} total={total}/> : <p>Started Sending...</p>
+                        sent>0 ? <SmsStatus sent={sent} total={total}/> : <p>Connecting To Server Please Wait...<br /> Usually Takes 0-20 Seconds</p>
                     }
                     
                     

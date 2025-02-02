@@ -1,7 +1,7 @@
 .progress{
     position: relative;
     display: block;
-    background-color: white;
+    background-color: var(--progress-bar);
     content: "";
     height: 12px;
     width: 230px;
