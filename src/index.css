@@ -6,6 +6,7 @@
 	box-sizing: border-box;
 	font-family: "Poppins", serif;
 	-webkit-tap-highlight-color: transparent;
+	user-select: none;
 }
 
 input::-webkit-outer-spin-button,
