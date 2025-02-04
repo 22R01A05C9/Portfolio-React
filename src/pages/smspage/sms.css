@@ -65,12 +65,14 @@
     width: 225px;
 }
 
-.submit{
+.submit, .again{
     text-align: center;
     margin-top: 30px;
 }
-
-.submit button{
+.again{
+    display: none;
+}
+.submit button, .again button{
     padding: 8px;
     border-radius: 8px;
     outline: none;
@@ -80,7 +82,7 @@
     cursor: pointer;
 }
 
-.submit button:hover{
+.submit button:hover, .again button:hover{
     background-color: #0ea5e9e8;
     scale: 1.02;
 }

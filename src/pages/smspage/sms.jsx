@@ -16,25 +16,48 @@ function Sms(){
         })
     },[])
     const smsref = useRef()
+
+    const again = ()=>{
+        let document = smsref.current;
+        document.querySelector(".again").style.display = "none";
+        document.querySelector(".status").style.display = "none"
+        document.querySelector(".number input").disabled = false
+        document.querySelector(".times input").disabled = false
+        document.querySelector(".submit button").style.display = "inline-block"
+        document.querySelector(".speed").style.display = "block"
+        setSent(0)
+    }
+
+    const completed = (document)=>{
+        toast.success(total.toString()+ " SMS's Sent Successfully",{
+            theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+            autoClose: 2000,
+            closeOnClick: true,
+            draggable: true
+        })
+        document.querySelector(".again").style.display = "block";
+
+    }
+
     const update = (data)=>{
+        let document = smsref.current
         let msg = data.message
         if(msg === "processing"){
-            let doc = smsref.current
-            setTotal(parseInt(doc.querySelector(".times input").value))
+            document.querySelector(".status").style.display = "block"
+            document.querySelector(".number input").disabled = true
+            document.querySelector(".times input").disabled = true
+            document.querySelector(".submit button").style.display = "none"
+            document.querySelector(".speed").style.display = "none"
+            setTotal(parseInt(document.querySelector(".times input").value))
 
         }else if(msg === "1"){
             setSent(sent => sent+1)
         }else if(msg === "completed"){
-            // handel complete
+            completed(document)
         }
     }
 
     const submit=(document)=>{
-        document.querySelector(".status").style.display = "block"
-        document.querySelector(".number input").disabled = true
-        document.querySelector(".times input").disabled = true
-        document.querySelector(".submit button").style.display = "none"
-        document.querySelector(".speed").style.display = "none"
         let inputs = document.querySelector(".userinputs")
         let number = inputs.querySelector(".number input").value
         let times = inputs.querySelector(".times input").value
@@ -126,6 +149,7 @@ function Sms(){
                 draggable: true
             })
             number.classList.add("error")
+            return;
         }
         if(times.querySelector("input").value.trim() === ""){
             toast.error("Please Enter TImes!!",{
@@ -181,6 +205,9 @@ function Sms(){
                     }
                     
                     
+                </div>
+                <div className="again">
+                    <button onClick={again}>Send Again</button>
                 </div>
             </div>
         </div>
