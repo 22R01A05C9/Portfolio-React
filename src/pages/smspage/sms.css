@@ -99,3 +99,55 @@
 .status p strong{
     font-size: 1.2rem;
 }
+
+.userinputs svg{
+    height: 14px;
+    width: 24px;
+    position: absolute;
+    top:50%;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+}
+.userinputs svg path{
+    fill: var(--text);
+}
+
+.userinputs svg:hover ~ .info{
+    display: block;
+}
+
+p.info{
+    font-size: 0.8rem;
+    position: absolute;
+    left: 115%;
+    width: 200px;
+    color: var(--main-col);
+    background-color: var(--header-back);
+    color: var(--text);
+    border-radius: 4px;
+    padding: 6px;
+    top:50%;
+    transform: translate(-2%, -50%);
+    display: none;
+}
+
+.info::before{
+    content: "";
+    background-color: var(--header-back);
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    position: absolute;
+    left: -2%;
+    top:50%;
+    transform: translate(0,-50%) rotate(45deg);
+}
+
+@media screen and (max-width:700px) {
+    .info::before{
+        display: none;
+    }
+    .info{
+
+    }
+}

@@ -6,6 +6,9 @@ import {  toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
 import SmsStatus from "../../components/smsstatus/status"
+import Questiontag from "../../components/questiontag/question"
+
+
 function Sms(){
     const [sent,setSent] = useState(0)
     const [total,setTotal] = useState(0)
@@ -182,6 +185,8 @@ function Sms(){
                     <div className="number">
                         <input onInput={inp} type="number" id="number" />
                         <label htmlFor="number">Number</label>
+                        <Questiontag />
+                        <p className="info">Enter The Phone Number On Which You Want To Perform Bombing.</p>
                     </div>
                     <div className="times">
                         <input type="number" id="times" onInput={inp} onKeyDown={(e)=>{
@@ -190,6 +195,8 @@ function Sms(){
                             }
                         }}/>
                         <label htmlFor="times">SMS's</label>
+                        <Questiontag />
+                        <p className="info">Enter The Number Of SMS's You Want To Send.</p>
                     </div>
                     <div className="speed">
                         <p>Select Speed</p>
