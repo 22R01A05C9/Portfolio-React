@@ -20,8 +20,8 @@ function Mainpage(){
 
     return(
         <>
-            <Header ext="#" />
-			<Home />
+            <Header ext="#" active="home"/>
+			{/* <Home /> */}
         </>
     )
 }

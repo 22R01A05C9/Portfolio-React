@@ -32,7 +32,7 @@ function Sms(){
     }
 
     const completed = (document)=>{
-        toast.success(total.toString()+ " SMS's Sent Successfully",{
+        toast.success(document.querySelector(".times input").value+ " SMS's Sent Successfully",{
             theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
             autoClose: 2000,
             closeOnClick: true,
@@ -73,6 +73,14 @@ function Sms(){
         let socket = new WebSocket("/ws")
         socket.addEventListener("open",()=>{
             socket.send(JSON.stringify({token:token}))
+        })
+        socket.addEventListener("error",()=>{
+            toast.error("Some Error Occured!!",{
+                theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                autoClose: 2000,
+                closeOnClick: true,
+                draggable: true
+            })
         })
         socket.addEventListener("message",(event)=>{
             let res = JSON.parse(event.data)
@@ -183,19 +191,19 @@ function Sms(){
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
                 <div className="userinputs">
                     <div className="number">
+                        <Questiontag />
                         <input onInput={inp} type="number" id="number" />
                         <label htmlFor="number">Number</label>
-                        <Questiontag />
                         <p className="info">Enter The Phone Number On Which You Want To Perform Bombing.</p>
                     </div>
                     <div className="times">
+                        <Questiontag />
                         <input type="number" id="times" onInput={inp} onKeyDown={(e)=>{
                             if(e.key === "Enter"){
                                 verify()
                             }
                         }}/>
                         <label htmlFor="times">SMS's</label>
-                        <Questiontag />
                         <p className="info">Enter The Number Of SMS's You Want To Send.</p>
                     </div>
                     <div className="speed">

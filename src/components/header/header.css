@@ -6,6 +6,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     padding: 10px;
     border-bottom: 1px solid var(--switch-back);
 }
@@ -28,7 +29,9 @@ header {
     display: flex;
     align-items: center;
 }
-
+.menu, .close, .transparent{
+    display: none;
+}
 .mainnav ul {
     display: flex;
     flex-direction: row;
@@ -44,4 +47,86 @@ header {
 .mainnav ul li a.activea, .mainnav ul li a:hover, .mainnav ul li a:hover .mainnav ul li a{
     border-bottom: 2px solid var(--text-dim);
     color:var(--text-dim)
+}
+
+@media screen and (max-width:600px){
+    .menu{
+        display: block;
+    }
+    .mainnav{
+        display: none;
+        padding: 70px 0;
+        position: absolute;
+        top:0;
+        left:0;
+        background-color: var(--main-col);
+        width: min(200px, 70%);
+        z-index: 10;
+        animation: slidein linear 0.3s;
+        height: 100%;
+    }
+    header .closenav{
+        animation: slideout linear 0.3s;
+    }
+    @keyframes slidein {
+        0%{
+            left:-100%;
+
+        }
+        100%{
+            left:0;
+        }
+    }
+    @keyframes slideout {
+        0%{
+            left:0;
+        }
+        100%{
+            left:-100%;
+
+        }
+    }
+    .mainnav ul{
+        flex-direction: column;
+        gap:0;
+        height: 100%;
+        
+    }
+    .mainnav ul li{
+        padding: 4px 0;
+        font-size: 1.15rem;
+
+    }
+    header svg{
+        display: block;
+        z-index: 11;
+    }
+    .close{
+        display: none;
+    }
+    .mainnav ul li a{
+        display: block;
+        width: 100%;
+        padding: 12px 35px;
+    }
+    .mainnav ul li a.activea{
+        border-bottom: none;
+        background-color: var(--header-back);
+    }
+    .mainnav ul li a:hover{
+        border-bottom: none;
+    }
+    .transparent{
+        content: "";
+        height: 100dvh;
+        width: 100vw;
+        position: absolute;
+        top:0;
+        left:0;
+        background-color: var(--transparent);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 2;
+        animation: slidein linear 0.15s;
+    }
 }

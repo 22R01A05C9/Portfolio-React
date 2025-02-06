@@ -27,6 +27,7 @@ input::-webkit-inner-spin-button {
 	--main-col:light-dark(#ffffff,#000000);
 	--blue: #0ea5e9;
 	--progress-bar: light-dark(#8f8f8f,#f0f0f0);
+	--transparent: light-dark(#ffffff80,#00000080)
 }
 
 html{
