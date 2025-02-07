@@ -30,9 +30,18 @@ input::-webkit-inner-spin-button {
 	--transparent: light-dark(#ffffff80,#00000080);
 	--shading-background: light-dark(#cbcbcb94,#44444485);
 	--feedback:light-dark(#ffffff,#080808);
+	--footer:light-dark(#c3c3c3,#292929)
 }
 
 html{
 	scroll-behavior: smooth;
 	background-color: var(--main-col);
+}
+
+.app{
+	height: 100dvh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
 }

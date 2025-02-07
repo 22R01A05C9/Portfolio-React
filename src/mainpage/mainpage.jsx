@@ -1,6 +1,8 @@
 import Header from "../components/header/header"
 import { useEffect } from "react"
 import Home from "./homepage/homepage"
+import Footer from "../components/footer/footer"
+
 
 function Mainpage(){
     useEffect(()=>{
@@ -21,7 +23,10 @@ function Mainpage(){
     return(
         <>
             <Header ext="#" active="home"/>
-			{/* <Home /> */}
+			<Home />
+			<Home />
+			<Home />
+			<Home />
         </>
     )
 }
