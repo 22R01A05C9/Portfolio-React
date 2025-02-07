@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import "./App.css"
 const Sms = lazy(()=>import("./sms/sms"))
 const Mainpage = lazy(()=>import("./mainpage/mainpage"))
+const Mines = lazy(()=>import("./mines/mines"))
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Mainpage />} />
 						<Route path="/sms" element={<Sms />} />
+						<Route path="/mines" element={<Mines />} />
 					</Routes>
 				</BrowserRouter>
 			</Suspense>

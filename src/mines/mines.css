@@ -1,0 +1,500 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+	--base-background: #202c3c;
+	--font-color: #f1f1f1;
+	--font-light-color: #b5b0b0;
+	--block-base: #2f4553;
+	--block-hover: #557086;
+	--shading-background: #44444485;
+	--button-background: #0f202f;
+	--button-border: #959292;
+	--light-black: #0c0c0c;
+}
+
+body {
+	background-color: var(--base-background);
+}
+
+.header {
+	margin-top: 20px;
+}
+
+.header h1 {
+	text-align: center;
+}
+
+.header h1 a {
+	text-decoration: none;
+	padding: 5px 10px;
+	color: var(--font-color);
+}
+
+.gameinfo {
+	display: grid;
+	grid-template-columns: 46vw 46vw;
+	grid-template-rows: 30px 30px;
+	justify-content: space-between;
+	border: 2px solid white;
+	border-radius: 10px;
+	width: 90%;
+	margin: 20px auto 0;
+	gap: 5px;
+	align-items: center;
+
+}
+
+.gameinfo p {
+	color: var(--font-color)
+}
+
+.gameinfo .gameid, .gameinfo .timer {
+	margin-left: 25px;
+}
+
+.gamearea {
+	margin-top: 30px;
+	position: relative;
+}
+
+.blocks {
+	display: grid;
+	justify-content: center;
+	gap: 10px;
+	grid-template-columns: repeat(4, calc(100vw/4 - 6vw));
+	grid-template-rows: repeat(4, calc(100vw/4 - 12px));
+}
+
+.blocks .block {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	background-color: var(--block-base);
+}
+
+.blocks .block img {
+	display: none;
+}
+
+.blocks .block:hover {
+	background-color: var(--block-hover);
+	scale: 1.05;
+}
+
+.shading {
+	height: 100vw;
+	width: 89vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: var(--shading-background);
+	gap: 20px;
+}
+
+.shading p {
+	color: var(--font-color);
+	font-size: 25px;
+	background-color: var(--button-background);
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.shading button {
+	padding: 15px;
+	font-size: 15px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	background-color: var(--button-background);
+	color: var(--font-color);
+}
+
+.shading button:hover {
+	scale: 1.05;
+	background-color: var(--block-base);
+}
+
+.options {
+	margin-top: 40px;
+}
+
+.options p {
+	text-align: center;
+	color: var(--font-color)
+}
+
+.options .buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+
+.options .buttons button {
+	background-color: var(--block-base);
+	min-width: 10vw;
+	outline: none;
+	padding: 10px;
+	border: 1px solid var(--button-border);
+	color: var(--font-color);
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.active {
+	background-color: var(--light-black) !important;
+	scale: 1.2;
+}
+
+
+.fail .bomb, .success .diamond, .success .twinkle {
+	display: block !important;
+	width: calc(100vw/4 - 10vw);
+	height: calc(100vw/4 - 30px);
+	animation: fade 0.5s linear;
+}
+
+.success .diamond {
+	height: calc(100vw/4 - 50px);
+	width: calc(100vw/4 - 12vw);
+}
+
+.success .twinkle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: calc(100vw/4 - 50px);
+	width: calc(100vw/4 - 12vw);
+	width: 100%;
+	animation: fade 0.5s linear;
+}
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+		scale: 0.5;
+	}
+
+	30% {
+		scale: 1;
+	}
+
+	100% {
+		opacity: 1;
+
+	}
+}
+
+.reset {
+	margin-top: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	color: var(--font-color);
+	background-color: var(--button-background);
+	border: none;
+	cursor: pointer;
+
+}
+
+.resetdiv {
+	text-align: center;
+}
+
+.warningcard {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--shading-background);
+}
+
+.warning {
+	background-color: #ffffff;
+	height: fit-content;
+	padding: 20px;
+	width: fit-content;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+}
+
+.warning h3 {
+	margin: 10px 0 10px 0;
+}
+
+.warning p {
+	min-width: 60vw;
+}
+
+.warning .btn {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.btn button {
+	background-color: var(--button-background);
+	color: var(--font-color);
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px;
+	width: 17vw;
+	text-align: center;
+}
+
+.feedbackdiv, .thankyoudiv {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--shading-background);
+}
+
+.feedback, .thankyou {
+	background-color: #ffffff;
+	height: fit-content;
+	padding: 20px;
+	width: fit-content;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px
+}
+
+.thankyoudiv, .feedbackdiv {
+	display: none;
+}
+
+.thankyou p {
+	min-width: 40vw;
+	text-align: center;
+}
+
+.feedback p {
+	min-width: 50vw;
+	text-align: center;
+}
+
+textarea {
+	outline: none;
+	border-radius: 10px;
+	border: 2px solid black;
+	padding: 10px;
+}
+
+.stars {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.stars .s2 {
+	display: none;
+}
+
+.feedback button, .thankyou button {
+	background-color: var(--button-background);
+	color: var(--font-color);
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.feedback button:hover {
+	scale: 1.1;
+}
+
+.give {
+	color: red;
+	display: none;
+}
+
+@media screen and (min-width:800px) and (max-width:1100px) {
+	.shading button {
+		width: 35vw;
+		font-size: 1.3rem;
+	}
+
+	.block .diamond {
+		width: 10vw;
+		height: 15vw;
+	}
+
+	.block .twinkle {
+		width: 10vw;
+		height: 15vw;
+	}
+}
+
+@media screen and (min-width:1101px) {
+	.maingame {
+		display: flex;
+		flex-direction: row;
+		gap: 0.02vw;
+		margin-top: 20px;
+	}
+
+	.gameinfo {
+		margin: 7vw auto 0;
+		width: 40%;
+		grid-template-columns: 20vw 19vw;
+		gap: 0px;
+		grid-template-rows: 60px 60px;
+		height: fit-content;
+		justify-content: center;
+	}
+
+	.gameinfo .gameid, .gameinfo .maxscore, .gameinfo .timer, .gameinfo .currentscore {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 100%;
+		font-size: 1.2rem;
+	}
+
+	.gameinfo .gameid {
+
+		border-right: 1px solid white;
+		border-bottom: 1px solid white;
+		margin-left: 0;
+		padding: 0 25px;
+	}
+
+	.gameinfo .maxscore {
+		margin-left: 0;
+		border-bottom: 1px solid white;
+		border-left: 1px solid white;
+
+	}
+
+	.gameinfo .timer {
+		border-top: 1px solid white;
+		border-right: 1px solid white;
+		margin-left: 0;
+	}
+
+	.gameinfo .currentscore {
+		border-top: 1px solid white;
+		border-left: 1px solid white;
+	}
+
+
+	.gamearea {
+		width: 55%
+	}
+
+	.blocks {
+		grid-template-columns: repeat(4, 8vw);
+		grid-template-rows: repeat(4, 8vw);
+	}
+
+	.blocks .block {
+		cursor: pointer;
+	}
+
+	.shading {
+		height: 35vw;
+		width: 35vw;
+	}
+
+	.options {
+		position: absolute;
+		top: 24vw;
+		width: 40%;
+		left: 20px;
+	}
+
+	.options p {
+		font-size: 1.2rem;
+		margin-bottom: 20px;
+	}
+
+	.options .buttons button {
+		min-width: 6vw;
+		cursor: pointer;
+	}
+
+	.shading button {
+		cursor: pointer;
+		height: 6vw;
+		width: 15vw;
+		font-size: 1.3rem;
+	}
+
+	.shading button:hover {
+		scale: 1.1;
+	}
+
+	.success .diamond, .fail .bomb, .success .twinkle {
+		height: 80px;
+		width: 80px;
+	}
+
+	.reset {
+		padding: 10px 20px;
+		border-radius: 10px;
+		color: var(--font-color);
+		background-color: var(--button-background);
+		border: none;
+		cursor: pointer;
+		font-size: 1.1rem;
+	}
+
+	.resetdiv {
+		position: relative;
+		bottom: 5vw;
+		width: 42%;
+		text-align: center;
+	}
+
+	.warning p {
+		min-width: 30vw;
+	}
+
+	.warning .btn button {
+		width: 10vw;
+		cursor: pointer;
+	}
+
+	.warning .btn button:hover, .thankyou button:hover {
+		scale: 1.1;
+	}
+
+	.feedback p {
+		min-width: 30vw;
+	}
+
+	.thankyou p {
+		min-width: 15vw;
+		text-align: center;
+	}
+
+	.feedback textarea {
+		width: 25vw;
+	}
+}
