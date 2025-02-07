@@ -1,6 +1,6 @@
-import Header from "../../components/header/header"
+import Header from "../components/header/header"
 import { useEffect } from "react"
-import Home from "../homepage/homepage"
+import Home from "./homepage/homepage"
 
 function Mainpage(){
     useEffect(()=>{

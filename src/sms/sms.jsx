@@ -1,13 +1,13 @@
-import Header from "../../components/header/header"
 import "./sms.css"
-import Smsradio from "../../components/smsradio/smsradio"
 import { lazy, useEffect, useRef, useState } from "react"
 import {  toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
-import SmsStatus from "../../components/smsstatus/status"
-import Questiontag from "../../components/questiontag/question"
-const Feedback = lazy(()=>{return import("../../components/feedback/feedback")})
+import Header from "../components/header/header"
+import Smsradio from "./smsradio/smsradio"
+import SmsStatus from "./smsstatus/status"
+import Questiontag from "./questiontag/question"
+const Feedback = lazy(()=>{return import("../components/feedback/feedback")})
 
 function Sms(){
     const [sent,setSent] = useState(0)
@@ -219,8 +219,6 @@ function Sms(){
                     {
                         sent>0 ? <SmsStatus sent={sent} total={total}/> : <p>Connecting To Server Please Wait...<br /> Usually Takes 0-20 Seconds</p>
                     }
-                    
-                    
                 </div>
                 <div className="again">
                     <button onClick={again}>Send Again</button>
