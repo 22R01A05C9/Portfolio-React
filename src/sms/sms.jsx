@@ -42,6 +42,7 @@ function Sms(){
         document.querySelector(".again").style.display = "block";
         if(localStorage.getItem("smsfeedback") === null)
             document.querySelector(".feedbackdiv").style.display = "block"
+            document.querySelector(".mainfeedback").style.display = "block"
     }
 
     const update = (data)=>{

@@ -7,10 +7,13 @@ import Resetscore from "./components/resetscore"
 import successaudio from "../assets/music/success.mp3"
 import failaudio from "../assets/music/fail.mp3"
 import startaudio from "../assets/music/game-start.mp3"
-import { lazy, useState } from "react"
+import { lazy, useEffect, useState } from "react"
 const Feedback = lazy(()=>import("../components/feedback/feedback"))
 
 function Mines() {
+    useEffect(()=>{
+        document.title = "Mines Game";
+    },[])
 	let maxScore = localStorage.getItem("maxScore") || 0;
 	let [secmsg, setsecmsg] = useState(null)
 	let [interval, setinterval] = useState(null)
@@ -36,7 +39,7 @@ function Mines() {
 				mines = value.innerHTML;
 			}
 		})
-		fetch("/api/creategame", {
+		fetch("/api/mines/creategame", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -53,7 +56,8 @@ function Mines() {
 	}
 
 	const clickedgameover = () => {
-		if (localStorage.getItem("feedback") === null) {
+		if (localStorage.getItem("minesfeedback") === null) {
+			document.querySelector(".mainfeedback").style.display = "block"
 			document.querySelector(".feedbackdiv").style.display = "block"
 		}
 		setgamestarted(false);
@@ -70,7 +74,7 @@ function Mines() {
 		}
 		let blockid = e.target.className.split(" ")[1].substring(1)
 
-		fetch("/api/getdata", {
+		fetch("/api/mines/getdata", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"
@@ -126,7 +130,7 @@ function Mines() {
 
 	return (
 		<div className="game">
-			<Header ext="/#"/>
+			<Header ext="/#" active="projects"/>
 			<div className="maingame">
 				<GameInfo gamestarted={gamestarted} gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} />
 				<GameArea secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clickedgameover={clickedgameover} score={score} clicked={clicked} />

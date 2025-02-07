@@ -1,3 +1,7 @@
+.mainfeedback{
+	display: none;
+}
+
 .feedbackdiv, .thankyoudiv {
 	position: fixed;
 	top: 0;
