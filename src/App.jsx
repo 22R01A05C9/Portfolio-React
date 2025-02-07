@@ -19,7 +19,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Mainpage />} />
 					<Route path="/sms" element={<Sms />} />
-					<Route path="/feedback" element={<Feedback />} />
+					<Route path="/feedback" element={<Feedback application={"test"}/>} />
 				</Routes>
 			</BrowserRouter>
 		</Suspense>

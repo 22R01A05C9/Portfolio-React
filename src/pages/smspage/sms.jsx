@@ -1,13 +1,13 @@
 import Header from "../../components/header/header"
 import "./sms.css"
 import Smsradio from "../../components/smsradio/smsradio"
-import { useEffect, useRef, useState } from "react"
+import { lazy, useEffect, useRef, useState } from "react"
 import {  toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
 import SmsStatus from "../../components/smsstatus/status"
 import Questiontag from "../../components/questiontag/question"
-import Feedback from "../../components/feedback/feedback"
+const Feedback = lazy(()=>{return import("../../components/feedback/feedback")})
 
 function Sms(){
     const [sent,setSent] = useState(0)
@@ -39,7 +39,8 @@ function Sms(){
             draggable: true
         })
         document.querySelector(".again").style.display = "block";
-
+        if(localStorage.getItem("smsfeedback") === null)
+            document.querySelector(".feedbackdiv").style.display = "block"
     }
 
     const update = (data)=>{
@@ -225,7 +226,8 @@ function Sms(){
                     <button onClick={again}>Send Again</button>
                 </div>
             </div>
-            <Feedback />
+            {localStorage.getItem("smsfeedback")===null ? <Feedback application="sms"/> : null}
+            
         </div>
     )
 }

@@ -4,6 +4,7 @@
 	left: 0;
 	height: 100vh;
 	width: 100vw;
+	z-index: 2;
 	background-color: var(--shading-background);
 }
 
@@ -66,8 +67,8 @@ textarea {
 	cursor: pointer;
 }
 
-.feedback button:hover {
-	scale: 1.1;
+.feedback button:hover, .thankyou button:hover {
+	scale: 1.03;
 }
 
 .give {
@@ -76,10 +77,6 @@ textarea {
 }
 
 @media screen and (min-width:1101px) {
-
-    .thankyou button:hover {
-        scale: 1.1;
-    }
 
     .feedback p {
         min-width: 30vw;
