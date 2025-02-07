@@ -1,0 +1,96 @@
+.feedbackdiv, .thankyoudiv {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--shading-background);
+}
+
+.feedback, .thankyou {
+	background-color: var(--feedback);
+	height: fit-content;
+	padding: 20px;
+	width: fit-content;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px
+}
+
+.thankyoudiv, .stars .s2, .feedbackdiv {
+	display: none;
+}
+
+.s2{
+    fill: var(--text);
+}
+
+.thankyou p {
+	min-width: 40vw;
+	text-align: center;
+}
+
+.feedback p {
+	min-width: 50vw;
+	text-align: center;
+}
+
+textarea {
+	outline: none;
+	border-radius: 10px;
+	border: 2px solid black;
+	padding: 10px;
+}
+
+.stars {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	cursor: pointer;
+    height: 30px;
+}
+
+.feedback button, .thankyou button {
+	background-color: var(--blue);
+	color: var(--font-color);
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.feedback button:hover {
+	scale: 1.1;
+}
+
+.give {
+	color: red;
+	display: none;
+}
+
+@media screen and (min-width:1101px) {
+
+    .thankyou button:hover {
+        scale: 1.1;
+    }
+
+    .feedback p {
+        min-width: 30vw;
+    }
+
+    .thankyou p {
+        min-width: 15vw;
+        text-align: center;
+    }
+
+    .feedback textarea {
+        width: 25vw;
+    }
+}

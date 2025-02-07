@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
 import SmsStatus from "../../components/smsstatus/status"
 import Questiontag from "../../components/questiontag/question"
-
+import Feedback from "../../components/feedback/feedback"
 
 function Sms(){
     const [sent,setSent] = useState(0)
@@ -185,7 +185,7 @@ function Sms(){
     }
     return(
         <div className="sms" ref={smsref}>
-            <Header ext="/" active="projects"/>
+            <Header ext="/#" active="projects"/>
             <div className="smsbody">
                 <h2>SMS Bomber</h2>
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
@@ -225,6 +225,7 @@ function Sms(){
                     <button onClick={again}>Send Again</button>
                 </div>
             </div>
+            <Feedback />
         </div>
     )
 }

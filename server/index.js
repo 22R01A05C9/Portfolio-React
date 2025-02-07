@@ -42,6 +42,7 @@ require("./mines.js")(app)
 require("./cmr.js")(app)
 require("./clipboard.js")(app)
 require("./yt.js")(app)
+require("./feedback.js")(app)
 
 server.listen(process.env.PORT, () => {
     console.log("server staretd on http://localhost:" + process.env.PORT);
