@@ -403,3 +403,25 @@
 	}
 
 }
+
+.choose{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+.choose p{
+	text-align: center;
+	width: 45%;
+	font-size: 1.2rem;
+	background-color: var(--footer);
+	padding: 4px 0;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.choose .cactive{
+	background-color: var(--block-hover);
+	scale:1.01;
+}

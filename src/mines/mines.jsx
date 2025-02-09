@@ -1,9 +1,8 @@
 import "./mines.css"
 import Header from "../components/header/header"
-import GameInfo from "./components/gameinfo"
-import GameArea from "./components/gamearea"
-import Options from "./components/options"
-import Resetscore from "./components/resetscore"
+import Choose from "./components/choose"
+import Game from "./components/game"
+import Statistics from "./components/stastics"
 import successaudio from "../assets/music/success.mp3"
 import failaudio from "../assets/music/fail.mp3"
 import startaudio from "../assets/music/game-start.mp3"
@@ -21,6 +20,7 @@ function Mines() {
 	let [expired, setexpired] = useState(false)
 	let [score, setscore] = useState(0)
 	let [nclicked, setnclicked] = useState(0)
+	let [show, setshow] = useState("Game")
 	window.onload = () => {
 		sessionStorage.removeItem("token")
 	}
@@ -131,12 +131,8 @@ function Mines() {
 	return (
 		<div className="game">
 			<Header ext="/#" active="projects"/>
-			<div className="maingame">
-				<GameInfo gamestarted={gamestarted} gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} />
-				<GameArea secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clickedgameover={clickedgameover} score={score} clicked={clicked} />
-			</div>
-			<Options gamestarted={gamestarted} />
-			<Resetscore />
+			<Choose setshow={setshow}/>
+			{show === "Game" ? <Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} /> : <Statistics />}
             {
                 localStorage.getItem("minesfeedback") === null ? <Feedback application="mines"/> : null
             }
