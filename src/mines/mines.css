@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
-.game{
-	margin-bottom: 20px;
-}
-
 .gameinfo {
 	display: grid;
 	grid-template-columns: 46vw 46vw;
@@ -384,7 +380,7 @@
 
 	.resetdiv {
 		position: relative;
-		bottom: 5vw;
+		bottom: 10vw;
 		width: 42%;
 		text-align: center;
 	}
@@ -424,4 +420,87 @@
 .choose .cactive{
 	background-color: var(--block-hover);
 	scale:1.01;
+}
+
+.statistics{
+	display: flex;
+	flex-direction: row;
+	height: 75dvh;
+	align-items: center;	
+}
+
+.statistics .left{
+	display: flex;
+	flex-direction: column;
+	width: 47%;
+	height: 50%;
+	align-items: center;
+	justify-content: center;
+	gap:30px;
+}
+
+.statistics .left .info{
+	display: grid;
+	grid-template-columns: 21vw 21vw;
+	grid-template-rows: 40px 40px;
+	justify-content: center;
+	border: 2px solid var(--text);
+	border-radius: 10px;
+	width: 90%;
+	margin: 0 0 0 10px;
+	align-items: center;
+}
+
+.info div{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.total, .maxscore{
+	border-bottom: 1px solid var(--text);
+}
+
+.minscore, .average{
+	border-top: 1px solid var(--text);
+}
+
+.average, .maxscore{
+	border-left: 1px solid var(--text);
+}
+
+.total, .minscore{
+	border-right: 1px solid var(--text);
+}
+
+.statistics .left button{
+	padding: 10px;
+	border-radius: 10px;
+	color: var(--text);
+	background-color: var(--blue);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+.statistics .left button:hover {
+	scale: 1.02;
+	background-color: var(--blue-dim);
+}
+
+.chart{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap:10px;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.chart p{
+	margin-left:10px;
 }
