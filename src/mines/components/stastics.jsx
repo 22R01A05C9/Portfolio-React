@@ -1,7 +1,7 @@
 import Statchart from "./statschart"
 
 
-function Statistics(){
+function Stats(){
     return(
         <div className="statistics">
             <div className="left">
@@ -25,6 +25,25 @@ function Statistics(){
             </div>
             
             <Statchart />
+        </div>
+    )
+}
+
+function Playgame(){
+    return(
+        <div className="playgame">
+            <p>Please Play Atleast One Game To Display The statistics</p> 
+        </div>
+    )
+}
+
+
+function Statistics(){
+    return (
+        <div className="tab">
+            {
+            localStorage.getItem("statistics")!==null ? <Stats /> : <Playgame />
+        }
         </div>
     )
 }
