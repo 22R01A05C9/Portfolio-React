@@ -1,4 +1,4 @@
-import { LineChart, XAxis, YAxis, Tooltip, Line, CartesianGrid } from "recharts"
+import { LineChart, XAxis, YAxis, Tooltip, Line, CartesianGrid, ResponsiveContainer } from "recharts"
 
 function Statchart(){
     let data=[
@@ -17,13 +17,15 @@ function Statchart(){
     return(
         <div className="chart">
             <p>Statistics For Last 10 Games </p>
-            <LineChart height={400} width={500} data={data}>
-                <XAxis dataKey={"game"}/>
-                <YAxis />
-                <CartesianGrid stroke="#eee"/>
-                <Tooltip stroke="#fff"/>
-                <Line type={"linear"} stroke="#fff" dataKey={"score"}/>
-            </LineChart>
+            <ResponsiveContainer height={"100%"} width={"90%"} style={{position:"relative","left":"-5%"}}>
+                <LineChart data={data}>
+                    <XAxis dataKey={"game"}/>
+                    <YAxis />
+                    <CartesianGrid stroke="#eee"/>
+                    <Tooltip stroke="#fff"/>
+                    <Line type={"linear"} stroke="#fff" dataKey={"score"}/>
+                </LineChart>
+            </ResponsiveContainer>
         </div>
         
     )

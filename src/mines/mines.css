@@ -426,7 +426,8 @@
 	display: flex;
 	flex-direction: row;
 	height: 75dvh;
-	align-items: center;	
+	align-items: center;
+	justify-content: center;	
 }
 
 .statistics .left{
@@ -459,7 +460,7 @@
 	justify-content: center;
 }
 
-.total, .maxscore{
+.total, .info .maxscore{
 	border-bottom: 1px solid var(--text);
 }
 
@@ -467,7 +468,7 @@
 	border-top: 1px solid var(--text);
 }
 
-.average, .maxscore{
+.average, .info .maxscore{
 	border-left: 1px solid var(--text);
 }
 
@@ -492,7 +493,8 @@
 }
 
 .chart{
-	width: 50%;
+	width: 45%;
+	height: 70%;
 	display: flex;
 	flex-direction: column;
 	gap:10px;
@@ -503,4 +505,43 @@
 
 .chart p{
 	margin-left:10px;
+}
+
+/* .linechart{
+	height: 400px;
+	width: 500px;
+} */
+
+@media screen and (max-width:1000px){
+	.statistics{
+		margin-top: 40px;
+		flex-direction: column;
+		gap:30px;
+		height:80%;
+		padding-bottom: 100px;
+		position: relative;
+	}
+
+	.statistics .left{
+		width: 100%;
+		height: fit-content;
+	}
+	.statistics .left .info{
+		width: 90%;
+		grid-template-columns: 50% 50%;
+	}
+
+	.info div{
+		font-size: 0.8rem;
+	}
+
+	.resetstats{
+		position: absolute;
+		top:85%;
+	}
+
+	.chart{
+		width: 100%;
+		height: 300px;
+	}
 }

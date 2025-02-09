@@ -7,16 +7,16 @@ function Statistics(){
             <div className="left">
                 <div className="info">
                     <div className="total">
-                        <p> Total Games Played: <strong>1234</strong> </p>
+                        <p> Total Games: <strong>1234</strong> </p>
                     </div>
                     <div className="maxscore">
-                        <p>Maximum Score: <strong></strong></p>
+                        <p>Maximum Score: <strong>350</strong></p>
                     </div>
                     <div className="minscore">
-                        <p>Minimum Score: <strong>10:00</strong></p>
+                        <p>Minimum Score: <strong>300</strong></p>
                     </div>
                     <div className="average">
-                        <p>Average Score: <strong></strong></p>
+                        <p>Average Score: <strong>200</strong></p>
                     </div>
                 </div>
                 <div className="resetstats">
