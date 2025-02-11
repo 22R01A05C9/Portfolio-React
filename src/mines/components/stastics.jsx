@@ -1,30 +1,44 @@
+import { useState } from "react"
 import Statchart from "./statschart"
+import Warning from "./warning"
 
-
-function Stats(){
+function Stats({data}){
+    const [show,setShow] = useState(false)
+    const reset=()=>{
+        setShow(true)
+    }
+    const clickedyes = ()=>{
+        localStorage.setItem("minesstatistics", null);
+        window.location.reload();
+    }
+    let last = data.last
+    let chartdata = []
+    last.forEach((element,index) => {
+        chartdata.push({game:index+1,score:element})
+    });
     return(
         <div className="statistics">
             <div className="left">
                 <div className="info">
                     <div className="total">
-                        <p> Total Games: <strong>1234</strong> </p>
+                        <p> Total Games: <strong>{data.total}</strong> </p>
                     </div>
                     <div className="maxscore">
-                        <p>Maximum Score: <strong>350</strong></p>
+                        <p>Maximum Score: <strong>{data.max}</strong></p>
                     </div>
                     <div className="minscore">
-                        <p>Minimum Score: <strong>300</strong></p>
+                        <p>Minimum Score: <strong>{data.min}</strong></p>
                     </div>
                     <div className="average">
-                        <p>Average Score: <strong>200</strong></p>
+                        <p>Average Score: <strong>{data.avg}</strong></p>
                     </div>
                 </div>
                 <div className="resetstats">
-                    <button>Reset Statistics</button>
+                    <button onClick={reset}>Reset Statistics</button>
                 </div>
             </div>
-            
-            <Statchart />
+            <Statchart data={chartdata}/>
+            {show ? <Warning msg={"Are You Sure You Want TO Reset Score?"} yes={clickedyes}  no={()=>setShow(false)}/> : null}
         </div>
     )
 }
@@ -39,10 +53,14 @@ function Playgame(){
 
 
 function Statistics(){
+    let tdata = localStorage.getItem("minesstatistics"), data;
+    if(tdata){
+        data = JSON.parse(tdata)
+    }
     return (
         <div className="tab">
             {
-            localStorage.getItem("statistics")!==null ? <Stats /> : <Playgame />
+            data ? <Stats  data={data}/> : <Playgame />
         }
         </div>
     )

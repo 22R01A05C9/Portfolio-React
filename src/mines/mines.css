@@ -212,10 +212,12 @@
 
 .warning h3 {
 	margin: 10px 0 10px 0;
+	text-align: center;
 }
 
 .warning p {
 	min-width: 60vw;
+	text-align: center;
 }
 
 .warning .btn {
@@ -232,6 +234,12 @@
 	padding: 10px 20px;
 	width: 17vw;
 	text-align: center;
+	cursor: pointer;
+}
+
+.btn button:hover{
+	background-color: var(--blue-dim);
+	scale:1.02;
 }
 
 .stars {

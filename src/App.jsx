@@ -17,7 +17,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Mainpage />} />
 						<Route path="/sms" element={<Sms />} />
-						<Route path="/mines" element={<Mines />} />
+						<Route path="/mines/*" element={<Mines />} />
 					</Routes>
 				</BrowserRouter>
 			</Suspense>

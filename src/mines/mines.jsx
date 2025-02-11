@@ -8,12 +8,37 @@ import failaudio from "../assets/music/fail.mp3"
 import startaudio from "../assets/music/game-start.mp3"
 import { lazy, useEffect, useState } from "react"
 const Feedback = lazy(()=>import("../components/feedback/feedback"))
-
+const getmaxscore = ()=>{
+	let data = localStorage.getItem("minesstatistics")
+	data = JSON.parse(data)
+	return parseInt(data?.max) || 0 
+}
+const setstats =(s)=>{
+	s=parseInt(s)
+	let data = localStorage.getItem("minesstatistics")
+	data = JSON.parse(data)
+	if(data){
+		data.max = Math.max(parseInt(data.max),s)
+		data.min = Math.min(parseInt(data.min),s)
+		data.avg = parseInt((parseInt(data.avg)*parseInt(data.total) + s) / (parseInt(data.total)+1))
+		data.total = parseInt(data.total)+1
+		let last = data.last
+		if(last.length >= 10){
+			last.shift()
+		}
+		last.push(s)
+		data.last = last
+		data = JSON.stringify(data)
+	}else{
+		data = JSON.stringify({max:s,total:1,avg:s,min:s,last:[s]})
+	}
+	localStorage.setItem("minesstatistics",data)
+}
 function Mines() {
     useEffect(()=>{
         document.title = "Mines Game";
     },[])
-	let maxScore = localStorage.getItem("maxScore") || 0;
+	let maxScore = getmaxscore()
 	let [secmsg, setsecmsg] = useState(null)
 	let [interval, setinterval] = useState(null)
 	let [gamestarted, setgamestarted] = useState(false)
@@ -94,12 +119,13 @@ function Mines() {
 							value.classList.add("fail")
 						}
 					})
-					if ((score + ((nclicked + 1) * parseInt(data.mines))) > (parseInt(localStorage.getItem("maxScore")) || 0)) {
-						localStorage.setItem("maxScore", (score + ((nclicked + 1) * parseInt(data.mines))))
+					let s = (score + ((nclicked + 1) * parseInt(data.mines)));
+					if (s > getmaxscore()) {
 						setsecmsg("New High Score: ")
 					}
 					clearInterval(interval)
 					document.querySelector(".timer p").innerHTML = "Timer: <strong>10:00</strong>"
+					setstats(s)
 					gameexpired()
 				}
 				setscore((score) => { return score + ((nclicked + 1) * parseInt(data.mines)) })
@@ -116,12 +142,12 @@ function Mines() {
 					e.target.classList.add("fail")
 				}
 				new Audio(failaudio).play()
-				if (score > (parseInt(localStorage.getItem("maxScore")) || 0)) {
-					localStorage.setItem("maxScore", score);
+				if (score > getmaxscore()) {
 					setsecmsg("New High Score: ")
 				}
 				clearInterval(interval)
 				document.querySelector(".timer p").innerHTML = "Timer: <strong>10:00</strong>"
+				setstats(score)
 				gameexpired()
 			}
 

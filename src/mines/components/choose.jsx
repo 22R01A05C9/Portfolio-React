@@ -1,5 +1,3 @@
-
-
 function Choose({setshow}){
     const changechoose = (e)=>{
         if(e.target.classList.contains("choose")) return;

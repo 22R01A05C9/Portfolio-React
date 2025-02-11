@@ -1,19 +1,6 @@
 import { LineChart, XAxis, YAxis, Tooltip, Line, CartesianGrid, ResponsiveContainer } from "recharts"
 
-function Statchart(){
-    let data=[
-        {game:"1",score:100},
-        {game:"2",score:70},
-        {game:"3",score:150},
-        {game:"4",score:10},
-        {game:"5",score:50},
-        {game:"6",score:0},
-        {game:"7",score:75},
-        {game:"8",score:100},
-        {game:"9",score:120},
-        {game:"10",score:180},
-
-    ]
+function Statchart({data}){
     return(
         <div className="chart">
             <p>Statistics For Last 10 Games </p>

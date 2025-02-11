@@ -5,7 +5,6 @@ function SwitchTheme() {
         let root = document.querySelector(":root");
         let obj = document.querySelector(".switchtheme");
         let style = root.style.colorScheme;
-        console.log(style);
         if (theme === "light") {
             obj.classList.remove("dark");
             root.style.colorScheme = "light"
