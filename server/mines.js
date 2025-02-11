@@ -8,24 +8,32 @@ module.exports = function (app) {
         return Math.floor(Math.random() * 16);
     }
 
+    async function incrementgamecount() {
+        let conn = await client.connect()
+        let db = conn.db("website");
+        let stats = db.collection("stats")
+        stats.findOneAndUpdate({game:"mines"},{$inc:{count:1}})
+    }
+
     async function setgame(gameid) {
-        conn = await client.connect();
-        mines = conn.db("mines");
-        games = mines.collection("games");
+        let conn = await client.connect();
+        let mines = conn.db("website");
+        let games = mines.collection("mines");
         games.insertOne({ gameid: gameid, status: "active" });
+
     }
 
     async function removegame(gameid) {
-        connection = await client.connect();
-        mines = connection.db("mines");
-        games = mines.collection("games");
+        let connection = await client.connect();
+        let mines = connection.db("website");
+        let games = mines.collection("mines");
         games.deleteOne({ gameid: gameid });
     }
 
     async function findgame(gameid) {
-        connection = await client.connect();
-        mines = connection.db("mines");
-        games = mines.collection("games");
+        let connection = await client.connect();
+        let mines = connection.db("website");
+        let games = mines.collection("mines");
         return await games.findOne({ gameid: gameid });
     }
 
@@ -74,6 +82,7 @@ module.exports = function (app) {
         ).toString();
         setgame(gameid);
         res.json({ token: jtoken, bombs: req.body.bombs, gameid: gameid });
+        incrementgamecount()
     }
 
     app.post("/mines/creategame", creategame);
