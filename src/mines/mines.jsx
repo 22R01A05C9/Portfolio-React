@@ -37,6 +37,8 @@ const setstats =(s)=>{
 function Mines() {
     useEffect(()=>{
         document.title = "Mines Game";
+		document.querySelector("link[rel~='icon']").href="/mines.svg"
+		sessionStorage.removeItem("token")
     },[])
 	let maxScore = getmaxscore()
 	let [secmsg, setsecmsg] = useState(null)
@@ -46,9 +48,6 @@ function Mines() {
 	let [score, setscore] = useState(0)
 	let [nclicked, setnclicked] = useState(0)
 	let [show, setshow] = useState("Game")
-	window.onload = () => {
-		sessionStorage.removeItem("token")
-	}
 	const startgame = () => {
 		setsecmsg(null)
 		setscore(0)
@@ -60,7 +59,7 @@ function Mines() {
 		})
 		let mines = 1;
 		document.querySelectorAll(".buttons button").forEach((value) => {
-			if (value.classList.contains("active")) {
+			if (value.classList.contains("activeoption")) {
 				mines = value.innerHTML;
 			}
 		})
@@ -129,7 +128,14 @@ function Mines() {
 					gameexpired()
 				}
 				setscore((score) => { return score + ((nclicked + 1) * parseInt(data.mines)) })
-			} else {
+			} else if(data.msg === "Game Not Found"){
+				new Audio(failaudio).play()
+				setsecmsg("Game Expired Or False Move")
+				clearInterval(interval)
+				document.querySelector(".timer p").innerHTML = "Timer: <strong>10:00</strong>"
+				gameexpired()
+			}
+			else {
 				data.bombs.forEach((value) => {
 					document.querySelector(`.a${value}`).classList.add("fail")
 				})
@@ -158,7 +164,12 @@ function Mines() {
 		<div className="game">
 			<Header ext="/#" active="projects"/>
 			<Choose setshow={setshow}/>
-			{show === "Game" ? <Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} /> : <Statistics />}
+			<div className={show==="Game" ? "active" : "hidden"}>
+				<Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} />
+			</div>
+			<div className={show!=="Game" ? "active" : "hidden"}>
+				<Statistics display={show!=="Game"}/>
+			</div>
             {
                 localStorage.getItem("minesfeedback") === null ? <Feedback application="mines"/> : null
             }

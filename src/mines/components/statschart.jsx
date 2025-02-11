@@ -10,7 +10,7 @@ function Statchart({data}){
                     <YAxis label={{ value: "Scores", position: "insideLeft", offset: 15, angle:-90, dy:22}}/>
                     <CartesianGrid stroke="var(--text)"/>
                     <Tooltip contentStyle={{backgroundColor:"var(--blue-dim)", color:"var(--text)", "borderRadius":"10px", "border":"1px solid var(--text)"}}  itemStyle={{color:"var(--text)"}}/>
-                    <Line type={"linear"} stroke="var(--blue)" dataKey={"score"} strokeWidth={2}/>
+                    <Line type="monotone" stroke="var(--blue)" dataKey={"score"} strokeWidth={2}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>

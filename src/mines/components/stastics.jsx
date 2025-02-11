@@ -38,7 +38,7 @@ function Stats({data}){
                 </div>
             </div>
             <Statchart data={chartdata}/>
-            {show ? <Warning msg={"Are You Sure You Want TO Reset Score?"} yes={clickedyes}  no={()=>setShow(false)}/> : null}
+            {show && <Warning msg={"Are You Sure You Want To Reset Score?"} yes={clickedyes}  no={()=>setShow(false)}/>}
         </div>
     )
 }
@@ -52,18 +52,24 @@ function Playgame(){
 }
 
 
-function Statistics(){
+function Statistics({display}){
     let tdata = localStorage.getItem("minesstatistics"), data;
     if(tdata){
         data = JSON.parse(tdata)
     }
-    return (
-        <div className="tab">
-            {
-            data ? <Stats  data={data}/> : <Playgame />
-        }
-        </div>
-    )
+    if(display){
+        return (
+            <div className="tab">
+                {
+                data ? <Stats  data={data}/> : <Playgame />
+            }
+            </div>
+        )
+    }
+    else {
+        return null
+    }
+    
 }
 
 

@@ -45,10 +45,6 @@
 	background-color: var(--block-base);
 }
 
-.blocks .block img {
-	display: none;
-}
-
 .blocks .block:hover {
 	background-color: var(--block-hover);
 	scale: 1.05;
@@ -122,12 +118,14 @@
 	color: var(--text);
 	border-radius: 10px;
 	font-size: 15px;
+	cursor: pointer;
 }
 
-.active {
+.activeoption {
 	background-color: var(--light-black) !important;
 	scale: 1.2;
 }
+
 
 
 .fail .bomb, .success .diamond, .success .twinkle {
@@ -249,7 +247,7 @@
 	cursor: pointer;
 }
 
-.stars .s2 {
+.stars .s2, .hidden, .blocks .block img {
 	display: none;
 }
 
@@ -357,7 +355,6 @@
 
 	.options .buttons button {
 		min-width: 6vw;
-		cursor: pointer;
 	}
 
 	.shading button {

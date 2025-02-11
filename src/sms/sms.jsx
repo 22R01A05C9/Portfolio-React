@@ -1,9 +1,8 @@
 import "./sms.css"
 import { lazy, useEffect, useRef, useState } from "react"
-import {  toast } from "react-toastify"
+import {  toast, ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { AES } from "crypto-js"
-import {ToastContainer} from "react-toastify"
 import Header from "../components/header/header"
 import Smsradio from "./smsradio/smsradio"
 import SmsStatus from "./smsstatus/status"
