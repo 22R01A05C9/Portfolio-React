@@ -12,7 +12,7 @@ module.exports = function (app) {
         let conn = await client.connect()
         let db = conn.db("website");
         let stats = db.collection("stats")
-        stats.findOneAndUpdate({game:"mines"},{$inc:{count:1}})
+        stats.findOneAndUpdate({app:"mines"},{$inc:{count:1}})
     }
 
     async function setgame(gameid) {
@@ -81,6 +81,9 @@ module.exports = function (app) {
             process.env.MINES_API_KEY
         ).toString();
         setgame(gameid);
+        setTimeout(()=>{
+            removegame(gameid)
+        },60*1000*10)
         res.json({ token: jtoken, bombs: req.body.bombs, gameid: gameid });
         incrementgamecount()
     }
