@@ -27,7 +27,21 @@ async function feedback(req,res){
 
 }
 
+async function getfeedbacks(req,res) {
+    let app = req.params?.app
+    let db = await connectdb("website","feedbacks")
+    let data
+    if(app){
+        data = await db.find({website:app},{projection:{_id:0}}).toArray()
+    }else{
+        data = await db.find({},{projection:{_id:0}}).toArray()
+    }
+    console.log(data);
+    res.json(data)
+}
 
 module.exports = function(app){
     app.post("/feedback",feedback)
+    app.get("/feedback/:app",getfeedbacks)
+    app.get("/feedback",getfeedbacks)
 }
