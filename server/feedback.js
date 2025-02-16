@@ -36,7 +36,6 @@ async function getfeedbacks(req,res) {
     }else{
         data = await db.find({},{projection:{_id:0}}).toArray()
     }
-    console.log(data);
     res.json(data)
 }
 
