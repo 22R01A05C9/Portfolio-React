@@ -1,7 +1,7 @@
 import Header from "../components/header/header"
 import { useEffect } from "react"
 import Home from "./homepage/homepage"
-import Footer from "../components/footer/footer"
+import Projects from "./projectspage/projects"
 
 
 function Mainpage(){
@@ -24,9 +24,7 @@ function Mainpage(){
         <>
             <Header ext="#" active="home"/>
 			<Home />
-			<Home />
-			<Home />
-			<Home />
+			<Projects />
         </>
     )
 }

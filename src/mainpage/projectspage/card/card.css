@@ -1,0 +1,128 @@
+
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:20px;
+    height: 200px;
+    background-color: var(--light-black);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px 2px var(--choose);
+}
+
+.card img{
+    width: 25vw;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.cardinfo{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    width: 55vw;
+    height: 100%;
+}
+
+.card .links{
+    display: flex;
+    flex-direction: column;
+    width: 12vw;
+    align-items: center;
+    gap:20px;
+}
+
+.card .links a{
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--blue);
+    width: 8vw;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 0.99rem;
+}
+
+.card .links a:hover{
+    background-color: var(--blue-dim);
+    transform: scale(1.02);
+}
+
+.card .title{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap:6px;
+    cursor: pointer;
+}
+
+.card .title svg{
+    fill: var(--blue);
+}
+
+.title a{
+    text-decoration: none;
+    color: var(--blue);
+}
+
+.card .techstack{
+    margin-left: 6px;
+}
+
+.card .techstack strong{
+    color: var(--blue);
+}
+
+.card .description{
+    margin-left: 6px;
+    font-size: 0.99rem;
+    width: 52vw;
+}
+
+@media screen and (min-width:800px) and (max-width:1300px){
+    .cardinfo{
+        width: 50vw;
+    }
+    .card .links a{
+        width: 12vw;
+    }
+    .card .description{
+        width: 48vw;
+    }
+}
+
+@media screen and (max-width:800px){
+    .card{
+        flex-direction: column;
+        height: fit-content;
+        box-shadow: 0 0 10px 8px var(--choose);
+
+    }
+    .card .title{
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+    .card img{
+        width: 100%;
+        border-radius: 10px;
+    }
+    .cardinfo{
+        width: 100%;
+        padding: 10px;
+    }
+    .card .links{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .card .links a{
+        width: 40%;
+    }
+    .card .description, .card .techstack{
+        width: 100%;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+}

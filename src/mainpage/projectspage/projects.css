@@ -1,0 +1,41 @@
+.projects{
+    margin: 20px;
+}
+
+.projects h2{
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 5px 4px ;
+    width: fit-content;
+    position: relative;
+}
+
+.projects h2::after{
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 60%;
+    background-color: var(--blue);
+    top:102%;
+    left:5%;
+}
+
+p.sh{
+    font-size: 1rem;
+    margin-top: 16px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+p.sh svg{
+    margin-right: 10px;
+}
+
+.cards{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}

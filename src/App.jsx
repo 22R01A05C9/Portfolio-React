@@ -7,7 +7,6 @@ const Sms = lazy(()=>import("./sms/sms"))
 const Mainpage = lazy(()=>import("./mainpage/mainpage"))
 const Mines = lazy(()=>import("./mines/mines"))
 
-
 function App() {
 
 	return (
