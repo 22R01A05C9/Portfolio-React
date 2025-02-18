@@ -23,6 +23,8 @@ async function feedback(req,res){
     }
     let collection = await connectdb("website","feedbacks")
     collection.insertOne({time:Date(), rating:data.stars, website:data.application, suggestion:data.suggestion})
+    let collection2 = await connectdb("website","stats")
+    collection2.updateOne({app:data.application},{$inc:{feedbacks:1}})
     res.json({error:false,msg:"Success"})
 
 }

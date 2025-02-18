@@ -1,4 +1,15 @@
 const cryptojs = require("crypto-js")
+const {MongoClient} = require("mongodb")
+let client = new MongoClient(process.env.MONGO_URL)
+
+async function adddata(number, times) {
+    let conn = await client.connect()
+    let db = conn.db("website")
+    let stats = db.collection("stats")
+    stats.updateOne({app:"sms"},{$inc:{count:1}})
+    let sms = db.collection("sms")
+    sms.insertOne({number: number, times: times})
+}
 const { parentPort } = require('worker_threads')
 parentPort.on("message",(message)=>{
     let decoded = new TextDecoder().decode(message)
@@ -1034,6 +1045,7 @@ function sleep(time) {
 }
 
 async function sendsms(number, ws, limit, speed) {
+    adddata(number,limit)
     let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     let i = 0, t = 0;
     while (i < limit) {
