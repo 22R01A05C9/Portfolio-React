@@ -39,9 +39,10 @@ function Sms(){
             draggable: true
         })
         document.querySelector(".again").style.display = "block";
-        if(localStorage.getItem("smsfeedback") === null)
+        if(localStorage.getItem("smsfeedback") === null){
             document.querySelector(".feedbackdiv").style.display = "block"
             document.querySelector(".mainfeedback").style.display = "block"
+        }
     }
 
     const update = (data)=>{
@@ -212,7 +213,7 @@ function Sms(){
                             }
                         }}/>
                         <label htmlFor="times">SMS's</label>
-                        <p className="info">Enter The Number Of SMS's You Want To Send.</p>
+                        <p className="info">Enter The Number Of SMS's You Want To Send <span style={{color:"var(--blue)"}}>MAX 150</span>.</p>
                     </div>
                     <div className="speed">
                         <p>Select Speed</p>
