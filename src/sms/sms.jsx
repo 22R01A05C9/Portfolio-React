@@ -54,6 +54,12 @@ function Sms(){
             document.querySelector(".submit button").style.display = "none"
             document.querySelector(".speed").style.display = "none"
             setTotal(parseInt(document.querySelector(".times input").value))
+            toast.success("Started Sending SMS !",{
+                theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
+                autoClose: 2000,
+                closeOnClick: true,
+                draggable: true
+            })
 
         }else if(msg === "1"){
             setSent(sent => sent+1)

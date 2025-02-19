@@ -12,18 +12,17 @@ function Mainpage(){
 					document.querySelectorAll(".mainnav ul li a").forEach((element)=>{
 						element.classList.remove("activea")
 					})
-					document.querySelector('a[href="#'+entry.target.id+']"').classList.add("activea")
+					document.querySelector('a[href="#'+entry.target.id+'"]').classList.add("activea")
 				}
 			})
 		},{threshold:0.65})
-
+		observer.observe(document.querySelector("#projects"))
 		
 	},[])
 
     return(
         <>
             <Header ext="#" active="home"/>
-			<Home />
 			<Projects />
         </>
     )
