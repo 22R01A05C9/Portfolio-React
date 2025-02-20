@@ -11,6 +11,10 @@
     box-shadow: 0 0 10px 2px var(--choose);
 }
 
+.card:hover{
+    transform: scale(1.005);
+}
+
 .card img{
     width: 25vw;
     height: 100%;
@@ -54,16 +58,18 @@
     display: flex;
     align-items: center;
     gap:6px;
-    cursor: pointer;
 }
 
 .card .title svg{
     fill: var(--blue);
+    cursor: pointer;
+
 }
 
 .title a{
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
 }
 
 .card .techstack{
