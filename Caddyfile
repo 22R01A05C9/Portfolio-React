@@ -1,0 +1,7 @@
+saiteja.site {
+        reverse_proxy localhost:4173
+        log {
+                output file /var/log/caddy/access.log
+                format json
+        }
+}
