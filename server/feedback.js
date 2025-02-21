@@ -11,6 +11,12 @@ async function connectdb(db, collection) {
 
 }
 
+function getdate(){
+    let date = new Date()
+    date.setMinutes(date.getMinutes() + 330)
+    return date.toString()
+}
+
 async function feedback(req,res){
     let data = req.body
     if(!data){
@@ -22,7 +28,7 @@ async function feedback(req,res){
         return;
     }
     let collection = await connectdb("website","feedbacks")
-    collection.insertOne({time:Date(), rating:data.stars, website:data.application, suggestion:data.suggestion})
+    collection.insertOne({time:getdate(), rating:data.stars, website:data.application, suggestion:data.suggestion})
     let collection2 = await connectdb("website","stats")
     collection2.updateOne({app:data.application},{$inc:{feedbacks:1}})
     res.json({error:false,msg:"Success"})

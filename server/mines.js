@@ -129,29 +129,4 @@ module.exports = function (app) {
 
     app.post("/mines/getdata", getdata);
 
-    async function pushfeedback(body) {
-        let conn = await client.connect();
-        let mines = conn.db("mines");
-        let feedbacks = mines.collection("feedbacks");
-        await feedbacks.insertOne(body);
-    }
-
-    async function getfeedbacks() {
-        let conn = await client.connect();
-        let mines = conn.db("mines");
-        let feedbacks = mines.collection("feedbacks");
-        let res = await feedbacks.find({}, { "projection": { _id: 0 } }).toArray();
-        return res
-    }
-
-    app.post("/mines/feedback", (req, res) => {
-        req.body.time = new Date();
-        pushfeedback(req.body)
-        res.json({ msg: "Success" });
-    });
-
-    app.get("/mines/feedback", (req, res) => {
-        getfeedbacks().then((data) => res.json(data))
-    });
-
 }

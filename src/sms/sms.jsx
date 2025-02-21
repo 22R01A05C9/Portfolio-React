@@ -18,6 +18,12 @@ function Sms(){
             socket.close(1000,"refresh")
         })
     },[])
+    useEffect(()=>{
+        let document = smsref.current
+        if(sent === total && total !== 0){
+            completed(document)
+        }
+    },[sent,total])
     const smsref = useRef()
 
     const again = ()=>{
@@ -64,8 +70,6 @@ function Sms(){
 
         }else if(msg === "1"){
             setSent(sent => sent+1)
-        }else if(msg === "completed"){
-            completed(document)
         }
     }
 
@@ -161,7 +165,7 @@ function Sms(){
             })
             number.classList.add("error")
             return ;
-        }else if(number.querySelector("input").value.trim() === "8639625032"){
+        }else if(number.querySelector("input").value.trim() === "8639625032" || number.querySelector("input").value.trim() === "7075087701"){
             toast.error("Number Blocked!!",{
                 theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
                 autoClose: 2000,
@@ -180,8 +184,8 @@ function Sms(){
             })
             times.classList.add("error")
             return ;
-        }else if(parseInt(times.querySelector("input").value) > 150){
-            toast.error("Please Enter Less Than 150 Times",{
+        }else if(parseInt(times.querySelector("input").value) > 50){
+            toast.error("Please Enter Less Than 50 Times",{
                 theme:(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"),
                 autoClose: 2000,
                 closeOnClick: true,
@@ -213,7 +217,7 @@ function Sms(){
                             }
                         }}/>
                         <label htmlFor="times">SMS's</label>
-                        <p className="info">Enter The Number Of SMS's You Want To Send <span style={{color:"var(--blue)"}}>MAX 150</span>.</p>
+                        <p className="info">Enter The Number Of SMS's You Want To Send <span style={{color:"var(--blue)"}}>MAX 50</span>.</p>
                     </div>
                     <div className="speed">
                         <p>Select Speed</p>

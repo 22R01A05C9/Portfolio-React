@@ -2,13 +2,13 @@ const cryptojs = require("crypto-js")
 const {MongoClient} = require("mongodb")
 let client = new MongoClient(process.env.MONGO_URL)
 
-async function adddata(number, times) {
+async function adddata(number, times, date) {
     let conn = await client.connect()
     let db = conn.db("website")
     let stats = db.collection("stats")
     stats.updateOne({app:"sms"},{$inc:{count:1}})
     let sms = db.collection("sms")
-    sms.insertOne({number: number, times: times})
+    sms.insertOne({number: number, times: times, time:date})
 }
 
 function hash(data) {
@@ -1030,29 +1030,34 @@ async function uspolo(number) {
     })
 }
 
-function sleep(time) {
-    let now = new Date().getTime();
-    for (let i = 0; i < 1e7; i++) {
-        if (new Date().getTime() - now >= time)
-            break;
-    }
 
+async function eachcall(number,limit,t,list,ws,speed){
+    if(limit === 0) return;
+    let res = await list[t % list.length](number)
+    if (res) {
+        ws.send(JSON.stringify({error:false, message:"1"}))
+        setTimeout(() => {
+            eachcall(number,limit-1,t+1,list,ws,speed)
+        }, speed)
+        
+    }else{
+        setTimeout(() => {
+            eachcall(number,limit,t+1,list,ws,speed)
+        }, speed)
+    }
+    
+}
+
+function getdate(){
+    let date = new Date()
+    date.setMinutes(date.getMinutes() + 330)
+    return date.toString()
 }
 
 async function sendsms(number, ws, limit, speed) {
-    adddata(number,limit)
+    adddata(number,limit,getdate())
     let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
-    let i = 0, t = 0;
-    while (i < limit) {
-        let res = await list[t % list.length](number)
-        if (res) {
-            i++;
-            ws.send(JSON.stringify({error:false, message:"1"}))
-            sleep(speed)
-        }
-        t++;
-    }
-    ws.send(JSON.stringify({error:false, message:"completed"}))
+    eachcall(number,limit,0,list,ws,speed)
 }
 
 
@@ -1078,13 +1083,17 @@ async function startsmsprocessing(message,ws){
         if (!data.number || !/^[0-9]{10}$/.test(data.number) ) {
             ws.send(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
             status = false
-        } if(data.number === "8639625032"){
+        } if(data.number === "8639625032" || data.number==="7075087701"){
             ws.send(JSON.stringify({error:true, message:"Number is Blocked"}))
             status = false
         } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
             ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
             status = false
-        } if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
+        } if(parseInt(data.times) > 50){
+            ws.send(JSON.stringify({error:true, message:"times is too large"}))
+            status = false
+        }
+        if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
             ws.send(JSON.stringify({error:true, message:"speed is required or is invalid", problem:"speed"}))
             status = false
         } if (!status) {
