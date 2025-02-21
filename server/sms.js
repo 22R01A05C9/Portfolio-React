@@ -1089,7 +1089,7 @@ async function startsmsprocessing(message,ws){
         } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
             ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
             status = false
-        } if(parseInt(data.times) > 50){
+        } if(parseInt(data.times) > 150){
             ws.send(JSON.stringify({error:true, message:"times is too large"}))
             status = false
         }
