@@ -25,7 +25,7 @@ function Contact() {
                 message.value = ""
                 document.querySelectorAll(".cform div").forEach(e=>{
                     e.classList.remove("filled")
-                    e.querySelector("input").classList.remove("error")
+                    e.querySelector("input")?.classList.remove("error")
                 })
             }else{
                 toast.warn(data.message,{

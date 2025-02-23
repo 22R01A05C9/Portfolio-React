@@ -36,6 +36,10 @@ async function feedback(req,res){
 }
 
 async function getfeedbacks(req,res) {
+    if (req.query.pass !== process.env.PASS) {
+        res.json({ error: true, message: "Not Authorized" })
+        return
+    }
     let app = req.params?.app
     let db = await connectdb("website","feedbacks")
     let data
