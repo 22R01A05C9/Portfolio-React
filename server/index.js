@@ -36,6 +36,7 @@ require("./clipboard.js")(app)
 require("./yt.js")(app)
 require("./feedback.js")(app)
 require("./contact.js")(app)
+require("./getstats.js")(app)
 
 server.listen(process.env.PORT, () => {
     console.log("server staretd on http://localhost:" + process.env.PORT);
