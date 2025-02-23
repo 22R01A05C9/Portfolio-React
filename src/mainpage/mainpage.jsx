@@ -1,5 +1,6 @@
 import Header from "../components/header/header"
 import { useEffect } from "react"
+import { ToastContainer } from "react-toastify"
 import Home from "./homepage/homepage"
 import Projects from "./projectspage/projects"
 import Contact from "./contactpage/contact"
@@ -17,11 +18,13 @@ function Mainpage(){
 			})
 		},{threshold:0.65})
 		observer.observe(document.querySelector("#projects"))
+		observer.observe(document.querySelector("#contact"))
 		
 	},[])
 
     return(
         <>
+			<ToastContainer />
             <Header ext="#" active="home"/>
 			<Projects />
 			<Contact />

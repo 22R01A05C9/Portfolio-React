@@ -9,6 +9,12 @@ header {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid var(--switch-back);
+    position: fixed;
+    z-index: 100;
+}
+
+.app header + * {
+    padding-top: 60px ;
 }
 
 .mainnav {

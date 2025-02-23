@@ -1,0 +1,103 @@
+.contact{
+    margin: 20px;
+}
+
+.contact h2{
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 5px 4px ;
+    width: fit-content;
+    position: relative;
+}
+
+.contact h2::after{
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 60%;
+    background-color: var(--blue);
+    top:101%;
+    left:3%;
+}
+
+.cform{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.cform label{
+    position: absolute;
+    left: 10px;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: text;
+}
+
+.name, .email{
+    position: relative;
+}
+
+.cform input{
+    height: 40px;
+    width: 300px;
+    background-color: var(--main-col);
+    border: 1px solid var(--option-back);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+textarea{
+    width: 300px;
+    height: 200px;
+    background-color: var(--main-col);
+    border: 1px solid var(--option-back);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+textarea::placeholder{
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.cform input:focus + label, .cform .filled label{
+    font-size: 0.84rem;
+    top:-30%;
+    transform: translateY(-10%);
+    background-color: var(--main-col);
+    color: #0ea5e9;
+    left: 10px;
+    padding: 0 5px;
+}
+
+.cform .filled input{
+    border: 1px solid var(--option-back);
+    outline:none;
+}
+
+.cform button{
+    padding: 8px 10px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background-color: #0ea5e9;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cform button:hover{
+    background-color: #0ea5e9e8;
+    scale: 1.02;
+}
+
+.cform .error{
+    outline: 1px solid red;
+    border:none;
+}
