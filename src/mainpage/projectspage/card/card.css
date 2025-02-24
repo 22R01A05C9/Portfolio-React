@@ -46,6 +46,7 @@
     text-align: center;
     border-radius: 10px;
     font-size: 0.99rem;
+    box-shadow: 0 0 8px 2px var(--blue-dim);
 }
 
 .card .links a:hover{

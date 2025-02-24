@@ -1,10 +1,13 @@
 import { useRef } from "react";
+import { Link } from "react-scroll"
+import { useNavigate } from "react-router-dom";
 import SwitchTheme from "../switchtheme/switchtheme";
 import "./header.css"
 
 
 function Header({ext, active}) {
 	const headeref = useRef()
+	const navigate = useNavigate()
 	const open =(e)=>{
 		headeref.current.querySelector(".mainnav").style.display = "block";
 		headeref.current.querySelector(".close").style.display = "block";
@@ -25,6 +28,10 @@ function Header({ext, active}) {
 		headeref.current.querySelector(".close").style.display = "none";
 		headeref.current.querySelectorAll("svg")[2].style.display = "block";
 	}
+
+	const handelnavigation = (e)=>{
+		navigate("/",{state:{scrollto:e.target.innerHTML.toLowerCase()}})
+	}
 	return (
 		<header ref={headeref}>
 			<div className="mainlogo">
@@ -33,8 +40,21 @@ function Header({ext, active}) {
 			<div className="mainnav">
 				<ul>
 					{
+						ext ? 
 						["home","about","projects","socials","contact"].map((link)=>{
-							return <li key={link}><a className={link===active?"activea":""}href={ext+link}>{link.charAt(0).toUpperCase()+link.slice(1)}</a></li>
+							return <li key={link}><a className={link===active?"activea":""} onClick={handelnavigation}>{link.charAt(0).toUpperCase()+link.slice(1)}</a></li>
+						}) : 
+						["home","about","projects","socials","contact"].map((link)=>{
+							return <li key={link}>
+								<Link
+									to={link}
+									smooth={"easeInOutQuad"} 
+									offset={-90}
+									duration={100} 
+									spy={true}     
+									activeClass="activea"
+									>{link.charAt(0).toUpperCase()+link.slice(1)}</Link>
+								</li>
 						})
 					}
 				</ul>

@@ -162,7 +162,7 @@ function Mines() {
 
 	return (
 		<div className="game">
-			<Header ext="/#" active="projects"/>
+			<Header ext="/" active="projects"/>
 			<Choose setshow={setshow}/>
 			<div className={show==="Game" ? "active" : "hidden"}>
 				<Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} />

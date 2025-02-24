@@ -198,7 +198,7 @@ function Sms(){
     }
     return(
         <div className="sms" ref={smsref}>
-            <Header ext="/#" active="projects"/>
+            <Header ext="/" active="projects"/>
             <div className="smsbody">
                 <h2>SMS Bomber</h2>
                 <p className="sinfo">Please Enter The Below Details To Start Bombing</p>
