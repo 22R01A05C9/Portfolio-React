@@ -1,11 +1,11 @@
 .home img{
     height: 420px;
-    width: 320px;
+    width: 80%;
+    flex-grow: 3;
     border-radius: 25px;
-    padding: 20px;
-    margin-left: 40px;
-    margin-top: 20px;
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
+    flex-basis: 0;
+    margin-left: 5vw;
 }
 
 .home{
@@ -13,19 +13,21 @@
 }
 
 .wrapper{
-    padding: 20px;
+    padding-top: 50px;
     width: 100%;
     display: flex;
     gap:30px;
+    align-items: center;
 }
 
 
 .info{
-    width: 100%;
-    padding: 40px 0 30px 10px;
+    padding: 0 0 30px 15px;
     display: flex;
     flex-direction: column;
     gap:30px;
+    flex-grow: 8;
+    flex-basis: 0;
 }
 
 .title h3{
@@ -38,22 +40,28 @@
 }
 
 .desc p{
-    font-size: 1.15rem;;
+    font-size: 1.15rem;
+    text-align: justify;
 }
 
 .buttons{
     display: flex;
     gap: 40px;
+    align-items: center;
+}
+
+.buttons a{
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .buttons a:first-child{
-    text-decoration: none;
     color: var(--text);
     background-color: var(--blue);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 1.3rem;
-    transition: all 0.2s ease;
 }
 .buttons a:hover{
     background-color: var(--blue-dim);
@@ -61,17 +69,65 @@
 }
 
 .buttons a:last-child{
-    text-decoration: none;
     color: var(--blue);
     background-color: #ffffff12;
-    padding: 10px 20px;
-    border-radius: 10px;
     border: 3px solid var(--text);
-    font-size: 1.3rem;
-    transition: all 0.2s ease;
 }
 
 
+@media screen and (max-width:850px) {
+    .title h3{
+        font-size: 5vw;
+        font-weight: 800;
+    }
+}
 
+@media screen and (max-width:550px) {
+    .home{
+        padding: 0 10px;
+    }
+    .wrapper{
+        flex-direction: column;
+        padding-top: 10px;
+        gap:20px;
+    }
 
+    .wrapper img{
+        margin: 0;
+        height: 40vh;
+        width: 70%;
+    }
 
+    .info{
+        padding: 10px;
+        width: 100%;
+        gap:20px;
+        align-items: center ;
+    }
+
+    .title h3{
+        font-size: 1.7rem;
+    }
+    .desc{
+        padding: 0 15px;
+        line-height: 1.5;
+    }
+    .desc p{
+        font-size: 1rem;
+    }
+    .buttons{
+        gap:0;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .info .buttons a{
+        height: fit-content;
+        font-size: 1.2rem;
+        padding: 5px 10px;
+        width: 40%;
+        
+    }
+    .info .buttons a:first-child{
+        border:3px solid var(--blue)
+    }
+}

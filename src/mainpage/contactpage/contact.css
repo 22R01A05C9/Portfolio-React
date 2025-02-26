@@ -103,3 +103,9 @@ textarea::placeholder{
     outline: 1px solid red;
     border:none;
 }
+
+@media screen and (max-width:600px) {
+    .contact{
+        padding-bottom: 80px;
+    }
+}
