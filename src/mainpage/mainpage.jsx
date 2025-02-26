@@ -10,6 +10,8 @@ import Links from "./linkspage/links"
 function Mainpage(){
 	const location = useLocation();
 	useEffect(()=>{
+		document.title = "Ageera Saiteja";
+		document.querySelector("link[rel~='icon']").href="/logo.svg"
 		if(location.state?.scrollto){
 			scroller.scrollTo(location.state.scrollto, {
 				duration: 100,
