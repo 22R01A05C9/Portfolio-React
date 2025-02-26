@@ -14,7 +14,7 @@ header {
 }
 
 .app header + * {
-    padding-top: 60px ;
+    padding-top: 80px ;
 }
 
 .mainnav {
@@ -70,7 +70,7 @@ header {
         width: min(200px, 70%);
         z-index: 10;
         animation: slidein linear 0.3s;
-        height: 100dvh;
+        height: 100vh;
     }
     header .closenav{
         animation: slideout linear 0.3s;

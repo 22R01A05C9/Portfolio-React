@@ -90,21 +90,21 @@ function Contact() {
             <p className="sh">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
                     Fill The Below Form To Contact Me
-                </p>
-                <div className="cform">
-                    <div className="name">
-                        <input type="text" id="name" autoComplete="name" onInput={input}/>
-                        <label htmlFor="name">Name</label>
-                    </div>
-                    <div className="email">
-                        <input type="text" id="email" autoComplete="email" onInput={input}/>
-                        <label htmlFor="email">Email</label>
-                    </div>
-                    <div className="message">
-                        <textarea name="message" placeholder="Message"></textarea>
-                    </div>
-                    <button type="button" onClick={verify}>Submit</button>
+            </p>
+            <div className="cform">
+                <div className="name">
+                    <input type="text" id="name" autoComplete="name" onInput={input}/>
+                    <label htmlFor="name">Name</label>
                 </div>
+                <div className="email">
+                    <input type="text" id="email" autoComplete="email" onInput={input}/>
+                    <label htmlFor="email">Email</label>
+                </div>
+                <div className="message">
+                    <textarea name="message" placeholder="Message"></textarea>
+                </div>
+                <button type="button" onClick={verify}>Submit</button>
+            </div>
         </div>
     )
 }

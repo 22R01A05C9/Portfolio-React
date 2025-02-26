@@ -44,7 +44,7 @@ function Header({ext, active}) {
 						["home","about","projects","socials","contact"].map((link)=>{
 							return <li key={link}><a className={link===active?"activea":""} onClick={handelnavigation}>{link.charAt(0).toUpperCase()+link.slice(1)}</a></li>
 						}) : 
-						["home","about","projects","socials","contact"].map((link)=>{
+						["home","about","projects","links","contact"].map((link)=>{
 							return <li key={link}>
 								<Link
 									to={link}

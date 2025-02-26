@@ -6,7 +6,7 @@ import {scroller} from "react-scroll"
 import Home from "./homepage/homepage"
 import Projects from "./projectspage/projects"
 import Contact from "./contactpage/contact"
-
+import Links from "./linkspage/links"
 function Mainpage(){
 	const location = useLocation();
 	useEffect(()=>{
@@ -24,6 +24,7 @@ function Mainpage(){
 			<ToastContainer />
             <Header ext={false}/>
 			<Projects />
+			<Links />
 			<Contact />
         </>
     )
