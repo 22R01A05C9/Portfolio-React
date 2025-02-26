@@ -13,7 +13,7 @@
 }
 
 .wrapper{
-    padding-top: 50px;
+    padding: 50px 0;
     width: 100%;
     display: flex;
     gap:30px;
@@ -52,16 +52,18 @@
 
 .buttons a{
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 10px;
     transition: all 0.2s ease;
     font-size: 1.3rem;
     text-align: center;
+    width: 150px;
 }
 
 .buttons a:first-child{
     color: var(--text);
     background-color: var(--blue);
+    border:3px solid var(--blue)
 }
 .buttons a:hover{
     background-color: var(--blue-dim);
@@ -88,7 +90,7 @@
     }
     .wrapper{
         flex-direction: column;
-        padding-top: 10px;
+        padding: 10px 0;
         gap:20px;
     }
 
@@ -121,13 +123,9 @@
         justify-content: space-around;
     }
     .info .buttons a{
-        height: fit-content;
         font-size: 1.2rem;
         padding: 5px 10px;
         width: 40%;
         
-    }
-    .info .buttons a:first-child{
-        border:3px solid var(--blue)
     }
 }
