@@ -25,6 +25,7 @@ function Mainpage(){
         <>
 			<ToastContainer />
             <Header ext={false}/>
+			<Home />
 			<Projects />
 			<Links />
 			<Contact />

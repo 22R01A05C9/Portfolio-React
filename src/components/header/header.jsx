@@ -1,11 +1,14 @@
-import { useRef } from "react";
-import { Link } from "react-scroll"
+import { useEffect, useRef } from "react";
+import { Link, scrollSpy } from "react-scroll"
 import { useNavigate } from "react-router-dom";
 import SwitchTheme from "../switchtheme/switchtheme";
 import "./header.css"
 
 
 function Header({ext, active}) {
+	useEffect(()=>{
+		scrollSpy.update()
+	},[])
 	const headeref = useRef()
 	const navigate = useNavigate()
 	const open =(e)=>{
