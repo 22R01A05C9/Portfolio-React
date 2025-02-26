@@ -15,6 +15,9 @@ function Header({ext, active}) {
 		headeref.current.querySelectorAll("svg")[2].style.display = "none";
 		e.stopPropagation()
 		document.querySelector(":root").addEventListener("click",close)
+		document.querySelectorAll(".mainnav ul li ").forEach((link)=>{
+			link.addEventListener("click",close)
+		})
 	}
 	const close =()=>{
 		let mainnav = headeref.current.querySelector(".mainnav");
@@ -27,6 +30,13 @@ function Header({ext, active}) {
 		
 		headeref.current.querySelector(".close").style.display = "none";
 		headeref.current.querySelectorAll("svg")[2].style.display = "block";
+		document.querySelector(":root").removeEventListener("click",close)
+		document.querySelectorAll(".mainnav ul li ").forEach((link)=>{
+			link.removeEventListener("click",()=>{
+				console.log("yes");
+				close()
+			})
+		})
 	}
 
 	const handelnavigation = (e)=>{
