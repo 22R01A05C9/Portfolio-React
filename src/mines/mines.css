@@ -83,6 +83,7 @@
 	border: none;
 	background-color: var(--blue);
 	color: var(--text);
+	transition: all 0.2s ease;
 }
 
 .shading button:hover {
@@ -119,6 +120,12 @@
 	border-radius: 10px;
 	font-size: 15px;
 	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.options .buttons button:hover {
+	background-color: var(--block-hover);
+	scale: 1.05;
 }
 
 .activeoption {
@@ -126,6 +133,9 @@
 	scale: 1.2;
 }
 
+.options .buttons .activeoption:hover {
+	scale:1.2;
+}
 
 
 .fail .bomb, .success .diamond, .success .twinkle {
@@ -175,12 +185,12 @@
 	background-color: var(--blue);
 	border: none;
 	cursor: pointer;
-
+	transition: all 0.2s ease;
 }
 
 .reset:hover{
 	background-color: var(--blue-dim);
-	scale: 1.03;
+	scale: 1.05;
 }
 
 .resetdiv {
@@ -233,11 +243,12 @@
 	width: 17vw;
 	text-align: center;
 	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .btn button:hover{
 	background-color: var(--blue-dim);
-	scale:1.02;
+	scale:1.05;
 }
 
 .stars {
@@ -365,7 +376,7 @@
 	}
 
 	.shading button:hover {
-		scale: 1.1;
+		scale: 1.05;
 	}
 
 	.success .diamond, .fail .bomb, .success .twinkle {
@@ -400,7 +411,7 @@
 	}
 
 	.warning .btn button:hover {
-		scale: 1.1;
+		scale: 1.05;
 	}
 
 }
@@ -410,7 +421,6 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
-	margin-top: 10px;
 }
 .choose p{
 	text-align: center;
@@ -490,10 +500,11 @@
 	outline: none;
 	cursor: pointer;
 	font-size: 1rem;
+	transition: all 0.2s ease;
 }
 
 .statistics .left button:hover {
-	scale: 1.02;
+	scale: 1.05;
 	background-color: var(--blue-dim);
 }
 

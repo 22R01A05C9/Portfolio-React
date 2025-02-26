@@ -90,11 +90,13 @@ textarea::placeholder{
     background-color: #0ea5e9;
     font-size: 1rem;
     cursor: pointer;
+    transition: scale 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cform button:hover{
     background-color: #0ea5e9e8;
-    scale: 1.02;
+    scale: 1.05;
+    box-shadow: 0 0 8px 0 #0ea5e9e8;
 }
 
 .contact .cform .error{
