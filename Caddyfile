@@ -5,3 +5,11 @@ saiteja.site {
                 format json
         }
 }
+
+www.saiteja.site {
+        redir https://saiteja.site{uri}
+}
+
+restart.saiteja.site {
+        reverse_proxy localhost:3000
+}
