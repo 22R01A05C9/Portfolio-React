@@ -38,11 +38,13 @@ input::-webkit-inner-spin-button {
 	--choose-active: light-dark(#9b9a9a,#575757);
 	--choose: light-dark(#c0c0c0,#292929);
 	--info: light-dark(#bfbfbf,#444444);
+	--btn-trans:light-dark(#00000012,#ffffff12);
 }
 
 html{
 	scroll-behavior: smooth;
 	background-color: var(--main-col);
+	overflow-y: scroll;
 }
 
 .app{

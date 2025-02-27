@@ -5,7 +5,9 @@ function Home(){
     return (
         <div className="home" id="home">
             <div className="wrapper">
-                <img src={profile} alt="a coder in anime style" />
+                <div className="img">
+                    <img src={profile} alt="a coder in anime style" />
+                </div>
                 <div className="info">
                     <div className="title">
                         <h3>I'm</h3>     

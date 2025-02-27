@@ -4,6 +4,11 @@ saiteja.site {
                 output file /var/log/caddy/access.log
                 format json
         }
+        @staticFiles {
+                path /assets/* /static/* *.js *.css *.png *.jpg *.jpeg *.webp *.svg *.woff2 *.ttf
+        }
+        header @staticFiles Cache-Control "public, max-age=2592000, immutable"
+        header /index.html Cache-Control "no-cache, must-revalidate"
 }
 
 www.saiteja.site {
