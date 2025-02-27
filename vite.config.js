@@ -9,6 +9,7 @@ export default defineConfig({
     sitemap({
       hostname: "https://saiteja.site", 
       dynamicRoutes: ["/mines", "/sms",], 
+      robots:[{ userAgent: '*', allow: ['/','/mines','/sms'] }]
     }),
   ],
   server:{
