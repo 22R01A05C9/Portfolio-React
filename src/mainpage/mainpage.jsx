@@ -4,9 +4,13 @@ import { useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import {scroller} from "react-scroll"
 import Home from "./homepage/homepage"
+import About from "./aboutpage/about"
 import Projects from "./projectspage/projects"
 import Contact from "./contactpage/contact"
 import Links from "./linkspage/links"
+import "./mainpage.css"
+
+
 function Mainpage(){
 	const location = useLocation();
 	useEffect(()=>{
@@ -26,6 +30,7 @@ function Mainpage(){
 			<ToastContainer />
             <Header ext={false}/>
 			<Home />
+			<About />
 			<Projects />
 			<Links />
 			<Contact />

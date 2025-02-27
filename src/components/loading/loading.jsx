@@ -5,6 +5,9 @@ function Loading(){
     useEffect(() => {
             if (localStorage.getItem("theme") === "dark") {
                 document.querySelector(":root").style.colorScheme = "dark"
+            }else{
+                document.querySelector(":root").style.colorScheme = "light"
+
             }
         }, []);
     return(

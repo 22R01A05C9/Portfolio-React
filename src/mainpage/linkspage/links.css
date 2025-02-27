@@ -1,24 +1,5 @@
 .socials{
-    padding: 20px;
     margin-bottom: 20px;
-}
-
-.socials h2{
-    font-weight: bold;
-    font-size: 1.6rem;
-    padding: 5px 4px ;
-    width: fit-content;
-    position: relative;
-}
-
-.socials h2::after{
-    position: absolute;
-    content: "";
-    height: 3px;
-    width: 60%;
-    background-color: var(--blue);
-    top:101%;
-    left:3%;
 }
 
 .sociallinks{
