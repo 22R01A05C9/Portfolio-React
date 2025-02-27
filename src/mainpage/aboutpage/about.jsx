@@ -1,13 +1,9 @@
 import "./about.css"
-
+import Title from "../title/title"
 function About() {
     return (
         <div className="about" id="about">
-            <h2>About</h2>
-            <p className="sh">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z" /></svg>
-                Short Description About Me
-            </p>
+            <Title title={"About"} desc={"Short Description About Me"} />
             <div className="adesc">
                 <p>
                     I'm Saiteja, A Passionate MERN Stack Developer With A Strong Foundation In Web Development. I Specialize In Building Modern, Scalable, And Efficient Web Applications Using MongoDB, Express.js, React, And Node.js. My Expertise Extends To Front-End Technologies Like HTML, CSS, And JavaScript, Allowing Me To Create Seamless User Interfaces With A Focus On Responsiveness And Performance.

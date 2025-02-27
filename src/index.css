@@ -39,6 +39,7 @@ input::-webkit-inner-spin-button {
 	--choose: light-dark(#c0c0c0,#292929);
 	--info: light-dark(#bfbfbf,#444444);
 	--btn-trans:light-dark(#00000012,#ffffff12);
+	--scard: light-dark(#ffffff,#121212)
 }
 
 html{

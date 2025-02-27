@@ -1,0 +1,34 @@
+.skills .skill svg{
+    height: 70px;
+    width: 75px;
+    fill: var(--text);
+}
+
+.skill{
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
+    padding: 10px;
+    background-color: var(--scard);
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+
+}
+
+.skill:hover{
+    transform: scale(1.03);
+    box-shadow: 0 0 8px 2px var(--header-back);
+
+}
+
+.scards{
+    padding: 30px 20px;
+    display: grid;
+    gap:10px;
+    grid-template-columns: repeat(auto-fit, minmax(90px,130px));
+    justify-content: center;
+    justify-items: center;
+}

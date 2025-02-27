@@ -1,0 +1,73 @@
+import "./skills.css"
+import Title from "../title/title"
+
+function Html() {
+    return (
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="m3 2 1.578 17.824L12 22l7.467-2.175L21 2H3Zm14.049 6.048H9.075l.172 2.016h7.697l-.626 6.565-4.246 1.381-4.281-1.455-.288-2.932h2.024l.16 1.411 2.4.815 2.346-.763.297-3.005H7.416l-.562-6.05h10.412l-.217 2.017Z" />
+        </svg>
+
+    )
+}
+
+
+function Skill({ item }) {
+    return(
+        <div className="skill">
+            {item.icon}
+            <p>{item.skill}</p>
+        </div>
+    )
+}
+
+function Skills() {
+    const skills = [
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+        {
+            skill:"HTML5",
+            icon:<Html />
+        },
+    ]
+    return (
+        <div className="skills" id="skill">
+            <Title title={"Skills"} desc={"Few Of My Skills"} />
+            <div className="scards">
+            {
+                skills.map((item)=>{
+                    return <Skill item={item} key={item.skill} />
+                })
+            }
+            </div>
+        </div>
+    )
+
+}
+
+export default Skills

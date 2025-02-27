@@ -1,5 +1,5 @@
 import "./links.css"
-
+import Title from "../title/title"
 function Instagramicon() {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50">
@@ -67,54 +67,81 @@ function Hackerrankicon() {
     )
 }
 function Socials() {
+    const socials = [
+        {
+            name:"instagram",
+            href:"https://www.instagram.com/saiteja_00/",
+            icon:<Instagramicon />
+        },
+        {
+            name:"twitter",
+            href:"https://x.com/ageerasaiteja",
+            icon:<Twittericon />
+        },
+        {
+            name:"linkedin",
+            href:"https://www.linkedin.com/in/saiteja-ageera/",
+            icon:<Linkedinicon />
+        },
+        {
+            name:"github",
+            href:"https://github.com/22R01A05C9",
+            icon:<Githubicon />
+        }
+    ]
+
+    const coding = [
+        {
+            name:"leetcode",
+            href:"https://leetcode.com/u/22r01a05c9/",
+            icon:<Leetcodeicon />
+        },
+        {
+            name:"codeforces",
+            href:"https://codeforces.com/profile/22r01a05c9",
+            icon:<Codeforcesicon />
+        },
+        {
+            name:"codechef",
+            href:"https://www.codechef.com/users/cmr_22r01a05c9",
+            icon:<Codecheficon />
+        },
+        {
+            name:"hackerrank",
+            href:"https://www.hackerrank.com/profile/22R01A05C9",
+            icon:<Hackerrankicon />
+        },
+    ]
     return (
         <div className="socials" id="links">
-            <h2>Links</h2>
-            <p className="sh">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z" /></svg>
-                Links For Some of My Socials
-            </p>
+            <Title title={"Links"} desc={"Links For Some of My Socials"} />
             <div className="sociallinks">
                 <div className="first">
                     <h3>Socials</h3>
                     <div className="links">
-                        <div className="instagram">
-                            <a href="https://www.instagram.com/saiteja_00/">{<Instagramicon />}</a>
-                            <p>Instagram</p>
-                        </div>
-                        <div className="twitter">
-                            <a href="https://x.com/ageerasaiteja">{<Twittericon />}</a>
-                            <p>Twitter</p>
-                        </div>
-                        <div className="linkedin">
-                            <a href="https://www.linkedin.com/in/saiteja-ageera/">{<Linkedinicon />}</a>
-                            <p>Linkedin</p>
-                        </div>
-                        <div className="github">
-                            <a href="https://github.com/22R01A05C9">{<Githubicon />}</a>
-                            <p>Github</p>
-                        </div>
+                    {
+                        socials.map((item)=>{
+                            return (
+                                <div key={item.name} className={item.name}>
+                                    <a href={item.href}>{item.icon}</a>
+                                    <p>{item.name.charAt(0).toUpperCase() + item.name.substring(1,)}</p>
+                                </div>)
+                        })
+                    }
                     </div>
                 </div>
                 <div className="second">
                     <h3>Coding Profiles</h3>
                     <div className="links">
-                        <div className="leetcode">
-                            <a href="https://leetcode.com/u/22r01a05c9/">{<Leetcodeicon />}</a>
-                            <p>Leetcode</p>
-                        </div>
-                        <div className="codeforces">
-                            <a href="https://codeforces.com/profile/22r01a05c9">{<Codeforcesicon />}</a>
-                            <p>Codeforces</p>
-                        </div>
-                        <div className="codechef">
-                            <a href="https://www.codechef.com/users/cmr_22r01a05c9">{<Codecheficon />}</a>
-                            <p>Codechef</p>
-                        </div>
-                        <div className="hackerrank">
-                            <a href="https://www.hackerrank.com/profile/22R01A05C9">{<Hackerrankicon />}</a>
-                            <p>Hackerrank</p>
-                        </div>
+                    {
+                        coding.map((item)=>{
+                            return (
+                                <div key={item.name} className={item.name}>
+                                    <a href={item.href}>{item.icon}</a>
+                                    <p>{item.name.charAt(0).toUpperCase() + item.name.substring(1,)}</p>
+                                </div>)
+                        })
+                    }
                     </div>
                 </div> 
             </div>

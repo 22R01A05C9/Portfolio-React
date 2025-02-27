@@ -62,7 +62,7 @@ function Header({ext, active}) {
 								<Link
 									to={link}
 									smooth={"easeInOutQuad"} 
-									offset={-120}
+									offset={-110}
 									duration={100} 
 									spy={true}     
 									activeClass="activea"

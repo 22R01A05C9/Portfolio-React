@@ -5,10 +5,10 @@ import { ToastContainer } from "react-toastify"
 import {scroller} from "react-scroll"
 import Home from "./homepage/homepage"
 import About from "./aboutpage/about"
+import Skills from "./skillspage/skills"
 import Projects from "./projectspage/projects"
 import Contact from "./contactpage/contact"
 import Links from "./linkspage/links"
-import "./mainpage.css"
 
 
 function Mainpage(){
@@ -31,6 +31,7 @@ function Mainpage(){
             <Header ext={false}/>
 			<Home />
 			<About />
+			<Skills />
 			<Projects />
 			<Links />
 			<Contact />

@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import "./contact.css"
-
+import Title from "../title/title"
 function Contact() {
     const input = (e) =>{
         e.target.parentNode.classList.toggle("filled", e.target.value.trim() !== "")
@@ -86,11 +86,7 @@ function Contact() {
     }
     return (
         <div className="contact" id="contact">
-            <h2>Contact</h2>
-            <p className="sh">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
-                    Fill The Below Form To Contact Me
-            </p>
+            <Title title={"Contact"} desc={"Fill The Below Form To Contact Me"} />
             <div className="cform">
                 <div className="name">
                     <input type="text" id="name" autoComplete="name" onInput={input}/>
