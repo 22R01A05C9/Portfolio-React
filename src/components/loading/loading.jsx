@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 function Loading(){
     useEffect(() => {
-            if (localStorage.getItem("theme") === "dark") {
-                document.querySelector(":root").style.colorScheme = "dark"
-            }else{
+            if (localStorage.getItem("theme") === "light") {
                 document.querySelector(":root").style.colorScheme = "light"
+            }else{
+                document.querySelector(":root").style.colorScheme = "dark"
 
             }
         }, []);

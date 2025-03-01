@@ -1,16 +1,16 @@
+
+
 .skills .skill svg{
-    height: 70px;
-    width: 75px;
+    height: 60px;
+    width: 65px;
     fill: var(--text);
 }
 
 .skill{
-    height: 110px;
     display: flex;
+    gap:5px;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: fit-content;
     padding: 10px;
     background-color: var(--scard);
     border-radius: 10px;
@@ -27,8 +27,8 @@
 .scards{
     padding: 30px 20px;
     display: grid;
-    gap:10px;
-    grid-template-columns: repeat(auto-fit, minmax(90px,130px));
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(90px,1fr));
     justify-content: center;
     justify-items: center;
 }
