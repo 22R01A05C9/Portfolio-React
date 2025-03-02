@@ -5,6 +5,7 @@
     align-items: center;
     gap:20px;
     height: 200px;
+    width: 98%;
     background-color: var(--light-black);
     border-radius: 10px;
     padding: 20px;
@@ -126,7 +127,7 @@
         justify-content: space-around;
     }
     .card .links a{
-        width: 40%;
+        width: 45%;
     }
     .card .description, .card .techstack{
         width: 100%;
