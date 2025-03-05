@@ -18,12 +18,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        overflow: scroll;
         gap:3vw;
         padding: 15px 0;
         position: relative;
         width: 100vw;
-        /* left: -20px; */
     }
     .cards .card{
         max-width: 75%;

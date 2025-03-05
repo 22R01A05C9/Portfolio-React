@@ -6,6 +6,7 @@ import "./App.css"
 const Sms = lazy(()=>import("./sms/sms"))
 const Mainpage = lazy(()=>import("./mainpage/mainpage"))
 const Mines = lazy(()=>import("./mines/mines"))
+const Shopping = lazy(()=>import("./shopping/shopping"))
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 						<Route path="/" element={<Mainpage />} />
 						<Route path="/sms" element={<Sms />} />
 						<Route path="/mines/*" element={<Mines />} />
+						<Route path="/shopping/*" element={<Shopping />} />
 					</Routes>
 				</BrowserRouter>
 			</Suspense>

@@ -1,0 +1,33 @@
+.options {
+    margin: 20px auto;
+    display: grid;
+    border-radius: 10px;
+    width: 90%;
+    padding: 10px;
+    background-color: #efefef45;
+    box-shadow: 1px 1px 12px 7px #efefef;
+
+}
+
+.options p {
+    grid-column: 1/span 2;
+    text-align: center;
+    font-size: large;
+}
+
+.options .coloroption, .options .priceoption {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.options .coloroption select:last-child, .options .priceoption select:last-child {
+    width: 70%;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #dbdbdbe8;
+    border-radius: 10px;
+}

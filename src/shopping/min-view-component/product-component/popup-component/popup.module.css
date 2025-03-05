@@ -1,0 +1,52 @@
+.popup {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00000021;
+    height: 200%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    background-color: white;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px #ffffff54;
+}
+
+
+.popup svg {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    cursor: pointer;
+    scale: 1.3;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.data p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.data h3 {
+    margin-top: 10px;
+    font-size: 25px;
+}

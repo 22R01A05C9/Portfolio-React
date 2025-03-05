@@ -1,0 +1,134 @@
+.product {
+    margin-top: 70px;
+    display: flex;
+    gap: 6%;
+
+}
+
+.prodimg {
+    border-radius: 5%;
+    height: 22rem;
+    margin-left: 7%;
+    flex-grow: 0.3;
+    min-width: 22rem;
+}
+
+.details {
+    flex-grow: 1;
+}
+
+.details .title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.details .color {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.details .price {
+    margin-top: 10px;
+    font-size: 20px;
+
+}
+
+.details .tax {
+    color: #000000b5;
+    margin-top: 2px;
+}
+
+.details .sizes {
+    margin-top: 15px;
+}
+
+.details .sizes p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.details .sizes .allsizes {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 85%;
+    flex-wrap: wrap;
+}
+
+.details .sizes .allsizes button {
+    margin-top: 4px;
+    width: 100px;
+    font-size: 14px;
+    border: 1px solid #b3b3b3d1;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    padding: 5px 0px;
+    background-color: transparent;
+}
+
+.active {
+    border: 1px solid black !important;
+    background-color: black !important;
+    color: white !important ;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 20px;
+}
+
+.buttons button {
+    width: 60%;
+    padding: 10px 5px;
+    margin-left: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fav {
+    background-color: black;
+    color: white;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.fav:hover {
+    background-color: #000000b3;
+    border: 1px solid transparent;
+}
+
+.bag {
+    background-color: transparent;
+    border: 1px solid #00000087;
+}
+
+.bag:hover {
+    border: 1px solid black;
+}
+
+.description {
+    padding-bottom: 50px;
+    margin-top: 20px;
+    width: 80%;
+}
+
+.spe {
+    margin-top: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+strong {
+    font-weight: 600;
+}

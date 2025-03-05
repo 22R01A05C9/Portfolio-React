@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    user-select: none;
+}
+
+.maxheader a img {
+    margin-left: 30px;
+    width: 70px;
+}
+
+.maxheader {
+    margin: 20px 20px 0 20px;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #efefef45;
+    box-shadow: 1px 1px 12px 4px #efefef;
+}
+
+.subpart {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.maxheader nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 30px;
+}
+
+.maxheader nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maxheader nav ul li {
+    display: block;
+    border-bottom: 2px solid transparent;
+    border-radius: 2px;
+    padding: 3px 0 3px 0;
+    cursor: pointer;
+}
+
+.maxheader nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.maxheader nav ul li:hover {
+    border-bottom: 2px solid black;
+}
+
+.maxheader .searchfield {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    border: 2px solid #dbdbdbe8;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #efefef00;
+}
+
+.maxheader .searchfield input {
+    outline: none;
+    border: none;
+    background-color: #efefef00;
+    font-size: 13px;
+
+}
+
+.maxheader .searchfield input::placeholder {
+    font-size: 13px;
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.maxheader .searchfield svg {
+    cursor: pointer;
+}
+
+.maxheader .subpart div i {
+    display: none;
+}

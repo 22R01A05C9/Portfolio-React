@@ -29,6 +29,14 @@ function Projects() {
             description: "A Simple SMS Bomber Which Can Send Multiple Messages To A Single Number Just Made For Fun To Annoy Friends And Family",
             live: "/sms",
             code: "https://github.com/22R01A05C9/Portfolio-React"
+        },
+        {
+            img: "/shopping.webp",
+            title: "Shopping",
+            techstack: "ReactJS",
+            description: "A Sleek React-Based E-Commerce Platform Mimicking A Simplified Nike Store. Features Include Product Filtering By Price And Color, And An Intuitive User Experience For Seamless Shopping.",
+            live: "/shopping",
+            code: "https://github.com/22R01A05C9/shopping"
         }
     ]
     return (
