@@ -1,0 +1,102 @@
+* {
+    user-select: none;
+    font-family: "Roboto", sans-serif;
+}
+
+.active::after {
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    content: " ";
+    background-color: transparent;
+    border: 2px solid black;
+    border-left: none;
+    border-top: none;
+    rotate: 45deg;
+    transform: translateY(-50%);
+
+}
+
+.select .active {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid #dbdbdbe8;
+    width: 70%;
+    padding: 4px 15px 4px 10px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.select ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 0;
+    width: 100%;
+
+}
+
+.select ul li {
+    display: none;
+    width: 70%;
+    background-color: white;
+    padding: 4px 15px 4px 10px;
+    border-left: 2px solid #dbdbdbe8;
+    border-right: 2px solid #dbdbdbe8;
+    border-bottom: 2px solid #dbdbdbe8;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+
+}
+
+.select {
+
+    width: 100%;
+}
+
+.select div {
+    width: 100%;
+
+}
+
+.hover ul li:not([class*="active"]) {
+    display: inline-block;
+}
+
+.hover ul li:first-child {
+    border-top: 2px solid #dbdbdbe8;
+    border-radius: 10px 10px 0 0;
+}
+
+.hover .active {
+    border-top: none;
+    border-radius: 0;
+}
+
+.hover ul li:last-child {
+
+    border-radius: 0 0 10px 10px;
+}
+
+.hover .active::after {
+    display: none;
+}
+
+.container {
+    margin: 5px auto;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+.output {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}

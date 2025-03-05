@@ -1,0 +1,79 @@
+.brandlogo {
+    width: 100px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.disnone {
+    display: none !important;
+}
+
+.minnav {
+    display: none;
+    margin-top: 12px;
+    opacity: 0;
+    animation: fade 0.3s linear;
+}
+
+.fadeout {
+    animation: fadeout 0.3s linear;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade {
+    100% {
+        opacity: 1;
+    }
+}
+
+.minheader {
+    margin: 10px 20px 0 20px;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #efefef45;
+    box-shadow: 1px 1px 12px 4px #efefef;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.minnav ul {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+}
+
+.minnav ul li {
+    margin: 10px 0 0 0px;
+    font-size: 15px;
+    border: 2px solid #b3a9a9;
+    border-radius: 10px;
+    text-align: center;
+    width: 230px;
+    padding: 3px 0;
+
+}
+
+.minnav ul li a {
+    text-decoration: none;
+    color: black;
+    padding: 0 80px;
+}
+
+.head svg{
+    width: 30px;
+    margin-right: 10px;
+}

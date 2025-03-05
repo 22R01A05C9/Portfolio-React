@@ -1,6 +1,6 @@
-import diamond from "../../assets/images/diamond.png"
-import bomb from "../../assets/images/goodbomb.png"
-import img from "../../assets/images/golds-removebg-preview.png"
+import diamond from "../../assets/minesimages/diamond.png"
+import bomb from "../../assets/minesimages/goodbomb.png"
+import img from "../../assets/minesimages/golds-removebg-preview.png"
 function Block(props) {
     return (
         <div className={"block a" + props.id} onClick={props.clicked}>
