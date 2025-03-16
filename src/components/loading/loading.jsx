@@ -3,15 +3,11 @@ import { useEffect } from "react";
 
 function Loading(){
     useEffect(() => {
-        if(!window.location.pathname.startsWith("/shopping")){
-            if (localStorage.getItem("theme") === "light") {
-                document.querySelector(":root").style.colorScheme = "light"
-            }else{
-                document.querySelector(":root").style.colorScheme = "dark"
-
-            }
+        let root = document.querySelector(":root");
+        if(window.location.pathname.startsWith("/shopping")){
+            root.style.colorScheme = "light"
         }else{
-            document.querySelector(":root").style.colorScheme = "light"
+            root.style.colorScheme = localStorage.getItem("theme") || "dark"
         }
         }, []);
     return(

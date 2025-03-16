@@ -5,9 +5,11 @@ import { useState, useEffect } from "react"
 function Mobilecard({data}){
     const [card,setCard] = useState(0)
     const setcard = (e)=>{
-        if(e.target.classList.contains("left") && !e.target.classList.contains("dim")){
+        let target = e.target
+        if(e.target.tagName === "path") target = target.parentElement
+        if(target.classList.contains("leftsvg") && !target.parentElement.classList.contains("dim")){
             setCard((card)=>card-1)
-        }else if(e.target.classList.contains("right") && !e.target.classList.contains("dim")){
+        }else if(target.classList.contains("rightsvg") && !target.parentElement.classList.contains("dim")){
             setCard((card)=>card+1)
         }
         
@@ -26,9 +28,13 @@ function Mobilecard({data}){
     },[card])
     return(
         <div className="mobilecard">
-            <svg onClick={setcard} className="left" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+            <div onClick={setcard} className="left">
+                <svg className="leftsvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+            </div>
             <Card item={data[card]}/>
-            <svg onClick={setcard} className="right" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+            <div onClick={setcard} className="right">
+                <svg className="rightsvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+            </div>
         </div>
     )
 }

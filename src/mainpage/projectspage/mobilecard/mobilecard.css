@@ -1,4 +1,4 @@
-.projects svg.left, .projects svg.right {
+.projects .left svg, .projects .right svg {
     fill:var(--text);
     display:none;
 }
@@ -26,7 +26,10 @@
     .cards .card{
         max-width: 75%;
     }
-    .projects svg.left, .projects svg.right {
+    .left, .right{
+        position: relative;
+    }
+    .projects .left svg, .projects .right svg {
         display: block;
         width: 30px;
         height: 50px;

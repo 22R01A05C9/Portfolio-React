@@ -1,6 +1,5 @@
 .wrapper .img{
     height: 420px;
-    width: 80%;
     width: 30vw;
     margin-left: 5vw;
     overflow: hidden;
@@ -84,6 +83,12 @@
     border: 3px solid var(--text);
 }
 
+@media screen and (min-width:750px) and (max-width:1000px) {
+    .home .wrapper .img{
+        margin-left: 2vw;
+        width: 40vw;
+    }
+}
 
 @media screen and (max-width:880px) {
     .title h3{
@@ -98,7 +103,7 @@
     }
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:750px) {
     .wrapper{
         flex-direction: column;
         padding: 10px 0;

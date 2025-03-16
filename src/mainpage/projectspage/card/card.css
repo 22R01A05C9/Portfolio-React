@@ -90,7 +90,22 @@
     width: 52vw;
 }
 
-@media screen and (min-width:800px) and (max-width:1300px){
+@media screen and (min-width:1000px) and (max-width:1300px){
+    .cardinfo{
+        width: 50vw;
+    }
+    .card .links a{
+        width: 12vw;
+    }
+    .card .description{
+        width: 48vw;
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:999px){
+    .card img{
+        width: 22vw;
+    }
     .cardinfo{
         width: 50vw;
     }

@@ -8,8 +8,8 @@ export default defineConfig({
     react(),
     sitemap({
       hostname: "https://saiteja.site", 
-      dynamicRoutes: ["/mines", "/sms",], 
-      robots:[{ userAgent: '*', allow: ['/','/mines','/sms'] }]
+      dynamicRoutes: ["/mines", "/sms", "/shopping"], 
+      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping'] }]
     }),
   ],
   server:{
