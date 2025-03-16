@@ -18,3 +18,7 @@ www.saiteja.site {
 restart.saiteja.site {
         reverse_proxy localhost:3000
 }
+
+test.saiteja.site {
+        reverse_proxy localhost:5010
+}
