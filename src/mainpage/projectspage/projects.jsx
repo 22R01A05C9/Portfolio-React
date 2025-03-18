@@ -18,7 +18,7 @@ function Projects() {
             img: "/files.webp",
             title: "File Share",
             techstack: "ReactJS, ExpressJs, MnogoDB",
-            description: "A Simple File Sharing Platform Where You Can Upload Files And Share The Link With Others For Them TO Download It.",
+            description: "A File Sharing Platform Where You Can Upload Files And Share The Link With Others For Them TO Download It.",
             live: "/files",
             code: "https://github.com/22R01A05C9/Files-React"
         },
@@ -26,7 +26,7 @@ function Projects() {
             img: "/mines.webp",
             title: "Mines Game",
             techstack: "ReactJS, NodeJS, ExpressJS, MongoDB",
-            description: "A Simple Mines Game Where There are 16 Block And Few Mines, The Main Aim Is To Unlock The Blocks Which Doesn't Contain Mine",
+            description: "Mines Game Where There are 16 Block And Few Mines, The Main Aim Is To Unlock The Blocks Which Doesn't Contain Mine",
             live: "/mines",
             code: "https://github.com/22R01A05C9/minesgame"
         },
@@ -34,7 +34,7 @@ function Projects() {
             img: "/sms.webp",
             title: "SMS Bomber",
             techstack: "ReactJS, NodeJS, ExpressJS",
-            description: "A Simple SMS Bomber Which Can Send Multiple Messages To A Single Number Just Made For Fun To Annoy Friends And Family",
+            description: "SMS Bomber Which Can Send Multiple Messages To A Single Number Just Made For Fun To Annoy Friends And Family",
             live: "/sms",
             code: "https://github.com/22R01A05C9/Portfolio-React"
         },

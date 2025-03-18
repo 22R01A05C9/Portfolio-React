@@ -22,7 +22,7 @@ function Options({ setccodestatus, ccref, dodref, ccodestatus, ip }) {
             </div>
             <div className="dod" ref={dodref}>
                 <input type="checkbox" id="dod" />
-                <label htmlFor="dod">Check To Delete The File Once Downloaded</label>
+                <label htmlFor="dod">Check To Download Only Once</label>
             </div>
         </div>
     )

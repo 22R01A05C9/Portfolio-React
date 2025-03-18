@@ -18,8 +18,8 @@ function Mainpage(){
 		document.querySelector("link[rel~='icon']").href="/logo.svg"
 		document.querySelector("meta[name='title']").setAttribute("content", "Ageera Saiteja")
 		document.querySelector("meta[property='og:title']").setAttribute("content", "Ageera Saiteja")
-		document.querySelector("meta[name='description']").setAttribute("content", "I Am Ageera Saitja, Explore My Portfolio Showcasing React, MERN Stack Projects, And Web Development Skills. Check Out My Latest Projects, Resume, and Skills!")
-		document.querySelector("meta[property='og:description']").setAttribute("content", "I Am Ageera Saitja, Explore My Portfolio Showcasing React, MERN Stack Projects, And Web Development Skills. Check Out My Latest Projects, Resume, and Skills!")
+		document.querySelector("meta[name='description']").setAttribute("content", "I Am Ageera Saiteja, Explore My Portfolio Showcasing React, MERN Stack Projects, And Web Development Skills. Check Out My Latest Projects, Resume, and Skills!")
+		document.querySelector("meta[property='og:description']").setAttribute("content", "I Am Ageera Saiteja, Explore My Portfolio Showcasing React, MERN Stack Projects, And Web Development Skills. Check Out My Latest Projects, Resume, and Skills!")
 		document.querySelector("meta[name='keywords']").setAttribute("content", "React, JavaScript, Web Development, Ageera Saiteja, Saiteja Ageera, Saiteja, Ageera, Portfolio")
 		if(location.state?.scrollto){
 			scroller.scrollTo(location.state.scrollto, {
