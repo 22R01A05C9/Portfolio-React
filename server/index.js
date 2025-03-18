@@ -5,17 +5,18 @@ const dotenv = require("dotenv")
 dotenv.config()
 const {startsmsprocessing} = require("./sms.js")
 const app = express()
+app.set('trust proxy', 1)
 app.use(function (req, res, next) {
     try {
         decodeURIComponent(req.path)
         next()
     } catch (err) {
         //change after backend
-        res.redirect("https://saiteja.fun")
+        res.redirect("https://saiteja.site")
     }
 })
 app.use(cors())
-app.use(express.json())
+app.use(express.json({ limit: "30mb" }))
 
 const server = require("http").createServer(app)
 const wss = new ws.Server({ server: server })
