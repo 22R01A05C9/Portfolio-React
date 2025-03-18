@@ -183,7 +183,7 @@ module.exports = async function (app) {
                 })
             } else {
                 //add the link after creating frontend
-                res.redirect("http://localhost:5173/?error=File Not Found")
+                res.redirect("https://saiteja.site/files?error=File Not Found")
             }
         })
     })
