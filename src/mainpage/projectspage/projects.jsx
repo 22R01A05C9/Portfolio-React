@@ -15,6 +15,14 @@ function Projects() {
 
     const data = [
         {
+            img: "/files.webp",
+            title: "File Share",
+            techstack: "ReactJS, ExpressJs, MnogoDB",
+            description: "A Simple File Sharing Platform Where You Can Upload Files And Share The Link With Others For Them TO Download It.",
+            live: "/files",
+            code: "https://github.com/22R01A05C9/Files-React"
+        },
+        {
             img: "/mines.webp",
             title: "Mines Game",
             techstack: "ReactJS, NodeJS, ExpressJS, MongoDB",

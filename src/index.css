@@ -39,7 +39,14 @@ input::-webkit-inner-spin-button {
 	--choose: light-dark(#c0c0c0,#292929);
 	--info: light-dark(#bfbfbf,#444444);
 	--btn-trans:light-dark(#00000012,#ffffff12);
-	--scard: light-dark(#e0e0e0,#353535)
+	--scard: light-dark(#e0e0e0,#353535);
+	--files-choose-back: light-dark(#ededed, #454545);
+	--files-choose-active: light-dark(white, black);
+	--files-choose-shadow: light-dark(#f0f0f0, #00000082);
+	--files-choose-border: light-dark(#0000003d, #d1cbcb8c);
+	--files-upload-back: light-dark(#00000008, #534c4c78);
+	--files-status-back: light-dark(#35b7f1b3, #2dbeffc7);
+	--files-status-border: light-dark(var(--blue), #e1f2f9)
 }
 
 html{

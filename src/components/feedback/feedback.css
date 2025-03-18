@@ -1,8 +1,4 @@
-.mainfeedback{
-	display: none;
-}
-
-.feedbackdiv, .thankyoudiv {
+.mainfeedback {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -18,7 +14,7 @@
 	padding: 20px;
 	width: fit-content;
 	position: absolute;
-	top: 40%;
+	top: 45%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border-radius: 10px;
@@ -28,12 +24,8 @@
 	gap: 10px
 }
 
-.thankyoudiv, .stars .s2, .feedbackdiv {
-	display: none;
-}
-
-.s2{
-    fill: var(--text);
+.s2 {
+	fill: var(--text);
 }
 
 .thankyou p {
@@ -57,8 +49,11 @@ textarea {
 	display: flex;
 	gap: 10px;
 	justify-content: center;
+	height: 30px;
+}
+
+.star {
 	cursor: pointer;
-    height: 30px;
 }
 
 .feedback button, .thankyou button {
@@ -77,21 +72,24 @@ textarea {
 
 .give {
 	color: red;
+}
+
+.mainfeedback .disnone {
 	display: none;
 }
 
 @media screen and (min-width:1101px) {
 
-    .feedback p {
-        min-width: 30vw;
-    }
+	.feedback p {
+		min-width: 30vw;
+	}
 
-    .thankyou p {
-        min-width: 15vw;
-        text-align: center;
-    }
+	.thankyou p {
+		min-width: 15vw;
+		text-align: center;
+	}
 
-    .feedback textarea {
-        width: 25vw;
-    }
+	.feedback textarea {
+		width: 25vw;
+	}
 }

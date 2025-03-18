@@ -14,6 +14,11 @@ function Sms(){
     const [total,setTotal] = useState(0)
     useEffect(()=>{
         document.title = "Sms Bomber"
+        document.querySelector("meta[name='title']").setAttribute("content", "SMS Bomber")
+		document.querySelector("meta[property='og:title']").setAttribute("content", "SMS Bomber")
+		document.querySelector("meta[name='description']").setAttribute("content", "Send bulk SMS effortlessly with our SMS Bomber. Choose speed options, track live status, and enjoy a seamless experience with dark/light mode support.")
+		document.querySelector("meta[property='og:description']").setAttribute("content", "Send bulk SMS effortlessly with our SMS Bomber. Choose speed options, track live status, and enjoy a seamless experience with dark/light mode support.")
+		document.querySelector("meta[name='keywords']").setAttribute("content", "SMS bomber, send bulk SMS, free SMS bomber, fast SMS bomber, SMS spammer, online SMS tool, SMS blaster, SMS attack, SMS flooder, prank SMS sender")
         window.addEventListener("beforeunload",()=>{
             socket.close(1000,"refresh")
         })

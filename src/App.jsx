@@ -7,7 +7,7 @@ const Sms = lazy(()=>import("./sms/sms"))
 const Mainpage = lazy(()=>import("./mainpage/mainpage"))
 const Mines = lazy(()=>import("./mines/mines"))
 const Shopping = lazy(()=>import("./shopping/shopping"))
-
+const Files = lazy(()=>import("./files/files"))
 function App() {
 
 	return (
@@ -19,6 +19,7 @@ function App() {
 						<Route path="/sms" element={<Sms />} />
 						<Route path="/mines/*" element={<Mines />} />
 						<Route path="/shopping/*" element={<Shopping />} />
+						<Route path="/files" element={<Files />} />
 					</Routes>
 				</BrowserRouter>
 			</Suspense>

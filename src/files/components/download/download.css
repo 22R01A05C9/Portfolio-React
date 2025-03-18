@@ -1,0 +1,79 @@
+.download {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+    margin-top: 25vh;
+}
+
+.download h3 {
+    font-size: 1.5rem;
+}
+
+.download .dinput input {
+    width: 40px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--back);
+    font-size: 1.5rem;
+    text-align: center;
+    /* background-color: #dfdfdf; */
+    background-color: var(--files-choose-back);
+}
+
+.download .dinput input:not(:disabled) {
+    background-color: var(--files-choose-active);
+    outline: 1px solid var(--back);
+}
+
+.download .dinput input:not(:disabled):focus {
+    outline: 2px solid var(--back);
+}
+
+.download p.desc {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.submit button, .output button {
+    background-color: var(--blue);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+
+.submit button:not(:disabled):hover, .output button:hover {
+    transform: scale(1.02);
+    background-color: var(--blue-dim);
+    font-size: 1.101rem;
+    cursor: pointer;
+}
+
+.download .submit button:disabled {
+    background-color: #0ea5e987;
+    border: none;
+}
+
+.download .status {
+    width: 70%;
+    margin-top: 10px;
+}
+
+@media screen and (max-width:749px) {
+    .download {
+        margin-top: 0
+    }
+
+    .download .status {
+        width: min(90%, 400px);
+    }
+}

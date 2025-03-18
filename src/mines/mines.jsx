@@ -38,6 +38,11 @@ function Mines() {
     useEffect(()=>{
         document.title = "Mines Game";
 		document.querySelector("link[rel~='icon']").href="/mines.svg"
+		document.querySelector("meta[name='title']").setAttribute("content", "Mines Game")
+		document.querySelector("meta[property='og:title']").setAttribute("content", "Mines Game")
+		document.querySelector("meta[name='description']").setAttribute("content", "Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!")
+		document.querySelector("meta[property='og:description']").setAttribute("content", "Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!")
+		document.querySelector("meta[name='keywords']").setAttribute("content", "Minesweeper game, online Minesweeper, play Minesweeper, Mines game, puzzle game, bomb game, strategy game, classic Minesweeper, Minesweeper live score")
 		sessionStorage.removeItem("token")
     },[])
 	let maxScore = getmaxscore()

@@ -1,0 +1,234 @@
+.upload {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.upload .img {
+    text-align: center;
+    width: fit-content;
+    border: 1px solid #0000004d;
+    border-radius: 10px;
+    padding: 10px;
+    /* background-color: #00000008; */
+    background-color: var(--files-upload-back);
+    cursor: pointer;
+}
+
+.upload .img img {
+    height: 150px;
+    margin: 20px;
+}
+
+.upload .less {
+    padding: 10px 40px;
+}
+
+.upload .less img {
+    height: 120px;
+    margin: 10px;
+}
+
+.upload .img input {
+    display: none;
+}
+
+.options .disnone, .disnone {
+    display: none;
+}
+
+.upload .visible {
+    display: block;
+}
+
+.file {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.options p {
+    display: inline;
+    font-size: 1.1rem;
+}
+
+.optionstitle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.optionstitle svg {
+    height: 20px;
+    width: 20px;
+    rotate: 90deg;
+    transition: rotate 0.2s ease;
+}
+
+.optionstitle svg.normal {
+    rotate: 0deg;
+}
+
+.ccode, .dod {
+    display: none;
+    margin: 6px 0 0 15px;
+}
+
+.upload .show~.dod {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ccode .chead {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
+}
+
+.ccode label, .dod label {
+    cursor: pointer;
+}
+
+.ccode .chead:has(input:checked)+div {
+    display: block;
+}
+
+.cbody {
+    display: none;
+}
+
+.ccode .cbody input.red::placeholder {
+    color: red;
+}
+
+.options .ccode input.red {
+    border-bottom: 1px solid red;
+    color: red;
+}
+
+.options .ccode input.green {
+    border-bottom: 1px solid green;
+    color: green;
+}
+
+.cbody button {
+    border-radius: 10px;
+    background-color: var(--blue);
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.cbody button:hover:not(:disabled) {
+    transform: scale(1.02);
+}
+
+.cbody button:disabled {
+    background-color: #3b6d83ed;
+    cursor: auto;
+}
+
+.ccode input[type="number"] {
+    margin: 5px 0 0 3vw;
+    padding: 5px 5px 5px 10px;
+    border: none;
+    border-bottom: 1px solid var(--back);
+    background-color: transparent;
+    outline: none;
+}
+
+.ccode input[type="number"]::placeholder {
+    color: var(--text);
+}
+
+.upload .show~div {
+    display: block;
+}
+
+.output p {
+    text-align: center;
+}
+
+.output .buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.file .submit {
+    text-align: center;
+}
+
+@media screen and (min-width:750px) and (max-width:1000px) {
+    .upload {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .file {
+        width: 45vw;
+    }
+}
+
+@media screen and (max-width:749px) {
+    .upload {
+        flex-direction: column;
+        height: fit-content;
+        padding: 20px 0 30px 0;
+    }
+
+    .files .upload .img img {
+        height: 120px;
+    }
+
+    .file {
+        align-items: center;
+        width: 100%;
+    }
+
+    .upload .status {
+        width: min(90%, 400px);
+    }
+
+    .options {
+        padding: 0 30px;
+        width: 100%;
+    }
+
+    .options label {
+        line-height: 1.1;
+        margin-left: 4px;
+    }
+
+    .ccode {
+        margin: 15px 0 20px 15px;
+    }
+
+    .cbody {
+        padding: 10px 10px 0 10px;
+    }
+
+    .cbody input {
+        width: 60%;
+        font-size: 1rem;
+    }
+
+    .info p {
+        font-size: 0.9rem;
+    }
+}

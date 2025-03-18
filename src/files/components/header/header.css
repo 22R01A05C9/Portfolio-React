@@ -1,0 +1,36 @@
+header {
+    display: flex;
+    width: 100%;
+    background-color: var(--header-back);
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 12px 12px 12px 20px;
+    margin-left: 10px;
+    width: 35%;
+}
+
+header h3 a {
+    text-decoration: none;
+    color: var(--blue);
+}
+
+.wrapper {
+    width: 20%;
+    position: relative;
+}
+
+@media screen and (max-width:749px) {
+    header h3 {
+        width: fit-content;
+    }
+
+    .wrapper {
+        width: fit-content;
+        margin-right: 30px;
+    }
+}

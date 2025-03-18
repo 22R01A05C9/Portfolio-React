@@ -1,16 +1,16 @@
-.footer{
+.footer {
     background-color: var(--footer);
-    width: 100%;    
+    width: 100%;
     text-align: center;
     padding: 2px 0;
 }
 
-.footer p{
+.footer p {
     color: var(--text);
     font-size: 0.9rem;
 }
 
-.footer p a{
+.footer p a {
     text-decoration: none;
     color: var(--text-dim);
 }

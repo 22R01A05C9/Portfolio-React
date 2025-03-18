@@ -1,0 +1,35 @@
+.status {
+    background-color: var(--files-status-back);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--files-status-border);
+}
+
+.status .info {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.status .info p {
+    display: inline;
+}
+
+.progressouter {
+    height: 14px;
+    border-radius: 10px;
+    width: 100%;
+    padding: 3px;
+    text-align: center;
+    background-color: white;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progressouter .inner {
+    height: 8px;
+    width: 0%;
+    border-radius: 10px;
+    background-color: var(--blue-dim);
+    transition: width 0.1s ease;
+}

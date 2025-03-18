@@ -5,11 +5,15 @@ import sitemap from "vite-plugin-sitemap";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel:{
+        plugins: [["babel-plugin-react-compiler"]]
+      }
+    }),
     sitemap({
       hostname: "https://saiteja.site", 
-      dynamicRoutes: ["/mines", "/sms", "/shopping"], 
-      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping'] }]
+      dynamicRoutes: ["/mines", "/sms", "/shopping", "/files"], 
+      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping', '/files'] }]
     }),
   ],
   server:{
