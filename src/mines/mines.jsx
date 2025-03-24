@@ -86,8 +86,7 @@ function Mines() {
 
 	const clickedgameover = () => {
 		if (localStorage.getItem("minesfeedback") === null) {
-			document.querySelector(".mainfeedback").style.display = "block"
-			document.querySelector(".feedbackdiv").style.display = "block"
+			document.querySelector(".mainfeedback").classList.remove("disnone")
 		}
 		setgamestarted(false);
 		setexpired(false);
@@ -172,9 +171,12 @@ function Mines() {
 			<div className={show==="Game" ? "active" : "hidden"}>
 				<Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} />
 			</div>
-			<div className={show!=="Game" ? "active" : "hidden"}>
+			{
+				show!=="Game" && <div className={"active"}>
 				<Statistics display={show!=="Game"}/>
-			</div>
+				</div>
+			}
+			
             {
                 localStorage.getItem("minesfeedback") === null ? <Feedback application="mines"/> : null
             }

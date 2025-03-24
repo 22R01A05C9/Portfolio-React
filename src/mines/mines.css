@@ -258,7 +258,7 @@
 	cursor: pointer;
 }
 
-.stars .s2, .hidden, .blocks .block img {
+.hidden, .blocks .block img {
 	display: none;
 }
 
