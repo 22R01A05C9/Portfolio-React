@@ -19,7 +19,20 @@ const getfilelimiter = ratelimiter(limiteroptions)
 const codelimiter = ratelimiter(limiteroptions)
 dotenv.config()
 
+const cleardata = async () => {
+    let client = new MongoClient(process.env.MONGO_URL)
+    let conn = await client.connect()
+    let db = conn.db("website")
+    let files = db.collection("files")
+    files.deleteMany({})
+    let filesdbpath = path.resolve(__dirname, "filesdb" )
+    fs.rm(filesdbpath, { recursive: true, force:true }, () => {
+        fs.mkdir(filesdbpath, () => { })
+    })
+}
+
 module.exports = async function (app) {
+    cleardata()
     function randomstring(len) {
         let chars = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
         let res = ""
@@ -37,13 +50,13 @@ module.exports = async function (app) {
 
     let connect = await MongoClient.connect(process.env.MONGO_URL)
     let db = connect.db("website")
-    const updatedownloads = async ()=>{
+    const updatedownloads = async () => {
         let stats = db.collection("stats")
-        stats.updateOne({app:"files"}, {$inc:{downloads:1}})
+        stats.updateOne({ app: "files" }, { $inc: { downloads: 1 } })
     }
-    const updateuploads = async ()=>{
+    const updateuploads = async () => {
         let stats = db.collection("stats")
-        stats.updateOne({app:"files"}, {$inc:{uploads:1}})
+        stats.updateOne({ app: "files" }, { $inc: { uploads: 1 } })
     }
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {

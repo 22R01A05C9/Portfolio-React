@@ -8,7 +8,12 @@ const uploaded = (res, ccinput, ccchecked, dod, setccodestatus, setOutput, setUp
     dod.checked = false
     setccodestatus(false)
     let link = window.location.origin + "/api/files/download/" + res.str
-    setOutput({ id: res.id, link: link })
+    let id = res.id.toString()
+    while(id.length != 4){
+        id = "0" + id
+    }
+    console.log(link,id);
+    setOutput({ id: id, link: link })
     setUploading(false)
 }
 const submit = (ccRef, dodRef, file, ip, setuper, setUploading, setccodestatus, setOutput, ccodestatus) => {

@@ -42,7 +42,7 @@ function Projects() {
             img: "/shopping.webp",
             title: "Shopping",
             techstack: "ReactJS",
-            description: "A Sleek React-Based E-Commerce Platform Mimicking A Simplified Nike Store. Features Include Product Filtering By Price And Color, And An Intuitive User Experience For Seamless Shopping.",
+            description: "React-Based E-Commerce Platform Mimicking A Simplified Nike Store. Includes Product Filtering By Price And Color.",
             live: "/shopping",
             code: "https://github.com/22R01A05C9/shopping"
         }
