@@ -9,7 +9,7 @@ const ccodeinp = (e, setccodestatus) => {
     }
 }
 
-const verifycc = (ccref, setccodestatus, ip) => {
+const Verifycc = (ccref, setccodestatus, ip) => {
     let ccode = ccref.current.querySelector("#ccode");
     let regexp = /^[0-9]{4}$/;
     let code = ccode.value;
@@ -49,6 +49,19 @@ const clickedoptions = (e, optionsRef) => {
     } else {
         options.classList.add("show")
         svg.classList.remove("normal")
+    }
+}
+
+const verifycc = (ccref, setccodestatus, ip) => {
+    if(ip.current === null) {
+        fetch("https://ip.ageerasaiteja.workers.dev").
+        then(res => res.json()).
+        then(json => {
+            ip.current = json.ip
+            Verifycc(ccref, setccodestatus, ip)
+        })
+    }else{
+        Verifycc(ccref, setccodestatus, ip)
     }
 }
 export { ccodeinp, verifycc, clickedoptions }

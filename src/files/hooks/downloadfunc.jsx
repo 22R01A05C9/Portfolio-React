@@ -1,7 +1,7 @@
 import { AES } from "crypto-js";
 import Toast from "../helpers/toast";
 
-const Downloadfunc = (inputRefs, buttonRef, setdper, setdfile, ip) => {
+const download = (inputRefs, buttonRef, setdper, setdfile, ip) => {
     let code = ""
     inputRefs.current.forEach((input) => {
         code += input.value
@@ -70,6 +70,19 @@ const Downloadfunc = (inputRefs, buttonRef, setdper, setdfile, ip) => {
             Toast(data.message, "error", localStorage.getItem("theme") || "dark")
         }
     })
+}
+
+const Downloadfunc = (inputRefs, buttonRef, setdper, setdfile, ip) => {
+    if(ip.current === null) {
+        fetch("https://ip.ageerasaiteja.workers.dev").
+        then(res => res.json()).
+        then(json => {
+            ip.current = json.ip
+            download(inputRefs, buttonRef, setdper, setdfile, ip)
+        })
+    }else{
+        download(inputRefs, buttonRef, setdper, setdfile, ip)
+    }
 }
 
 export default Downloadfunc

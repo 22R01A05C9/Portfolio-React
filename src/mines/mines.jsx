@@ -7,44 +7,38 @@ import successaudio from "../assets/music/success.mp3"
 import failaudio from "../assets/music/fail.mp3"
 import startaudio from "../assets/music/game-start.mp3"
 import { lazy, useEffect, useState } from "react"
-const Feedback = lazy(()=>import("../components/feedback/feedback"))
-const getmaxscore = ()=>{
+import { Helmet } from "react-helmet-async"
+const Feedback = lazy(() => import("../components/feedback/feedback"))
+const getmaxscore = () => {
 	let data = localStorage.getItem("minesstatistics")
 	data = JSON.parse(data)
-	return parseInt(data?.max) || 0 
+	return parseInt(data?.max) || 0
 }
-const setstats =(s)=>{
-	s=parseInt(s)
+const setstats = (s) => {
+	s = parseInt(s)
 	let data = localStorage.getItem("minesstatistics")
 	data = JSON.parse(data)
-	if(data){
-		data.max = Math.max(parseInt(data.max),s)
-		data.min = Math.min(parseInt(data.min),s)
-		data.avg = parseInt((parseInt(data.avg)*parseInt(data.total) + s) / (parseInt(data.total)+1))
-		data.total = parseInt(data.total)+1
+	if (data) {
+		data.max = Math.max(parseInt(data.max), s)
+		data.min = Math.min(parseInt(data.min), s)
+		data.avg = parseInt((parseInt(data.avg) * parseInt(data.total) + s) / (parseInt(data.total) + 1))
+		data.total = parseInt(data.total) + 1
 		let last = data.last
-		if(last.length >= 10){
+		if (last.length >= 10) {
 			last.shift()
 		}
 		last.push(s)
 		data.last = last
 		data = JSON.stringify(data)
-	}else{
-		data = JSON.stringify({max:s,total:1,avg:s,min:s,last:[s]})
+	} else {
+		data = JSON.stringify({ max: s, total: 1, avg: s, min: s, last: [s] })
 	}
-	localStorage.setItem("minesstatistics",data)
+	localStorage.setItem("minesstatistics", data)
 }
 function Mines() {
-    useEffect(()=>{
-        document.title = "Mines Game";
-		document.querySelector("link[rel~='icon']").href="/mines.svg"
-		document.querySelector("meta[name='title']").setAttribute("content", "Mines Game")
-		document.querySelector("meta[property='og:title']").setAttribute("content", "Mines Game")
-		document.querySelector("meta[name='description']").setAttribute("content", "Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!")
-		document.querySelector("meta[property='og:description']").setAttribute("content", "Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!")
-		document.querySelector("meta[name='keywords']").setAttribute("content", "Minesweeper game, online Minesweeper, play Minesweeper, Mines game, puzzle game, bomb game, strategy game, classic Minesweeper, Minesweeper live score")
+	useEffect(() => {
 		sessionStorage.removeItem("token")
-    },[])
+	}, [])
 	let maxScore = getmaxscore()
 	let [secmsg, setsecmsg] = useState(null)
 	let [interval, setinterval] = useState(null)
@@ -132,7 +126,7 @@ function Mines() {
 					gameexpired()
 				}
 				setscore((score) => { return score + ((nclicked + 1) * parseInt(data.mines)) })
-			} else if(data.msg === "Game Not Found"){
+			} else if (data.msg === "Game Not Found") {
 				new Audio(failaudio).play()
 				setsecmsg("Game Expired Or False Move")
 				clearInterval(interval)
@@ -165,22 +159,34 @@ function Mines() {
 	}
 
 	return (
-		<div className="game">
-			<Header ext="/" active="projects"/>
-			<Choose setshow={setshow}/>
-			<div className={show==="Game" ? "active" : "hidden"}>
-				<Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} />
-			</div>
-			{
-				show!=="Game" && <div className={"active"}>
-				<Statistics display={show!=="Game"}/>
+		<>
+			<Helmet>
+				<title>Mines Game</title>
+				<link rel="icon" href="/mines.svg" />
+				<meta name="title" content="Mines Game" />
+				<meta property="og:title" content="Mines Game" />
+				<meta name="description" content="Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!" />
+				<meta property="og:description" content="Play the interactive Minesweeper game with multiple difficulty levels, live score tracking, and a sleek UI. Challenge yourself now!" />
+				<meta name="keywords" content="Minesweeper game, online Minesweeper, play Minesweeper, Mines game, puzzle game, bomb game, strategy game, classic Minesweeper, Minesweeper live score" />
+			</Helmet>
+			<div className="game">
+				<Header ext="/" active="projects" />
+				<Choose setshow={setshow} />
+				<div className={show === "Game" ? "active" : "hidden"}>
+					<Game gameexpired={gameexpired} score={score} maxScore={maxScore} setinterval={setinterval} secmsg={secmsg} gamestarted={gamestarted} setscore={setscore} startgame={startgame} expired={expired} clicked={clicked} clickedgameover={clickedgameover} />
 				</div>
-			}
-			
-            {
-                localStorage.getItem("minesfeedback") === null ? <Feedback application="mines"/> : null
-            }
-		</div>
+				{
+					show !== "Game" && <div className={"active"}>
+						<Statistics display={show !== "Game"} />
+					</div>
+				}
+
+				{
+					localStorage.getItem("minesfeedback") === null ? <Feedback application="mines" /> : null
+				}
+			</div>
+		</>
+
 
 	)
 }

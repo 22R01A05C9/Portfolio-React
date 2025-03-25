@@ -1,5 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import Loading from "../components/loading/loading";
+import { Helmet } from "react-helmet-async";
 const Maxview = lazy(() => import("./max-view-component/max-view-component"));
 const Minview = lazy(() => import("./min-view-component/min-view-component"));
 function Shopping() {
@@ -121,17 +122,26 @@ function Shopping() {
 		},
 	];
 	useEffect(() => {
-		document.title = "E Shopping"
-		document.querySelector("link[rel~='icon']").href="/shopping.ico"
 		window.matchMedia("(max-width:800px)").addEventListener("change", (e) => {
 			setsize(e.matches);
 		});
 		document.querySelector("html").style.colorScheme = "light"
 	});
 	return (
-		<Suspense fallback={<Loading />}>
-			{size ? <Minview data={data} /> : <Maxview data={data} />}
-		</Suspense>
+		<>
+			<Helmet>
+				<title>E Shopping</title>
+				<link rel="icon" href="/shopping.ico" />
+				<meta name="title" content="E Shopping" />
+				<meta property="og:title" content="E Shopping" />
+				<meta name="description" content="A Simple React Clone Of Official Nike Website, Provided With Features Like FIltersing Using Price And Color, And A Responsive UI." />
+				<meta property="og:description" content="A Simple React Clone Of Official Nike Website, Provided With Features Like FIltersing Using Price And Color, And A Responsive UI." />
+			</Helmet>
+			<Suspense fallback={<Loading />}>
+				{size ? <Minview data={data} /> : <Maxview data={data} />}
+			</Suspense>
+		</>
+
 	);
 }
 
