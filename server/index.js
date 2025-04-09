@@ -17,6 +17,14 @@ app.use(function (req, res, next) {
 })
 app.use(cors())
 app.use(express.json({ limit: "30mb" }))
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+        res.status(400).send({ error: true, message: "Invalid JSON" })
+    } else {
+        next()
+    }
+}
+)
 
 const server = require("http").createServer(app)
 const wss = new ws.Server({ server: server })

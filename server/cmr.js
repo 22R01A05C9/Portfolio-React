@@ -1,5 +1,4 @@
 const { MongoClient } = require("mongodb")
-const cryptojs = require("crypto-js")
 async function connectdb(db, collection) {
     try {
         let client = new MongoClient(process.env.MONGO_URL)
@@ -11,58 +10,87 @@ async function connectdb(db, collection) {
 
 }
 
-async function regular(body) {
-    let db = await connectdb("cmr", body.year)
+
+async function extract(body, db) {
+    let page = parseInt(body.page)
+    let limit = 10
+    let skip = (page - 1) * limit
+    if (skip < 0) {
+        return { error: true, message: "Invalid Page Number" }
+    }
     if (db.error) {
-        return { error: db.error }
+        return { error: true, message: db.error }
     }
-    let data = await db.find({}).toArray()
-    let res = []
-    if (body.searchby === "name") {
-        let expr = new RegExp(body.name)
-        data.forEach(element => {
-            if (expr.test(element.name)) {
-                if (body.branch === "all") {
-                    res.push(element)
-                } else if (element.branch === body.branch) {
-                    res.push(element)
-                }
-            }
-        });
-    } else if (body.searchby === "roll") {
-        let exp = new RegExp(body.roll)
-        data.forEach(element => {
-            if (exp.test(element.roll)) {
-                if (body.branch === "all") {
-                    res.push(element)
-                } else if (element.branch === body.branch) {
-                    res.push(element)
-                }
-            }
-        });
+
+    let Search ={}
+    if(body.searchby==="roll"){
+        let expr = new RegExp(body.roll, 'i')
+        Search.roll = {$regex: expr}
+    }else if(body.searchby==="name"){
+        let name = body.name.replace(" ","").split("").join('\\s*')
+        let expr = new RegExp(name, 'i')
+        Search.name = {$regex: expr}
     }
-    return res
+    if(body.branch !== "ALL"){
+        Search.branch = body.branch
+    }
+    if(body.year !== "ALL"){
+        Search.year = body.year
+    }
+    let data = await db.find(Search, { projection: { _id: 0 } }).skip(skip).limit(limit).toArray()
+    return data
 }
 
-async function getdata(req, res) {
-    if (!req.body.token) {
-        res.json({ error: "Invalid Request No Token Found" })
+async function getdata(req, res, db) {
+    if (!req.body) {
+        res.status(400).json({ error: true, message: "No Body Found" })
         return
     }
-    let temp = cryptojs.AES.decrypt(req.body.token, process.env.CMR_API_KEY).toString(cryptojs.enc.Utf8)
-    if (!temp) {
-        res.json({ error: "Invalid Encryption" })
+    let data = req.body
+    if ((!data.roll && !data.name) || !data.branch || !data.year || !data.searchby || !data.page) {
+        res.status(400).json({ error: true, message: "All Fields Are Required", data: data })
         return
     }
-    let data = JSON.parse(temp)
-    if ((!data.roll && !data.name) || !data.branch || !data.year || !data.searchby) {
-        res.json({ error: "All Fields Are Required", data: data })
+    if (data.searchby !== "roll" && data.searchby !== "name") {
+        res.status(400).json({ error: true, message: "Invalid Search By" })
         return
     }
-    res.json(await regular(data))
+    if ((data.searchby === "roll" && !data.roll) || (data.searchby === "name" && !data.name)) {
+        res.status(400).json({ error: true, message: "Invalid Search Parameter" })
+        return
+    }
+    let pageexp = /^[0-9]{0,3}$/
+    if (!pageexp.test(data.page)) {
+        res.status(400).json({ error: true, message: "Invalid Page Number" })
+        return
+    }
+    data.year = data.year.toUpperCase()
+    if (data.year !== "2022" && data.year !== "2023" && data.year !== "ALL") {
+        res.status(400).json({ error: true, message: "Invalid Year" })
+        return
+    }
+    data.name = data.name ? data.name.toUpperCase() : null
+    data.roll = data.roll ? data.roll.toUpperCase() : null
+    data.branch = data.branch ? data.branch.toUpperCase() : null
+    let result = await extract(data, db)
+    if (result.error) {
+        res.status(500).json(result)
+        return
+    }
+    let length = result.length
+    let response = {
+        error: false,
+        message: "Data Fetched Successfully",
+        data: result,
+        length: length
+    }
+    res.status(200).json(response)
 }
 
 
-module.exports = function (app) {
-    app.post("/cmr/getdata", getdata)
+module.exports = async function (app) {
+    let db = await connectdb("website", "cmr")
+    app.post("/cmr/getdata", (req, res) => {
+        getdata(req, res, db)
+    })
 }
