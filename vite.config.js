@@ -12,8 +12,8 @@ export default defineConfig({
     }),
     sitemap({
       hostname: "https://saiteja.site", 
-      dynamicRoutes: ["/mines", "/sms", "/shopping", "/files"], 
-      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping', '/files'] }]
+      dynamicRoutes: ["/mines", "/sms", "/shopping", "/files","/cmr"], 
+      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping', '/files', '/cmr'] }]
     }),
   ],
   server:{

@@ -4,5 +4,6 @@ Allow: /mines
 Allow: /sms
 Allow: /shopping
 Allow: /files
+Allow: /cmr
 
 Sitemap: https://saiteja.site/sitemap.xml
