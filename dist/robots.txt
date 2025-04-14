@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /mines
+Allow: /sms
+Allow: /shopping
+Allow: /files
+
+Sitemap: https://saiteja.site/sitemap.xml

@@ -10,6 +10,12 @@ async function connectdb(db, collection) {
 
 }
 
+function getdate() {
+    let date = new Date()
+    date.setMinutes(date.getMinutes() + 330)
+    return date.toString()
+}
+
 const branchmap = new Map([
     ["CSE", "CSE"],
     ["ECE", "ECE"],
@@ -18,6 +24,17 @@ const branchmap = new Map([
     ["CSC", "CSC"],
     ["AIML", "AIML"]
 ])
+
+async function adddata(data) {
+    let db = await connectdb("website", "cmrstats")
+    if (db.error) {
+        return
+    }
+    data.time = getdate()
+    await db.insertOne(data)
+    let stats = await connectdb("website", "stats")
+    await stats.updateOne({ app: "cmr" }, { $inc: { count: 1 } })
+}
 
 async function extract(body, db) {
     let page = parseInt(body.page)
@@ -91,6 +108,7 @@ async function getdata(req, res, db) {
         length: length
     }
     res.status(200).json(response)
+    adddata(data)
 }
 
 
