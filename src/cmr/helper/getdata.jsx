@@ -56,6 +56,6 @@ const getdata = debounce((e, searchby, branch, year, page, setdata, setShowload,
         })
         
     })
-}, 500);
+}, 1000);
 
 export default getdata;
