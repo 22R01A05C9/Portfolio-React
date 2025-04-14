@@ -6,12 +6,15 @@ import { useEffect } from "react";
 import getdata from "../../helper/getdata";
 import "./options.css"
 
-function Options({ searchby, branch, year, setdata, inputRef, setYear, setBranch, setSearchby, setShowload, setLoading }) {
+function Options({ searchby, branch, year, setdata, rollRef, nameRef, setYear, setBranch, setSearchby, setShowload, setLoading }) {
     useEffect(() => {
         if (year === "2023") setBranch("ALL")
     }, [year])
     const wrapper = () => {
-        getdata(inputRef.current, searchby, branch, year, 1, setdata, setShowload, false, null, setLoading)
+        let input = null
+        if(searchby === "Name") input = nameRef.current
+        else input = rollRef.current
+        getdata(input, searchby, branch, year, 1, setdata, setShowload, false, null, setLoading)
     }
     useEffect(() => {
         wrapper()
@@ -21,7 +24,7 @@ function Options({ searchby, branch, year, setdata, inputRef, setYear, setBranch
             <Year year={year} set={setYear} />
             <Branch branch={branch} set={setBranch} year={year} />
             <Searchby searchby={searchby} set={setSearchby} />
-            <Input ref={inputRef} searchby={searchby} oninp={() => { wrapper() }} />
+            <Input rollref={rollRef} nameref={nameRef} searchby={searchby} oninp={() => { wrapper() }} />
         </div>
     )
 }

@@ -13,24 +13,28 @@ function Main() {
     const [year, setYear] = useState("ALL");
     const [branch, setBranch] = useState("ALL");
     const [showload, setShowload] = useState(true);
-    const inputRef = useRef(null);
+    const nameRef = useRef(null);
+    const rollRef = useRef(null);
     const [loading, setLoading] = useState(true);
     const loadmore = (done) => {
-        getdata(inputRef.current, searchby, branch, year, Math.ceil(data?.length / 10) + 1, setData, setShowload, true, done)
+        let input = null
+        if(searchby === "Name") input = nameRef.current
+        else input = rollRef.current
+        getdata(input, searchby, branch, year, Math.ceil(data?.length / 10) + 1, setData, setShowload, true, done)
     }
     useEffect(()=>{
         if(troll){
-            inputRef.current.value = troll
+            rollRef.current.value = troll
             setSearchby("Roll")
         }
-    },[inputRef])
+    },[rollRef])
     
 
     return (
         <div className="cmritsearch">
             <Header />
             <div className="main">
-                <Options setdata={setData} searchby={searchby} branch={branch} year={year} inputRef={inputRef} setYear={setYear} setBranch={setBranch} setSearchby={setSearchby} setShowload={setShowload} setLoading={setLoading}/>
+                <Options setdata={setData} searchby={searchby} branch={branch} year={year} rollRef={rollRef} nameRef={nameRef} setYear={setYear} setBranch={setBranch} setSearchby={setSearchby} setShowload={setShowload} setLoading={setLoading}/>
                 {data && <Output data={data} loadmore={loadmore} showload={showload} loading={loading}/>}
             </div>
         </div>
