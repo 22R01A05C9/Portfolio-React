@@ -1,0 +1,21 @@
+.scroll{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 50px;
+    right: 20px;
+    background-color: #c9c9c9;
+    height: 45px;
+    width: 45px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.scroll:hover{
+    background-color: #a9a9a9;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}

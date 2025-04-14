@@ -1,0 +1,22 @@
+header {
+    background-color: var(--header-back);
+    text-align: center;
+}
+
+header img{
+    height: 30px;
+}
+
+header h3 {
+    font-size: 1.8rem;
+    padding: 15px;
+}
+
+header h3 a {
+    text-decoration: none;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}

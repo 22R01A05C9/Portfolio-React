@@ -1,0 +1,22 @@
+.option{
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #47c3f908;
+    border: 1px solid black;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.option:not(.active):hover{
+    background-color: #7bd7ff9e;
+    border: 1px solid black;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 5px 0px #00b0ff45;
+}
+
+.active{
+    background-color: #18abedb3;
+    border: 1px solid black;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 10px 2px #00b0ff45;
+}

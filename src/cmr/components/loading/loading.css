@@ -1,0 +1,35 @@
+.loadingcmr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100px;
+}
+
+.text::after {
+    position: absolute;
+    content: "";
+    border: 4px solid transparent;
+    border-top: 4px solid var(--back);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: spin 0.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

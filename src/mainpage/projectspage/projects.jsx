@@ -15,6 +15,14 @@ function Projects() {
 
     const data = [
         {
+            img: "/cmr.webp",
+            title: "CMRIT Search",
+            techstack: "ReactJS, ExpressJs, MnogoDB",
+            description: "This project is a search portal for CMRIT students, allowing users to find student photos by name, roll number, branch, or year of joining.",
+            live: "/cmr",
+            code: "https://github.com/22R01A05C9/CMRITSearch"
+        },
+        {
             img: "/files.webp",
             title: "File Share",
             techstack: "ReactJS, ExpressJs, MnogoDB",

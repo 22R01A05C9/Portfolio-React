@@ -1,0 +1,30 @@
+.options{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.year, .searchby, .branch, .input{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.showoptions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input input{
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: all 0.2s ease;
+    outline: none;
+    width: 250px;
+}

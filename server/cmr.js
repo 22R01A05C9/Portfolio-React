@@ -10,6 +10,14 @@ async function connectdb(db, collection) {
 
 }
 
+const branchmap = new Map([
+    ["CSE", "CSE"],
+    ["ECE", "ECE"],
+    ["CSM", "CSE(AI&ML)"],
+    ["CSD", "CSE(DS)"],
+    ["CSC", "CSC"],
+    ["AIML", "AIML"]
+])
 
 async function extract(body, db) {
     let page = parseInt(body.page)
@@ -22,19 +30,20 @@ async function extract(body, db) {
         return { error: true, message: db.error }
     }
 
-    let Search ={}
-    if(body.searchby==="roll"){
-        let expr = new RegExp(body.roll, 'i')
-        Search.roll = {$regex: expr}
-    }else if(body.searchby==="name"){
-        let name = body.name.replace(" ","").split("").join('\\s*')
+    let Search = {}
+    if (body.searchby === "roll") {
+        let roll = body.roll?.replace(" ", "").split("").join('\\s*')
+        let expr = new RegExp(roll, 'i')
+        Search.roll = { $regex: expr }
+    } else if (body.searchby === "name") {
+        let name = body.name?.replace(" ", "").split("").join('\\s*')
         let expr = new RegExp(name, 'i')
-        Search.name = {$regex: expr}
+        Search.name = { $regex: expr }
     }
-    if(body.branch !== "ALL"){
-        Search.branch = body.branch
+    if (body.branch !== "ALL") {
+        Search.branch = branchmap.get(body.branch)
     }
-    if(body.year !== "ALL"){
+    if (body.year !== "ALL") {
         Search.year = body.year
     }
     let data = await db.find(Search, { projection: { _id: 0 } }).skip(skip).limit(limit).toArray()
@@ -47,16 +56,13 @@ async function getdata(req, res, db) {
         return
     }
     let data = req.body
-    if ((!data.roll && !data.name) || !data.branch || !data.year || !data.searchby || !data.page) {
+    if (!data.branch || !data.year || !data.searchby || !data.page) {
         res.status(400).json({ error: true, message: "All Fields Are Required", data: data })
         return
     }
+    data.searchby = data.searchby.toLowerCase()
     if (data.searchby !== "roll" && data.searchby !== "name") {
         res.status(400).json({ error: true, message: "Invalid Search By" })
-        return
-    }
-    if ((data.searchby === "roll" && !data.roll) || (data.searchby === "name" && !data.name)) {
-        res.status(400).json({ error: true, message: "Invalid Search Parameter" })
         return
     }
     let pageexp = /^[0-9]{0,3}$/

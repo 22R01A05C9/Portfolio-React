@@ -1,0 +1,164 @@
+.output{
+    width: 100%;
+    padding: 10px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+}
+
+.students{
+    padding: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap:5px;
+    min-width: 240px;
+}
+
+.card img{
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.info{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    align-items: center;
+    max-width: 90%;
+}
+
+.card .info h4{
+    text-align: center;
+}
+
+.output button{
+    position: relative;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.output button:hover{
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.output .loadmore{
+    height: 100px;
+    width: 50px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.loadmore::after{
+    display: block;
+    height: 30px;
+    width: 30px;
+    content: "";
+    border-top: 4px solid black;
+    border-radius: 15px;
+    animation: spin 0.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.loadmore span{
+    display: none;
+}
+
+.img{
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.img:hover{
+    scale: 1.02;
+}
+
+.img .ficon{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    background-color: #6161619c;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: transform 0.2s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.img .ficon:hover{
+    transform: scale(1.02);
+    background-color: #9f9c9c9c;
+}
+
+.card svg{
+    height: 20px;
+    width: 20px;
+    fill:#fbf7f7;
+}
+
+.preview{
+    background-color: #f1f1f178;
+    backdrop-filter: blur(2px);
+    height: 100%;
+    width: 100vw;
+    position: fixed;
+    top:0;
+    left:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.preview .close{
+    position: absolute;
+    top:25px;
+    right: 30px;
+    height: 35px;
+    cursor: pointer;
+    width: 35px;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.preview svg:hover{
+    transform: scale(1.05);
+}
+
+.preview img{
+    border-radius: 5px;
+    cursor:initial;
+    max-width: 85%;
+    max-height: 85%;
+}

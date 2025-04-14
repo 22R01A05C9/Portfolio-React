@@ -15,11 +15,11 @@ www.saiteja.site {
         redir https://saiteja.site{uri}
 }
 
-restart.saiteja.site {
-        reverse_proxy localhost:3000
-}
-
 cmrstatic.saiteja.site {
         root * /home/ubuntu/cmrimages
         file_server
+        @staticFiles {
+                path *.jpg
+        }
+        header @staticFiles Cache-Control "public, max-age=2592000, immutable"
 }
