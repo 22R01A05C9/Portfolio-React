@@ -25,15 +25,10 @@ const branchmap = new Map([
     ["AIML", "AIML"]
 ])
 
-async function adddata(data) {
-    let db = await connectdb("website", "cmrstats")
-    if (db.error) {
-        return
-    }
+async function adddata(data, statsdb1, statsdb2) {
     data.time = getdate()
-    await db.insertOne(data)
-    let stats = await connectdb("website", "stats")
-    await stats.updateOne({ app: "cmr" }, { $inc: { count: 1 } })
+    await statsdb2.insertOne(data)
+    await statsdb1.updateOne({ app: "cmr" }, { $inc: { count: 1 } })
 }
 
 async function extract(body, db) {
@@ -67,7 +62,7 @@ async function extract(body, db) {
     return data
 }
 
-async function getdata(req, res, db) {
+async function getdata(req, res, db, statsdb1, statsdb2) {
     if (!req.body) {
         res.status(400).json({ error: true, message: "No Body Found" })
         return
@@ -108,13 +103,15 @@ async function getdata(req, res, db) {
         length: length
     }
     res.status(200).json(response)
-    adddata(data)
+    adddata(data, statsdb1, statsdb2)
 }
 
 
 module.exports = async function (app) {
     let db = await connectdb("website", "cmr")
+    let statsdb1 = await connectdb("website", "stats")
+    let statsdb2 = await connectdb("website", "cmrstats")
     app.post("/cmr/getdata", (req, res) => {
-        getdata(req, res, db)
+        getdata(req, res, db, statsdb1, statsdb2)
     })
 }
