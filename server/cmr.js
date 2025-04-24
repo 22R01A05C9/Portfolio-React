@@ -83,7 +83,7 @@ async function getdata(req, res, db, statsdb1, statsdb2) {
         return
     }
     data.year = data.year.toUpperCase()
-    if (data.year !== "2022" && data.year !== "2023" && data.year !== "ALL") {
+    if (data.year !== "2022" && data.year !== "2023" && data.year !== "ALL" && data.year !== "2024") {
         res.status(400).json({ error: true, message: "Invalid Year" })
         return
     }
