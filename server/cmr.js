@@ -1,9 +1,6 @@
-const { MongoClient } = require("mongodb")
-async function connectdb(db, collection) {
+async function connectdb(connection, collection) {
     try {
-        let client = new MongoClient(process.env.MONGO_URL)
-        const conn = await client.connect()
-        return conn.db(db).collection(collection)
+        return connection.db("website").collection(collection)
     } catch (err) {
         return { error: err }
     }
@@ -107,10 +104,10 @@ async function getdata(req, res, db, statsdb1, statsdb2) {
 }
 
 
-module.exports = async function (app) {
-    let db = await connectdb("website", "cmr")
-    let statsdb1 = await connectdb("website", "stats")
-    let statsdb2 = await connectdb("website", "cmrstats")
+module.exports = async function (app, connection) {
+    let db = await connectdb(connection, "cmr")
+    let statsdb1 = await connectdb(connection, "stats")
+    let statsdb2 = await connectdb(connection, "cmrstats")
     app.post("/cmr/getdata", (req, res) => {
         getdata(req, res, db, statsdb1, statsdb2)
     })

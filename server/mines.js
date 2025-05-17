@@ -1,22 +1,18 @@
-const { MongoClient } = require("mongodb");
-const client = new MongoClient(process.env.MONGO_URL);
 const cryptojs = require("crypto-js");
 
-module.exports = function (app) {
+module.exports = function (app, conn) {
 
     function getrand() {
         return Math.floor(Math.random() * 16);
     }
 
     async function incrementgamecount() {
-        let conn = await client.connect()
         let db = conn.db("website");
         let stats = db.collection("stats")
-        stats.findOneAndUpdate({app:"mines"},{$inc:{count:1}})
+        stats.findOneAndUpdate({ app: "mines" }, { $inc: { count: 1 } })
     }
 
     async function setgame(gameid) {
-        let conn = await client.connect();
         let mines = conn.db("website");
         let games = mines.collection("mines");
         games.insertOne({ gameid: gameid, status: "active" });
@@ -24,15 +20,13 @@ module.exports = function (app) {
     }
 
     async function removegame(gameid) {
-        let connection = await client.connect();
-        let mines = connection.db("website");
+        let mines = conn.db("website");
         let games = mines.collection("mines");
         games.deleteOne({ gameid: gameid });
     }
 
     async function findgame(gameid) {
-        let connection = await client.connect();
-        let mines = connection.db("website");
+        let mines = conn.db("website");
         let games = mines.collection("mines");
         return await games.findOne({ gameid: gameid });
     }
@@ -81,9 +75,9 @@ module.exports = function (app) {
             process.env.MINES_API_KEY
         ).toString();
         setgame(gameid);
-        setTimeout(()=>{
+        setTimeout(() => {
             removegame(gameid)
-        },60*1000*10)
+        }, 60 * 1000 * 10)
         res.json({ token: jtoken, bombs: req.body.bombs, gameid: gameid });
         incrementgamecount()
     }

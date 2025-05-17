@@ -1,8 +1,6 @@
 const multer = require("multer")
 const fs = require("fs")
-const { MongoClient } = require("mongodb")
 const cryptojs = require("crypto-js")
-const dotenv = require("dotenv")
 const path = require("path")
 const ratelimiter = require("express-rate-limit")
 const limiteroptions = {
@@ -17,22 +15,19 @@ const uploadlimiter = ratelimiter(limiteroptions)
 const downloadlimiter = ratelimiter(limiteroptions)
 const getfilelimiter = ratelimiter(limiteroptions)
 const codelimiter = ratelimiter(limiteroptions)
-dotenv.config()
 
-const cleardata = async () => {
-    let client = new MongoClient(process.env.MONGO_URL)
-    let conn = await client.connect()
-    let db = conn.db("website")
+const cleardata = async (connection) => {
+    let db = connection.db("website")
     let files = db.collection("files")
     files.deleteMany({})
-    let filesdbpath = path.resolve(__dirname, "filesdb" )
-    fs.rm(filesdbpath, { recursive: true, force:true }, () => {
+    let filesdbpath = path.resolve(__dirname, "filesdb")
+    fs.rm(filesdbpath, { recursive: true, force: true }, () => {
         fs.mkdir(filesdbpath, () => { })
     })
 }
 
-module.exports = async function (app) {
-    cleardata()
+module.exports = async function (app, connect) {
+    cleardata(connect)
     function randomstring(len) {
         let chars = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
         let res = ""
@@ -48,7 +43,6 @@ module.exports = async function (app) {
         return rand;
     }
 
-    let connect = await MongoClient.connect(process.env.MONGO_URL)
     let db = connect.db("website")
     const updatedownloads = async () => {
         let stats = db.collection("stats")

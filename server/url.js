@@ -1,8 +1,5 @@
-const { MongoClient } = require("mongodb")
-
-module.exports = async function (app) {
-    let connect = await MongoClient.connect(process.env.MONGO_URL)
-    let db = connect.db("website")
+module.exports = async function (app, connection) {
+    let db = connection.db("website")
     let collection = db.collection("url")
     async function geturldata(code) {
         return new Promise((resolve) => {
