@@ -5,7 +5,7 @@ function Output({ data }) {
         <div className="output">
             <p>File Has Been Uploaded Successfully!!</p>
             <p className="showcode">Your Code is <strong>{data.id}</strong></p>
-            <p>Code Expires In 2 Hours</p>
+            <p>Code Expires In 5 Hours</p>
             <div className="buttons">
                 {
                     ["Code", "Link"].map((item) => {

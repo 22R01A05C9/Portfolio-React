@@ -72,7 +72,7 @@ module.exports = async function (app, connect) {
                     filesdb.deleteOne({ filestr: filestr })
                 }
             })
-        }, 1000 * 60 * process.env.FILES_MINUTES)
+        }, 1000 * 60 * 60 * process.env.FILES_HOURS)
     }
 
     async function addfiledatatodb(fileid, filename, deleteondownload, filestr, size) {
@@ -126,7 +126,7 @@ module.exports = async function (app, connect) {
                 return;
             }
             let size = req.body.size;
-            let exp = /^[0-9]{1,2}.[0-9]{2} MB$/
+            let exp = /^[0-9]{1,3}.[0-9]{2} MB$/
             if (!size || !exp.test(size)) {
                 res.json({ status: false, message: "No Size Data" })
                 fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })

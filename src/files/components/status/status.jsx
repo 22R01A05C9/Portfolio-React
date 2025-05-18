@@ -9,7 +9,7 @@ function Status({ file, per }) {
         } else {
             name = file.name
         }
-        let exp = /^[0-9]{1,2}.[0-9]{2} MB$/
+        let exp = /^[0-9]{1,3}.[0-9]{2} MB$/
         if (exp.test(file.size)) size = file.size
         else size = parseFloat(file.size / 1000000).toFixed(2).toString() + " MB"
     }
