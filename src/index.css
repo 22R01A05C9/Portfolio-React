@@ -55,12 +55,6 @@ html{
 	overflow-y: scroll;
 }
 
-.app{
-	min-height: 100dvh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
 .disnone{
 	display: none;
 }

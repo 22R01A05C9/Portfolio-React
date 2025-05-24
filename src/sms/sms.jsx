@@ -7,6 +7,7 @@ import Header from "../components/header/header"
 import Smsradio from "./smsradio/smsradio"
 import SmsStatus from "./smsstatus/status"
 import Questiontag from "./questiontag/question"
+import Footer from "../components/footer/footer"
 import { Helmet } from "react-helmet-async"
 const Feedback = lazy(() => { return import("../components/feedback/feedback") })
 
@@ -247,6 +248,7 @@ function Sms() {
                 </div>
                 {localStorage.getItem("smsfeedback") === null ? <Feedback application="sms" /> : null}
                 <ToastContainer />
+                <Footer />
             </div>
         </>
 

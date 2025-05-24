@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+
+.sms{
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.smsbody{
+    padding-top: 80px;;
+}
+
 .smsbody h2{
     width: 100%;
     text-align: center;

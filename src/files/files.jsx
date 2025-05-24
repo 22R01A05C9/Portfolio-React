@@ -4,6 +4,7 @@ import Header from "./components/header/header"
 import Mainbody from "./components/main/mainbody"
 import Loading from "../components/loading/loading"
 import Toast from "./helpers/toast"
+import Footer from "../components/footer/footer"
 import { Helmet } from "react-helmet-async"
 import { ToastContainer } from "react-toastify"
 const Choose = lazy(() => import("./components/choose/choose"))
@@ -22,7 +23,7 @@ function Files() {
 		}
 	}, [])
 	return (
-		<>
+		<div className="filesapp">
 			<Helmet>
 				<title>File Share</title>
 				<link rel="icon" href="/fileslogo.svg" />
@@ -42,8 +43,9 @@ function Files() {
 				</div>
 				{localStorage.getItem("filesfeedback") === null ? <Feedback application="files" /> : null}
 				<ToastContainer />
+				<Footer />
 			</Suspense>
-		</>
+		</div>
 
 
 	)

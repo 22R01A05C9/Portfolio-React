@@ -8,6 +8,7 @@ import failaudio from "../assets/music/fail.mp3"
 import startaudio from "../assets/music/game-start.mp3"
 import { lazy, useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
+import Footer from "../components/footer/footer"
 const Feedback = lazy(() => import("../components/feedback/feedback"))
 const getmaxscore = () => {
 	let data = localStorage.getItem("minesstatistics")
@@ -184,6 +185,7 @@ function Mines() {
 				{
 					localStorage.getItem("minesfeedback") === null ? <Feedback application="mines" /> : null
 				}
+				<Footer />
 			</div>
 		</>
 

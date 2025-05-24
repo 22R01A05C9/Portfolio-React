@@ -10,8 +10,8 @@ import Skills from "./skillspage/skills"
 import Projects from "./projectspage/projects"
 import Contact from "./contactpage/contact"
 import Links from "./linkspage/links"
-
-
+import Footer from "../components/footer/footer"
+import "./mainpage.css"
 function Mainpage(){
 	const location = useLocation();
 	useEffect(()=>{
@@ -25,7 +25,7 @@ function Mainpage(){
 	},[location])
 
     return(
-        <>
+        <div className="mainpage">
 		<Helmet>
 			<title>Ageera Saiteja</title>
 			<link rel="icon" href="/logo.svg" />
@@ -43,7 +43,8 @@ function Mainpage(){
 			<Projects />
 			<Links />
 			<Contact />
-        </>
+			<Footer />
+        </div>
     )
 }
 

@@ -1,4 +1,5 @@
 import Main from "./components/main/main";
+import Footer from "../components/footer/footer";
 import { Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import "./cmr.css"
@@ -22,6 +23,7 @@ function Cmr() {
 					<Route path="/" element={<Main />} />
 					<Route path="/:troll" element={<Main />} />
 				</Routes>
+				<Footer />
 			</div>
 		</>
 

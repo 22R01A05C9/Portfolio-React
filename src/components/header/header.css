@@ -13,10 +13,6 @@ header {
     z-index: 100;
 }
 
-.app header + * {
-    padding-top: 80px ;
-}
-
 .mainnav {
     display: flex;
     flex-direction: row;

@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
+.game{
+	min-height: 100dvh;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
 
 .gameinfo {
 	display: grid;
@@ -396,7 +402,7 @@
 
 	.resetdiv {
 		position: relative;
-		bottom: 10vw;
+		bottom: 12vw;
 		width: 42%;
 		text-align: center;
 	}
@@ -421,6 +427,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
+	padding-top: 80px;
 }
 .choose p{
 	text-align: center;

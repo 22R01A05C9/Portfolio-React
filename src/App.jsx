@@ -1,4 +1,3 @@
-import Footer from "./components/footer/footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loading from "./components/loading/loading";
 import { lazy, Suspense } from "react";
@@ -10,11 +9,11 @@ const Mines = lazy(() => import("./mines/mines"))
 const Shopping = lazy(() => import("./shopping/shopping"))
 const Files = lazy(() => import("./files/files"))
 const Cmr = lazy(() => import("./cmr/cmr"))
+const NotFound = lazy(() => import("./notfound/notfound"))
 function App() {
 
 	return (
 		<HelmetProvider>
-			<div className="app">
 				<Suspense fallback={<Loading />}>
 					<BrowserRouter>
 						<Routes>
@@ -24,11 +23,10 @@ function App() {
 							<Route path="/shopping/*" element={<Shopping />} />
 							<Route path="/files" element={<Files />} />
 							<Route path="/cmr/*" element={<Cmr />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</BrowserRouter>
 				</Suspense>
-				<Footer />
-			</div>
 		</HelmetProvider>
 	);
 }

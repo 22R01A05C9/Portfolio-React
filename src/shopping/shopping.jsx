@@ -3,6 +3,7 @@ import Loading from "../components/loading/loading";
 import { Helmet } from "react-helmet-async";
 const Maxview = lazy(() => import("./max-view-component/max-view-component"));
 const Minview = lazy(() => import("./min-view-component/min-view-component"));
+import Footer from "../components/footer/footer";
 function Shopping() {
 	const [size, setsize] = useState(
 		window.matchMedia("(max-width:800px)").matches
@@ -140,6 +141,7 @@ function Shopping() {
 			<Suspense fallback={<Loading />}>
 				{size ? <Minview data={data} /> : <Maxview data={data} />}
 			</Suspense>
+			<Footer />
 		</>
 
 	);

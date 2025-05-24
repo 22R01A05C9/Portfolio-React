@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 .fileshare {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.filesapp{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100dvh;
 }
