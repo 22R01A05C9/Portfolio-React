@@ -68,13 +68,10 @@ module.exports = async function (app, connection) {
     }
 
     async function checkcodedosentexist(req, res, next) {
-        let code = req.body?.code || req.params?.code
+        let code = req.body.code
         let urldata = await collection.findOne({ code: code });
-        if (!urldata && req.body) {
-            return res.json({ error: true, message: "Code Doesn't Exists" });
-        }
         if (!urldata) {
-            return res.redirect("https://saiteja.site/404")
+            return res.json({ error: true, message: "Code Doesn't Exists" });
         }
         if (req.body)
             req.body.urldata = urldata
@@ -162,8 +159,12 @@ module.exports = async function (app, connection) {
         return res.json({ error: false, message: "Edited Successfully" })
     })
 
-    app.get("/urlredirect/:code", checkcode, checkcodedosentexist, async (req, res) => {
-        let urldata = req.body.urldata
+    app.get("/urlredirect/:code", checkcode, async (req, res) => {
+        let code = req.params.code
+        let urldata = await collection.findOne({ code: code });
+        if (!urldata) {
+            return res.redirect("https://saiteja.site/404") 
+        }
         let long = urldata.long.startsWith("http") ? urldata.long : "https://" + urldata.long
         collection.updateOne({ code: req.params.code }, { $inc: { count: 1 } });
         return res.redirect(long);

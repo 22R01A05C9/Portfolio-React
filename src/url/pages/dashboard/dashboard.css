@@ -73,7 +73,7 @@
 
 .dashboard .cards .card {
     min-width: 250px;
-    padding: 10px;
+    padding: 15px;
     border: 2px solid #ffdad7;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(161, 2, 2, 0.1);

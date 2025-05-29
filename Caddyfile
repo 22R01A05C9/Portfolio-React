@@ -25,5 +25,6 @@ cmrstatic.saiteja.site {
 }
 
 url.saiteja.site {
-        reverse_proxy localhost:4173/api/urlredirect
+        rewrite * /urlredirect{uri}
+        reverse_proxy localhost:5000
 }

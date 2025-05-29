@@ -50,6 +50,7 @@ function Card({ code, long, count, setPrompt, setEdit }) {
         <div className="card">
             <p><strong>Short Code: </strong>{code}</p>
             <p><strong>Long Url: </strong><a href={lhref} target="_blank">{long}</a></p>
+            <p><strong>Short Url: </strong>{"https://url.saiteja.site/"+code}</p>
             <p><strong>Redirects: </strong>{count}</p>
             <div className="dbtn">
                 <button onClick={() => setPrompt(code)}>Delete</button>
@@ -76,13 +77,18 @@ function Details({ data, setPrompt, setEdit }) {
 
 function Edit({ code, setEdit, setLoading, setData }) {
     const lRef = useRef(null)
+    const okd = (e)=>{
+        if(e.key === "Enter"){
+            EditAPI(lRef, code, setEdit, setLoading, setData)
+        }
+    }
     return (
         <div className="prompt">
             <div className="area">
                 <h3>Edit Code <strong>{code}</strong></h3>
                 <div className="einp">
                     <Input type={"text"} label={"Custom Code"} id={"code"} value={code} dis={true} />
-                    <Input type={"url"} label={"New Long URL"} id={"long"} placeholder={"ex: https://www.google.com"} ref={lRef} />
+                    <Input type={"url"} label={"New Long URL"} id={"long"} placeholder={"ex: https://www.google.com"} ref={lRef} okd={okd}/>
                 </div>
                 <div className="dbtn">
                     <button onClick={() => setEdit(null)}>Close</button>

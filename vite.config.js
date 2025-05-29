@@ -6,29 +6,29 @@ import sitemap from "vite-plugin-sitemap";
 export default defineConfig({
   plugins: [
     react({
-      babel:{
+      babel: {
         plugins: [["babel-plugin-react-compiler"]]
       }
     }),
     sitemap({
-      hostname: "https://saiteja.site", 
-      dynamicRoutes: ["/mines", "/sms", "/shopping", "/files","/cmr"], 
-      robots:[{ userAgent: '*', allow: ['/','/mines','/sms', '/shopping', '/files', '/cmr'] }]
+      hostname: "https://saiteja.site",
+      dynamicRoutes: ["/mines", "/sms", "/shopping", "/files", "/cmr", "/url"],
+      robots: [{ userAgent: '*', allow: ['/', '/mines', '/sms', '/shopping', '/files', '/cmr', '/url'] }]
     }),
   ],
-  server:{
-    proxy:{
-      "/api":{
-        target:"http://localhost:5000",
-        changeOrigin:true,
-        rewrite:(path)=>path.replace(/^\/api/,"")
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "")
       },
-      "/ws":{
-        target:"ws://localhost:5000",
-        ws:true,
-        changeOrigin:true
+      "/ws": {
+        target: "ws://localhost:5000",
+        ws: true,
+        changeOrigin: true
       }
     },
-    allowedHosts:["saiteja.site"]
+    allowedHosts: ["saiteja.site"]
   }
 })

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 
-.notfound{
+.notfound {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,17 +11,24 @@
     font-family: "Poppins", sans-serif;
 }
 
-.notfound p.m404{
+.notfound p.m404 {
     font-size: 2.5rem;
 }
 
-.notfound p{
+.notfound p {
     font-size: 1.2rem;
     margin: 0.5rem 0;
 }
 
-.notfound p.gotohome a{
+.notfound p.gotohome a {
     color: #007bff;
     text-decoration: none;
     font-weight: 600;
+}
+
+@media screen and (max-width:500px) {
+    .notfound p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
 }

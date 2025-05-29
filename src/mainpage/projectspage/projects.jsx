@@ -15,6 +15,14 @@ function Projects() {
 
     const data = [
         {
+            img: "/url.webp",
+            title: "URL Shortener",
+            techstack: "ReactJS, ExpressJs, MnogoDB",
+            description: "A URL shortener web application that allows users to generate short links from long URLs, with features like custom urls and dashboard",
+            live: "/url",
+            code: "https://github.com/22R01A05C9/url-react"
+        },
+        {
             img: "/cmr.webp",
             title: "CMRIT Search",
             techstack: "ReactJS, ExpressJs, MnogoDB",
