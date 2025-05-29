@@ -1,0 +1,67 @@
+header {
+    padding: 8px;
+    background-color: #f1f1f1;
+    border-bottom: 2px solid #ff4d4d3b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 30px;
+    padding-left: 3vw;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: #FF6347;
+
+}
+
+header svg {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.user {
+    margin-right: 3vw;
+    position: relative;
+    display: flex;
+}
+
+.user svg:hover~a, .user a:hover {
+    display: block;
+}
+
+.user a {
+    display: none;
+    position: absolute;
+    left: -55%;
+    top: 90%;
+    background-color: white;
+    padding: 10px 20px;
+    transform: translate(-40%, 0);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.user a::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 85%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+@media screen and (max-width: 600px) {
+    header h1 {
+        font-size: 24px;
+    }
+}

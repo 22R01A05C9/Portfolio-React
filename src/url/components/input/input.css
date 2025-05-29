@@ -1,0 +1,61 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.input label {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+.input input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.input input:focus {
+    border-color: #FF6347;
+}
+
+.input input:focus::placeholder {
+    color: transparent;
+}
+
+.input:has(input:focus) label {
+    color: #FF6347;
+    font-weight: 600;
+}
+
+.container button:hover {
+    background-color: #ff8859;
+    scale: 1.01;
+}
+
+@media screen and (max-width: 500px) {
+    .input {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .input input {
+        width: 100%;
+    }
+
+    .input label {
+        font-size: 0.9rem;
+    }
+
+    .container button {
+        font-size: 0.9rem;
+    }
+
+}

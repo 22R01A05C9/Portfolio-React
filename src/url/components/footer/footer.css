@@ -1,0 +1,26 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 2px;
+    background-color: #c7c7c7;
+    z-index: 1;
+}
+
+.footer p {
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer p a {
+    color: #FF6347;
+    text-decoration: underline;
+
+}
+
+@media screen and (max-width: 500px) {
+    .footer p, .footer p a {
+        font-size: 12px;
+    }
+
+}

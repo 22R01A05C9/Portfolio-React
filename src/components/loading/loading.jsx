@@ -4,7 +4,8 @@ import { useEffect } from "react";
 function Loading(){
     useEffect(() => {
         let root = document.querySelector(":root");
-        if(window.location.pathname.startsWith("/shopping") || window.location.pathname.startsWith("/cmr")){
+        let pathname = window.location.pathname 
+        if(pathname.startsWith("/shopping") || pathname.startsWith("/cmr") || pathname.startsWith("/url")){
             root.style.colorScheme = "light"
         }else{
             root.style.colorScheme = localStorage.getItem("theme") || "dark"

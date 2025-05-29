@@ -23,3 +23,7 @@ cmrstatic.saiteja.site {
         }
         header @staticFiles Cache-Control "public, max-age=2592000, immutable"
 }
+
+url.saiteja.site {
+        reverse_proxy localhost:4173/api/urlredirect
+}
