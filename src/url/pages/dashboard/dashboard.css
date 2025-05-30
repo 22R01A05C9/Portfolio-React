@@ -64,7 +64,7 @@
 
 .dashboard .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 10px;
     justify-items: start;
@@ -85,6 +85,48 @@
 
 .card p, .card p a {
     color: #ff6b5f;
+}
+
+.card p.short{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:2px;
+}
+
+.card p.short svg{
+    height: 18px;
+    z-index: 2;
+}
+
+.card p.short svg:hover{
+    transform: translateY(-1px) scale(1.02);
+    cursor: pointer;
+    transition: trabsform 0.2s ease;
+}
+
+.card p.short .cicon{
+    position: relative;
+    display: flex;
+}
+
+.card p.short span{
+    height: 24px;
+    width: 24px;
+    content: "";
+    background-color: #c9c9c9;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: none;
+    cursor: pointer;
+}
+
+.card p.short svg:hover ~ span{
+    display: block;
 }
 
 .dashboard .cards .card:hover {

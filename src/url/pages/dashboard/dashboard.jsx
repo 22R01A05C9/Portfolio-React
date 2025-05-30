@@ -5,6 +5,7 @@ import "./dashboard.css";
 import fdd from "../../api/fetchdashdata";
 import delurl from "../../api/deleteurl";
 import EditAPI from "../../api/edit";
+import ctc from "../../helpers/ctc"
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
 function Title() {
@@ -45,16 +46,23 @@ function Prompt({ code, setPrompt, setData, setLoading }) {
 
 function Card({ code, long, count, setPrompt, setEdit }) {
     let lhref = long.startsWith("http") ? long : "https://" + long;
-
+    let shorturl = "https://url.saiteja.site/" + code
     return (
         <div className="card">
             <p><strong>Short Code: </strong>{code}</p>
-            <p><strong>Long Url: </strong><a href={lhref} target="_blank">{long}</a></p>
-            <p><strong>Short Url: </strong>{"https://url.saiteja.site/"+code}</p>
+            <p><strong>Long Url: </strong><a href={lhref} target="_blank">{long.slice(0, 20) + (long.length > 20 ? "...." : "")}</a></p>
+            <p className="short">
+                <strong>Short Url: </strong>{shorturl.slice(8, 30) + (shorturl.length > 30 ? "...." : "")}
+                <i className="cicon">
+                    <svg onClick={ctc.bind(this, shorturl)} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z" /></svg>
+                    <span className="hov"></span>
+                </i>
+
+            </p>
             <p><strong>Redirects: </strong>{count}</p>
             <div className="dbtn">
                 <button onClick={() => setPrompt(code)}>Delete</button>
-                <button onClick={() => setEdit(code)}>Edit</button>
+                <button onClick={() => setEdit({ code, long })}>Edit</button>
             </div>
         </div>
     );
@@ -75,24 +83,24 @@ function Details({ data, setPrompt, setEdit }) {
     );
 }
 
-function Edit({ code, setEdit, setLoading, setData }) {
+function Edit({ edit, setEdit, setLoading, setData }) {
     const lRef = useRef(null)
-    const okd = (e)=>{
-        if(e.key === "Enter"){
-            EditAPI(lRef, code, setEdit, setLoading, setData)
+    const okd = (e) => {
+        if (e.key === "Enter") {
+            EditAPI(lRef, edit.code, setEdit, setLoading, setData)
         }
     }
     return (
         <div className="prompt">
             <div className="area">
-                <h3>Edit Code <strong>{code}</strong></h3>
+                <h3>Edit Code <strong>{edit.code}</strong></h3>
                 <div className="einp">
-                    <Input type={"text"} label={"Custom Code"} id={"code"} value={code} dis={true} />
-                    <Input type={"url"} label={"New Long URL"} id={"long"} placeholder={"ex: https://www.google.com"} ref={lRef} okd={okd}/>
+                    <Input type={"text"} label={"Custom Code"} id={"code"} value={edit.code} dis={true} />
+                    <Input type={"url"} label={"New Long URL"} id={"long"} placeholder={"ex: https://www.google.com"} ref={lRef} okd={okd} value={edit.long} />
                 </div>
                 <div className="dbtn">
                     <button onClick={() => setEdit(null)}>Close</button>
-                    <button onClick={EditAPI.bind(this, lRef, code, setEdit, setLoading, setData)}>Edit</button>
+                    <button onClick={EditAPI.bind(this, lRef, edit.code, setEdit, setLoading, setData)}>Edit</button>
                 </div>
             </div>
         </div>
@@ -132,7 +140,7 @@ function Data({ data, isPhone, setLoading, setData }) {
             </div>
             <Details data={data} setPrompt={setPrompt} setEdit={setEdit} />
             {prompt ? <Prompt code={prompt} setPrompt={setPrompt} setLoading={setLoading} setData={setData} /> : null}
-            {edit ? <Edit code={edit} setEdit={setEdit} setLoading={setLoading} setData={setData} /> : null}
+            {edit ? <Edit edit={edit} setEdit={setEdit} setLoading={setLoading} setData={setData} /> : null}
         </>
 
     )
