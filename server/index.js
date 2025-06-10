@@ -39,7 +39,6 @@ client.connect().then((connection) => {
     require("./url.js")(app, connection)
     require("./instagram.js")(app)
     require("./mines.js")(app, connection)
-    require("./cmr.js")(app, connection)
     require("./clipboard.js")(app, connection)
     require("./yt.js")(app)
     require("./feedback.js")(app, connection)

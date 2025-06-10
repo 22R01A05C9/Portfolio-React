@@ -8,7 +8,6 @@ const Mainpage = lazy(() => import("./mainpage/mainpage"))
 const Mines = lazy(() => import("./mines/mines"))
 const Shopping = lazy(() => import("./shopping/shopping"))
 const Files = lazy(() => import("./files/files"))
-const Cmr = lazy(() => import("./cmr/cmr"))
 const NotFound = lazy(() => import("./notfound/notfound"))
 const Url = lazy(() => import("./url/url"))
 
@@ -25,7 +24,6 @@ function App() {
 						<Route path="/mines/*" element={<Mines />} />
 						<Route path="/shopping/*" element={<Shopping />} />
 						<Route path="/files" element={<Files />} />
-						<Route path="/cmr/*" element={<Cmr />} />
 						<Route path="/url/*" element={<Url />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
