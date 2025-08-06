@@ -24,7 +24,9 @@ const branchmap = new Map([
 
 async function adddata(data, statsdb1, statsdb2) {
     data.time = getdate()
-    await statsdb2.insertOne(data)
+    console.log(data);
+    if((data.name != null) || (data.roll != null))
+        await statsdb2.insertOne(data)
     await statsdb1.updateOne({ app: "cmr" }, { $inc: { count: 1 } })
 }
 

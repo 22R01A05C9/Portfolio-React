@@ -1,9 +1,16 @@
 import "./mainbody.css"
 import Upload from "../upload/upload";
 import Download from "../download/download";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 function Mainbody({ showchoose, choose }) {
     const ip = useRef(null)
+    useEffect(()=>{
+        fetch("https://ip.ageerasaiteja.workers.dev").
+        then(res => res.json()).
+        then(json => {
+            ip.current = json.ip
+        })
+    },[])
     return (
         <div className="files">
             {showchoose == true ? <Download choose={choose} ip={ip} /> : <Download choose={"Download"} ip={ip} />}

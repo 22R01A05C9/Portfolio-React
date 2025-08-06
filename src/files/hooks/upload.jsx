@@ -61,17 +61,6 @@ const Submitfnc = (ccRef, dodRef, file, ip, setuper, setUploading, setccodestatu
     }
 }
 
-const submit = (ccRef, dodRef, file, ip, setuper, setUploading, setccodestatus, setOutput, ccodestatus) => {
-    if(ip.current === null) {
-        fetch("https://ip.ageerasaiteja.workers.dev").
-        then(res => res.json()).
-        then(json => {
-            ip.current = json.ip
-            Submitfnc(ccRef, dodRef, file, ip, setuper, setUploading, setccodestatus, setOutput, ccodestatus)
-        })
-    }else{
-        Submitfnc(ccRef, dodRef, file, ip, setuper, setUploading, setccodestatus, setOutput, ccodestatus)
-    }
-}
+const submit = Submitfnc
 
 export default submit

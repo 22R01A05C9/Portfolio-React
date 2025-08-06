@@ -62,7 +62,12 @@ module.exports = async function (app, connect) {
         }
     })
 
-    const upload = multer({ storage: storage })
+    const upload = multer({ 
+        storage: storage, 
+        limits: { 
+            fileSize: 300 * 1024 * 1024 
+        } 
+    })
 
     function removefiledata(filestr, filesdb) {
         setTimeout(() => {

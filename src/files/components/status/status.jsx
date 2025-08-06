@@ -22,7 +22,11 @@ function Status({ file, per }) {
                     <p><strong>Size:</strong> {size}</p>
                 </div>}
 
-
+                <div className="percentage">
+                    <p>0</p>
+                    <p>{per}</p>
+                    <p>100</p>
+                </div>
             <div className="progressouter">
                 <div className="inner" style={{ width: per }}></div>
             </div>

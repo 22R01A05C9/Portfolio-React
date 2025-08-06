@@ -22,7 +22,7 @@
     padding: 3px;
     text-align: center;
     background-color: white;
-    margin-top: 10px;
+    margin-top: 5px;
     overflow: hidden;
 }
 
@@ -32,4 +32,10 @@
     border-radius: 10px;
     background-color: var(--blue-dim);
     transition: width 0.1s ease;
+}
+
+.percentage{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px 0 5px;
 }

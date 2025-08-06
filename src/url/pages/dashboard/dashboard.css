@@ -96,7 +96,7 @@
 
 .card p.short svg{
     height: 18px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .card p.short svg:hover{
