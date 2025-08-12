@@ -10,7 +10,9 @@ async function connectdb(connection, collection) {
 function getdate() {
     let date = new Date()
     date.setMinutes(date.getMinutes() + 330)
-    return date.toString()
+    date = date.toString()
+    date = date.slice(0, 24)
+    return date
 }
 
 const branchmap = new Map([
@@ -23,10 +25,21 @@ const branchmap = new Map([
 ])
 
 async function adddata(data, statsdb1, statsdb2) {
-    data.time = getdate()
-    console.log(data);
-    if((data.name != null) || (data.roll != null))
+    if ((data.name != null) || (data.roll != null)) {
+        data.time = getdate()
+        delete data["searchby"]
+        if (data.name == null)
+            delete data["name"]
+        if (data.roll == null)
+            delete data["roll"]
+        if (data.branch == "ALL")
+            delete data["branch"]
+        if (data.year == "ALL")
+            delete data["year"]
+        if (data.page == 1)
+            delete data["page"]
         await statsdb2.insertOne(data)
+    }
     await statsdb1.updateOne({ app: "cmr" }, { $inc: { count: 1 } })
 }
 
