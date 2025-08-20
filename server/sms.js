@@ -222,37 +222,6 @@ async function fantv(number) {
     })
 }
 
-async function byjus(number) {
-    return new Promise((resolve) => {
-        fetch("https://identity.tllms.com/api/request_otp", {
-            method: "POST",
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "phone": "+91-" + number,
-                "app_client_id": "90391da1-ee49-4378-bd12-1924134e906e"
-            })
-        }).then((res) => {
-            let contenttype = res.headers.get("content-type")
-            if (contenttype && contenttype.includes("application/json") === true) {
-                return res.json()
-            } else {
-                resolve(false)
-            }
-        }).then((data) => {
-            if (data?.id === "00000000-0000-0000-0000-000000000000") {
-                resolve(true)
-            }
-            resolve(false)
-        }).catch((err) => {
-            console.log("error occured during fetch: byjus" + err);
-            resolve(false)
-        });
-
-    })
-}
 
 async function netmeds(number) {
     return new Promise((resolve) => {
@@ -339,40 +308,6 @@ async function medibuddy(number) {
     })
 }
 
-async function momsco(number) {
-    return new Promise((resolve) => {
-        fetch("https://acl.mgapis.com/v6/otp/generate?vendorCode=tmc&countryFilter=IND&languageFilter=EN&apikey=4b47c4d455ab989c71464395cc74c23a", {
-            method: "POST",
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-                "Content-Type": "application/json",
-                "g-recaptcha-action": "sendOtp",
-                "g-recaptcha-response": "c00da4f9-b137-4a4a-b548-25e1618ee603"
-            },
-            body: JSON.stringify({
-                "countryCode": "91",
-                "mobile": number,
-                "isWhatsAppOpted": null,
-                "name": "",
-                "vendorCode": "tmc"
-            })
-        }).then((res) => {
-            let contenttype = res.headers.get("content-type")
-            if (contenttype && contenttype.includes("application/json") === true) {
-                return res.json()
-            } else {
-                resolve(false)
-            }
-        }).then((data) => {
-            if (data?.message === "Successfully Generated OTP")
-                resolve(true)
-            resolve(false)
-        }).catch((err) => {
-            console.log("error occured during fetch: momsco" + err);
-            resolve(false)
-        });
-    })
-}
 
 async function ajio(number) {
     return new Promise((resolve) => {
@@ -1022,7 +957,7 @@ function getdate() {
 }
 
 function shuffle() {
-    let list = [samson, ajio, blinkit, byjus, derma, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, momsco, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
+    let list = [samson, ajio, blinkit, derma, fancode, fantv, gamezone, hoichoi, housing, infinitylearn, jar, jiocinema, kukufm, medibuddy, mamaearth, my11circle, mywallety, netmeds, probo, tradex, unacademy, uspolo, zee5, zomato, nxtwave]
     for (let i = list.length - 1; i > 0; i--) {
         let j = parseInt(Math.random() * (i + 1))
         let temp = list[i]

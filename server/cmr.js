@@ -56,7 +56,7 @@ async function extract(body, db) {
 
     let Search = {}
     if (body.searchby === "roll") {
-        let roll = body.roll?.replace(" ", "").split("").join('.*')
+        let roll = body.roll?.replace(" ", "").replace("*","").split("").join('.*')
         let expr = new RegExp(roll, 'i')
         Search.roll = { $regex: expr }
     } else if (body.searchby === "name") {
