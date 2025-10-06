@@ -12,7 +12,6 @@ const uploaded = (res, ccinput, ccchecked, dod, setccodestatus, setOutput, setUp
     while(id.length != 4){
         id = "0" + id
     }
-    console.log(link,id);
     setOutput({ id: id, link: link })
     setUploading(false)
 }

@@ -36,7 +36,6 @@ function Header({ext, active}) {
 		document.querySelector(":root").removeEventListener("click",close)
 		document.querySelectorAll(".mainnav ul li ").forEach((link)=>{
 			link.removeEventListener("click",()=>{
-				console.log("yes");
 				close()
 			})
 		})

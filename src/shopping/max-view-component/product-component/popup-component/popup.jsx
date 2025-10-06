@@ -2,7 +2,6 @@ import styles from "./popup.module.css"
 
 function Popup({ message, close }) {
     let heigh = document.body.offsetHeight
-    console.log(styles.popup)
     const sty = {
         height: `${heigh + 250}px`
     }

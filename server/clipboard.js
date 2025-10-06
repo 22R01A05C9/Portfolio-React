@@ -29,13 +29,17 @@ module.exports = function (app, connection) {
         adddata(req, res, connection) 
     })
     app.post("/clipboard/get", (req, res) => {
+        if(!req.body){
+            res.status(400).json({ error: true, message: "No Body Found" })
+            return
+        }
         if (!req.body.id) {
-            res.json({ error: true, message: "No ID Found" })
+            res.status(400).json({ error: true, message: "No ID Found" })
             return
         }
         getdata(req.body.id, connection).then((data) => {
             if (!data) {
-                res.json({ error: true, message: "No Content Found" })
+                res.status(404).json({ error: true, message: "No Content Found" })
                 return
             }
             res.json({ error: false, data: data.data })
