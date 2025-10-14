@@ -25,7 +25,7 @@ function App() {
 						<Route path="/mines/*" element={<Mines />} />
 						<Route path="/shopping/*" element={<Shopping />} />
 						<Route path="/files" element={<Files />} />
-						<Route path="/cmr/*" element={<Cmr />} />
+						<Route path={import.meta.env.VITE_CMR_PATH+ "/*"} element={<Cmr />} />
 						<Route path="/url/*" element={<Url />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>

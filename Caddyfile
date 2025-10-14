@@ -16,7 +16,7 @@ www.saiteja.site {
 }
 
 cmrstatic.saiteja.site {
-        root * /home/ubuntu/cmrimages
+        root * /home/saiteja/cmrimages
         file_server
         @staticFiles {
                 path *.jpg

@@ -97,12 +97,12 @@ module.exports = async function (app, connect) {
     app.post("/files/cverify", codelimiter, (req, res) => {
         let ccode = req.body.ccode;
         if (!ccode) {
-            res.json({ status: false, message: "No Code Provided" })
+            res.status(400).json({ status: false, message: "No Code Provided" })
             return;
         }
         let regexp = /^[0-9]{4}$/
         if (!regexp.test(ccode)) {
-            res.json({ status: false, message: "Invalid Code" })
+            res.status(400).json({ status: false, message: "Invalid Code" })
             return;
         }
         getfiledata(parseInt(ccode)).then((data) => {
@@ -126,33 +126,33 @@ module.exports = async function (app, connect) {
             let filename = req.file.originalname
             let deleteondownload = req.body.deleteondownload;
             if (!deleteondownload || (deleteondownload !== "false" && deleteondownload !== "true")) {
-                res.json({ status: false, message: "No Deleteondownload Data" })
+                res.status(400).json({ status: false, message: "No Deleteondownload Data" })
                 fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
                 return;
             }
             let size = req.body.size;
             let exp = /^[0-9]{1,3}.[0-9]{2} MB$/
             if (!size || !exp.test(size)) {
-                res.json({ status: false, message: "No Size Data" })
+                res.status(400).json({ status: false, message: "No Size Data" })
                 fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
                 return;
             }
             let customstatus = req.body.customstatus;
             if (!customstatus || (customstatus !== "false" && customstatus !== "true")) {
-                res.json({ status: false, message: "No Custom Id Data" })
+                res.status(400).json({ status: false, message: "No Custom Id Data" })
                 fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
                 return;
             }
             if (customstatus === "true") {
                 let customid = req.body.customid;
                 if (!customid) {
-                    res.json({ status: false, message: "No Custom Id Provided" })
+                    res.status(400).json({ status: false, message: "No Custom Id Provided" })
                     fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
                     return;
                 }
                 let regexp = /^[0-9]{4}$/
                 if (!regexp.test(customid)) {
-                    res.json({ status: false, message: "Invalid Custom Id" })
+                    res.status(400).json({ status: false, message: "Invalid Custom Id" })
                     fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
                     return;
                 }
@@ -170,7 +170,7 @@ module.exports = async function (app, connect) {
             })
         } catch (err) {
             fs.rm("./filesdb/" + filestr, { recursive: true, force: true }, () => { })
-            res.json({ status: false, message: "Some Error Occuerd" })
+            res.status(500).json({ status: false, message: "Some Error Occuerd" })
         }
     })
 
@@ -194,7 +194,6 @@ module.exports = async function (app, connect) {
                     }
                 })
             } else {
-                //add the link after creating frontend
                 res.redirect("https://saiteja.site/files?error=File Not Found")
             }
         })
@@ -203,18 +202,18 @@ module.exports = async function (app, connect) {
     app.post("/files/download", downloadlimiter, (req, res) => {
         let token = req.body.token;
         if (!token) {
-            res.json({ status: false, message: "Invalid Token" })
+            res.status(400).json({ status: false, message: "Invalid Token" })
             return;
         }
         let data = cryptojs.AES.decrypt(token, process.env.FILES_API_KEY).toString(cryptojs.enc.Utf8);
         if (!data) {
-            res.json({ status: false, messgae: "Invalid Authentication" })
+            res.status(401).json({ status: false, messgae: "Invalid Authentication" })
             return
         }
         data = JSON.parse(data)
         let regexp = /^[0-9]{4}$/
         if (!regexp.test(data.id)) {
-            res.json({ status: false, message: "Invalid File Id" })
+            res.status(400).json({ status: false, message: "Invalid File Id" })
             return
         }
         getfiledata(parseInt(data.id)).then((data) => {
@@ -222,7 +221,7 @@ module.exports = async function (app, connect) {
                 res.json({ status: true, redirect: ("/files/download/" + data.filestr), name: data.filename, size: data.size })
                 updatedownloads()
             } else {
-                res.json({ status: false, message: "No File Found" })
+                res.status(404).json({ status: false, message: "No File Found" })
             }
         })
     })
