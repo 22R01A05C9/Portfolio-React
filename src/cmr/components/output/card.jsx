@@ -8,7 +8,7 @@ function Card({ data, preview }) {
         document.body.removeChild(input);
     }
     const copy = (e) => {
-        let link = `${window.location.origin}/cmr/${data.roll}`;
+        let link = `${window.location.origin}${import.meta.env.VITE_CMR_PATH}/${data.roll}`;
         if(navigator.clipboard){
             navigator.clipboard.writeText(link);
         }else{

@@ -12,7 +12,6 @@ app.use(function (req, res, next) {
         decodeURIComponent(req.path)
         next()
     } catch (err) {
-        //change after backend
         res.redirect("https://saiteja.site")
     }
 })
@@ -56,5 +55,5 @@ client.connect().then((connection) => {
 
 
 server.listen(process.env.PORT, () => {
-    console.log("server staretd on http://localhost:" + process.env.PORT);
+    console.log("server started on http://localhost:" + process.env.PORT);
 })

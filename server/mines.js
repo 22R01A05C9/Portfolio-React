@@ -54,15 +54,11 @@ module.exports = function (app, conn) {
                 i++;
             }
         }
-        let l = [];
-        for (let i = 0; i < 16; i++) {
-            let found = false;
-            rands.forEach((value) => {
-                if (value === i) found = true;
-            });
-            if (found) l.push(1);
-            else l.push(0);
-        }
+        let l = Array(16).fill(0);
+        rands.forEach((value) => {
+            l[value] = 1
+        });
+        
         let jtoken = cryptojs.AES.encrypt(
             JSON.stringify({
                 game: l,
@@ -104,7 +100,7 @@ module.exports = function (app, conn) {
         }
         let bombs = data.bomb;
         if (gamestatus.status !== "active") {
-            res.json({ msg: "already game over", bombs: bombs });
+            res.json({ msg: "Game Completed", bombs: bombs });
             return;
         }
         let out = false;
